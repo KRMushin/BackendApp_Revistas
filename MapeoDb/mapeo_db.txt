@@ -1,0 +1,56 @@
+CREATE SCHEMA aplicacion_revistas;
+use aplicacion_revistas;
+
+CREATE TABLE usuarios (
+    nombre_usuario VARCHAR(15) NOT NULL UNIQUE PRIMARY KEY,
+    password_usuario VARCHAR(200) NOT NULL,
+    rol_usuario ENUM('COMPRADOR', 'SUSCRIPTOR', 'EDITOR', 'ADMINISTRADOR') NOT NULL,
+    nombre_pila VARCHAR(100) NOT NULL,
+    descripcion_usuario TEXT
+);
+
+CREATE TABLE preferencias_usuario (    
+	id_preferencia BIGINT AUTO_INCREMENT PRIMARY KEY,      
+	nombre_usuario VARCHAR(15),
+	tipo_preferencia ENUM('HOBBIE', 'GUSTO', 'TEMA_PREFERENCIA') NOT NULL,      	 
+	valor_preferencia VARCHAR(20) NOT NULL,      
+	FOREIGN KEY (nombre_usuario) REFERENCES usuarios(nombre_usuario)  
+);
+
+CREATE TABLE fotos_usuarios (
+    nombre_usuario VARCHAR(15) PRIMARY KEY, 
+    foto BLOB DEFAULT NULL
+);
+
+CREATE TABLE configuracion_anuncios (
+    id_configuracion BIGINT AUTO_INCREMENT PRIMARY KEY,
+    tipo_anuncio VARCHAR(25) NOT NULL,
+    duracion_dias int NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE carteras_digitales (
+    nombre_usuario VARCHAR(15) PRIMARY KEY, 
+    saldo_disponible DECIMAL(10,2) NOT NULL DEFAULT 0.0,
+    FOREIGN KEY (nombre_usuario) REFERENCES usuarios(nombre_usuario)  
+);
+
+admin12345	Admin
+$2a$10$SwGBmSaUPix2aZgRMi8PYueaIGCm6f3sFc5E1vSNOFs8m1tb06zgG
+
+-------------------------------INSERTS
+INSERT INTO configuracion_anuncios (tipo_anuncio, duracion_dias, precio)
+VALUES
+('video', '1', 42.00),
+('video', '3', 82.00),
+('video', '7', 132.00),
+('video', '14', 270.00),
+('imagen', '1', 30.00),
+('imagen', '3', 60.00),
+('imagen', '7', 120.00),
+('imagen', '14', 240.00),
+('imagen_texto', '1', 35.00),
+('imagen_texto', '3', 70.00),
+('imagen_texto', '7', 140.00),
+('imagen_texto', '14', 290.00);
+
