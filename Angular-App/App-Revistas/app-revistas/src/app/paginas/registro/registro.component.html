@@ -1,0 +1,29 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow-lg" style="width: 22rem;">
+      <h2 class="text-center mb-4">Registro</h2>
+      <form id="registroForm" [formGroup]="registroForm" (ngSubmit)="registrarUsuario()">
+          <div class="mb-3">
+              <label for="nombreUsuario" class="form-label">Nombre de usuario</label>
+              <input type="text" id="nombreUsuario" class="form-control" formControlName="nombreUsuario" placeholder="Ingresa tu nombre de usuario" required>
+          </div>
+          <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" id="password" class="form-control" formControlName="password" placeholder="Ingresa tu contraseña" required>
+          </div>
+          <div class="mb-3">
+              <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+              <input type="text" id="nombreCompleto" class="form-control" formControlName="nombreCompleto" placeholder="Ingresa tu nombre completo" required>
+          </div>
+          <div class="mb-3">
+              <label for="rol" class="form-label">Rol</label>
+              <select id="rol" class="form-select" formControlName="rol" required>
+                  <option value="">Seleccione un rol</option>
+                  <option value="COMPRADOR">Comprador</option>
+                  <option value="EDITOR">Editor</option>
+                  <option value="SUSCRIPTOR">Suscriptor</option>
+              </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+      </form>
+  </div>
+</div>
