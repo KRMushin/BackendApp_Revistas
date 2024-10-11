@@ -5,6 +5,7 @@
 package com.mycompany.apprevistas.backend.Repositorios;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 /**
  *
@@ -14,5 +15,5 @@ import java.sql.SQLException;
  */
 public interface RepositorioLlaveEntidad<T, ID> {
     
-         T obtenerLlaveEntidad(ID identificador) throws SQLException;
+         Optional<T> obtenerLlaveEntidad(ID identificador) throws SQLException;
 }

@@ -24,6 +24,7 @@ com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioUsuar
 com/mycompany/apprevistas/Excepciones/MapperExcepciones/CredencialInvalidaMapper.class
 com/mycompany/apprevistas/backend/entidades/PreferenciaUsuario.class
 com/mycompany/apprevistas/JakartaRestConfiguration.class
+com/mycompany/apprevistas/Excepciones/MapperExcepciones/DatabaseExceptionMapper.class
 com/mycompany/apprevistas/backend/entidades/FotoUsuario.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioFotosUsuarios.class
 com/mycompany/apprevistas/backend/Servicios/ServicioConfigAnuncios.class
@@ -35,6 +36,7 @@ com/mycompany/apprevistas/backend/util/ConexionBaseDatos.class
 com/mycompany/apprevistas/backend/Repositorios/RepositorioCrud.class
 com/mycompany/apprevistas/Excepciones/MapperExcepciones/ConflictoUsuarioMapper.class
 com/mycompany/apprevistas/rest/resources/UsuariosResource.class
+com/mycompany/apprevistas/backend/DTOs/LoginDTO.class
 com/mycompany/apprevistas/backend/entidades/Usuario.class
 com/mycompany/apprevistas/backend/DTOs/RegistroUsuarioDTO.class
 com/mycompany/apprevistas/backend/DTOs/ActContraseñaDTO.class
@@ -45,6 +47,7 @@ com/mycompany/apprevistas/resources/JakartaEE10Resource.class
 com/mycompany/apprevistas/rest/resources/RegistroResource.class
 com/mycompany/apprevistas/backend/Servicios/ServicioContraseñas.class
 com/mycompany/apprevistas/rest/resources/InicioSesionResource.class
+com/mycompany/apprevistas/backend/util/ServicioJWT.class
 com/mycompany/apprevistas/Excepciones/CredencialInvalidaException.class
 com/mycompany/apprevistas/rest/resources/FotosPerfilResource.class
 com/mycompany/apprevistas/backend/Servicios/ServicioUsuario.class

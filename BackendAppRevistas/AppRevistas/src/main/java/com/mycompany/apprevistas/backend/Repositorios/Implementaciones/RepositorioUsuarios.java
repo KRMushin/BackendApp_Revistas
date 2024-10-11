@@ -5,6 +5,7 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
 import com.mycompany.apprevistas.backend.DTOs.CredencialUsuario;
+import com.mycompany.apprevistas.backend.DTOs.LoginDTO;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioEscrituraLectura;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioLlaveEntidad;
 import com.mycompany.apprevistas.backend.entidades.Usuario;
@@ -14,12 +15,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
 /**
  *
  * @author kevin-mushin
  */
-public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,String>, RepositorioLlaveEntidad<CredencialUsuario,String> {
+public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,String>, RepositorioLlaveEntidad<LoginDTO,String> {
 
     private Connection conn;
 
@@ -96,21 +98,20 @@ public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,
     }
 
     @Override
-    public CredencialUsuario obtenerLlaveEntidad(String nombreUsuario) throws SQLException {
+    public Optional<LoginDTO> obtenerLlaveEntidad(String nombreUsuario) throws SQLException {
 
-        String insertQuery = "SELECT password_usuario, nombre_usuario WHERE nombre_usuario = ?";
+        String insertQuery = "SELECT password_usuario, nombre_usuario FROM usuarios WHERE nombre_usuario = ?";
         try(PreparedStatement stmt = conn.prepareStatement(insertQuery)){
              stmt.setString(1, nombreUsuario);
              ResultSet rs = stmt.executeQuery();
              
              if (rs.next()) {
-                 CredencialUsuario cu = new CredencialUsuario();
+                 LoginDTO cu = new LoginDTO();
                  cu.setNombreUsuario(rs.getString("nombre_usuario"));
-                 cu.setRolUsuario(RolUsuario.valueOf(rs.getString("rol_usuario")));
-                 
-                 return cu;
+                 cu.setPassword(rs.getString("password_usuario"));
+                 return Optional.of(cu);
              }
-             return null;
+             return Optional.empty();
         }
     }
 }

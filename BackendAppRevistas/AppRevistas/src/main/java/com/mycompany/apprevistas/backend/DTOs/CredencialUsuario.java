@@ -12,41 +12,27 @@ import com.mycompany.apprevistas.backend.util.RolUsuario;
  */
 public class CredencialUsuario {
     
-    private String nombreUsuario;
-    private RolUsuario rolUsuario;
-    private String[] permisosRol;
+    private boolean estaAutenticado;
+    private String token;
 
     public CredencialUsuario() {
     }
-    
-    /*AREA A SETTERS Y GETTERS*/
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public boolean isEstaAutenticado() {
+        return estaAutenticado;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setEstaAutenticado(boolean estaAutenticado) {
+        this.estaAutenticado = estaAutenticado;
     }
 
-    public RolUsuario getRolUsuario() {
-        return rolUsuario;
+    public String getToken() {
+        return token;
     }
 
-    public void setRolUsuario(RolUsuario rolUsuario) {
-        this.rolUsuario = rolUsuario;
+    public void setToken(String token) {
+        this.token = token;
     }
-
-    
-
-    public String[] getPermisosRol() {
-        return permisosRol;
-    }
-
-    public void setPermisosRol(String[] permisosRol) {
-        this.permisosRol = permisosRol;
-    }
-    
     
     
     
