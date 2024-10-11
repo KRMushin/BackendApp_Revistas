@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.aplicacionrevistas.rest.resources;
+package com.mycompany.apprevistas.rest.resources;
 
-import com.mycompany.aplicacionrevistas.backend.Servicios.ServicioConfigAnuncios;
-import com.mycompany.aplicacionrevistas.backend.entidades.ConfiguracionAnuncio;
+import com.mycompany.apprevistas.backend.Servicios.ServicioConfigAnuncios;
+import com.mycompany.apprevistas.backend.entidades.ConfiguracionAnuncio;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;

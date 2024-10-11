@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.aplicacionrevistas.backend.Repositorios.Implementaciones;
+package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
-import com.mycompany.aplicacionrevistas.backend.DTOs.CredencialUsuario;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.RepositorioEscrituraLectura;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.RepositorioLlaveEntidad;
-import com.mycompany.aplicacionrevistas.backend.entidades.Usuario;
-import com.mycompany.aplicacionrevistas.backend.util.RolUsuario;
+import com.mycompany.apprevistas.backend.DTOs.CredencialUsuario;
+import com.mycompany.apprevistas.backend.Repositorios.RepositorioEscrituraLectura;
+import com.mycompany.apprevistas.backend.Repositorios.RepositorioLlaveEntidad;
+import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.util.RolUsuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

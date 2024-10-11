@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.aplicacionrevistas.backend.Servicios;
+package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.aplicacionrevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.aplicacionrevistas.Excepciones.TransaccionFallidaException;
-import com.mycompany.aplicacionrevistas.backend.CreadoresModelo.CreadorPreferenciaUsuario;
-import com.mycompany.aplicacionrevistas.backend.CreadoresModelo.CreadorUsuario;
-import com.mycompany.aplicacionrevistas.backend.DTOs.UsuarioDTO;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.Implementaciones.RepositorioFotosUsuarios;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.Implementaciones.RepositorioPreferenciasUsuario;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.Implementaciones.RepositorioUsuarios;
-import com.mycompany.aplicacionrevistas.backend.entidades.FotoUsuario;
-import com.mycompany.aplicacionrevistas.backend.entidades.PreferenciaUsuario;
-import com.mycompany.aplicacionrevistas.backend.entidades.Usuario;
-import com.mycompany.aplicacionrevistas.backend.util.ConexionBaseDatos;
+import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.Excepciones.TransaccionFallidaException;
+import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorPreferenciaUsuario;
+import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorUsuario;
+import com.mycompany.apprevistas.backend.DTOs.UsuarioDTO;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioFotosUsuarios;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioPreferenciasUsuario;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioUsuarios;
+import com.mycompany.apprevistas.backend.entidades.FotoUsuario;
+import com.mycompany.apprevistas.backend.entidades.PreferenciaUsuario;
+import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

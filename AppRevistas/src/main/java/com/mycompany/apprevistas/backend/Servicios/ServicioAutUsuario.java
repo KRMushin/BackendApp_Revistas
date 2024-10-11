@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.aplicacionrevistas.backend.Servicios;
+package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.aplicacionrevistas.Excepciones.CredencialInvalidaException;
-import com.mycompany.aplicacionrevistas.backend.DTOs.CredencialUsuario;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.Implementaciones.RepositorioUsuarios;
-import com.mycompany.aplicacionrevistas.backend.DTOs.InicioSesionDTO;
+import com.mycompany.apprevistas.Excepciones.CredencialInvalidaException;
+import com.mycompany.apprevistas.backend.DTOs.CredencialUsuario;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioUsuarios;
+import com.mycompany.apprevistas.backend.DTOs.InicioSesionDTO;
 import java.sql.SQLException;
 
 /**

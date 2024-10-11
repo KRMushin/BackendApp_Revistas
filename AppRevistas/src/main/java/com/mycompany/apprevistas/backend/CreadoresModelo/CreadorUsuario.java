@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.aplicacionrevistas.backend.CreadoresModelo;
+package com.mycompany.apprevistas.backend.CreadoresModelo;
 
-import com.mycompany.aplicacionrevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.aplicacionrevistas.backend.DTOs.RegistroUsuarioDTO;
-import com.mycompany.aplicacionrevistas.backend.DTOs.UsuarioDTO;
-import com.mycompany.aplicacionrevistas.backend.entidades.Usuario;
-import com.mycompany.aplicacionrevistas.backend.util.EncriptadorDatos;
+import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.DTOs.RegistroUsuarioDTO;
+import com.mycompany.apprevistas.backend.DTOs.UsuarioDTO;
+import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.util.EncriptadorDatos;
 
 /**
  *

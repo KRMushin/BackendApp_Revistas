@@ -1,4 +1,4 @@
-package com.mycompany.aplicacionrevistas.resources;
+package com.mycompany.apprevistas.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

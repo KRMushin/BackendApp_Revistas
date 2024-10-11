@@ -2,20 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.aplicacionrevistas.backend.Servicios;
+package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.aplicacionrevistas.Excepciones.ConflictoUsuarioException;
-import com.mycompany.aplicacionrevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.aplicacionrevistas.Excepciones.TransaccionFallidaException;
-import com.mycompany.aplicacionrevistas.backend.CreadoresModelo.CreadorUsuario;
-import com.mycompany.aplicacionrevistas.backend.DTOs.RegistroUsuarioDTO;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.Implementaciones.RepositorioFotosUsuarios;
-import com.mycompany.aplicacionrevistas.backend.Repositorios.Implementaciones.RepositorioUsuarios;
-import com.mycompany.aplicacionrevistas.backend.entidades.FotoUsuario;
-import com.mycompany.aplicacionrevistas.backend.entidades.Usuario;
-import com.mycompany.aplicacionrevistas.backend.util.ConexionBaseDatos;
+import com.mycompany.apprevistas.Excepciones.ConflictoUsuarioException;
+import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.Excepciones.TransaccionFallidaException;
+import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorUsuario;
+import com.mycompany.apprevistas.backend.DTOs.RegistroUsuarioDTO;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioFotosUsuarios;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioUsuarios;
+import com.mycompany.apprevistas.backend.entidades.FotoUsuario;
+import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +35,7 @@ public class ServicioRegistro {
         this.creadorUsuario = new CreadorUsuario();
     }
     
-    public void registrarUsuario(RegistroUsuarioDTO registroDTO) throws DatosInvalidosUsuarioException, SQLException, TransaccionFallidaException, ConflictoUsuarioException{
+    public void registrarUsuario(RegistroUsuarioDTO registroDTO) {
         
               if (nombreUsuarioExistente(registroDTO)) {
                   throw new ConflictoUsuarioException();
@@ -48,7 +50,7 @@ public class ServicioRegistro {
     }
     
     
-    private void ingresarUsuarioSistema(Usuario usuario) throws SQLException, TransaccionFallidaException{
+    private void ingresarUsuarioSistema(Usuario usuario) {
     
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
               repositorioUsuario.setConn(conn);
@@ -65,10 +67,12 @@ public class ServicioRegistro {
                       conn.rollback();
                       throw new TransaccionFallidaException();
              }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServicioRegistro.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
         
-    private boolean nombreUsuarioExistente(RegistroUsuarioDTO registroDTO) throws DatosInvalidosUsuarioException, SQLException{
+    private boolean nombreUsuarioExistente(RegistroUsuarioDTO registroDTO) {
         
         if (registroDTO.getNombreUsuario() == null || registroDTO.getNombreUsuario().isEmpty()) {
             throw new DatosInvalidosUsuarioException();
@@ -78,7 +82,7 @@ public class ServicioRegistro {
                 Usuario usuario = repositorioUsuario.obtenerPorId(registroDTO.getNombreUsuario());
                 return usuario != null;
         } catch(SQLException e){
-                throw new SQLException("Error de consulta en servicio registro");
+            return true;
         }
     }
 }

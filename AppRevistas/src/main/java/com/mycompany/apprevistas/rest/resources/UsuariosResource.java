@@ -2,17 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.aplicacionrevistas.rest.resources;
+package com.mycompany.apprevistas.rest.resources;
 
-import com.mycompany.aplicacionrevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.aplicacionrevistas.Excepciones.TransaccionFallidaException;
-import com.mycompany.aplicacionrevistas.backend.DTOs.UsuarioDTO;
-import com.mycompany.aplicacionrevistas.backend.Servicios.ServicioUsuario;
-import com.mycompany.aplicacionrevistas.backend.entidades.FotoUsuario;
-import com.mycompany.aplicacionrevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.Excepciones.TransaccionFallidaException;
+import com.mycompany.apprevistas.backend.DTOs.UsuarioDTO;
+import com.mycompany.apprevistas.backend.Servicios.ServicioUsuario;
+import com.mycompany.apprevistas.backend.entidades.Usuario;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -21,12 +19,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.sql.SQLException;
 import java.util.Optional;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *
