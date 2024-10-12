@@ -5,7 +5,7 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioEscrituraLectura;
-import com.mycompany.apprevistas.backend.entidades.FotoUsuario;
+import com.mycompany.apprevistas.backend.modelos.FotoUsuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +58,7 @@ public class RepositorioFotosUsuarios implements RepositorioEscrituraLectura<Fot
     
     @Override
     public FotoUsuario obtenerPorId(String identificador) throws SQLException {
-        String insertQuery = "SELECT *FROM fotos_usuario WHERE nombre_usuario = ? ";
+        String insertQuery = "SELECT *FROM fotos_usuarios WHERE nombre_usuario = ? ";
         try(PreparedStatement stmt = conn.prepareStatement(insertQuery)){
              stmt.setString(1, identificador);
         

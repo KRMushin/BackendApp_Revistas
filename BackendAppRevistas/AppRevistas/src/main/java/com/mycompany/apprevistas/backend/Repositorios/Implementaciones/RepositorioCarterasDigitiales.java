@@ -5,7 +5,7 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
-import com.mycompany.apprevistas.backend.entidades.CarteraDigital;
+import com.mycompany.apprevistas.backend.modelos.CarteraDigital;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

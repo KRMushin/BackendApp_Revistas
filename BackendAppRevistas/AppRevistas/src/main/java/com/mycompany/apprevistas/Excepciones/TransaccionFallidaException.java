@@ -16,5 +16,10 @@ public class TransaccionFallidaException extends  RuntimeException{
     public TransaccionFallidaException(String message) {
         super(message);
     }
+
+    public TransaccionFallidaException(Throwable cause) {
+        super(cause);
+    }
+    
     
 }

@@ -16,6 +16,10 @@ public class DatosInvalidosUsuarioException extends  RuntimeException{
     public DatosInvalidosUsuarioException(String message) {
         super(message);
     }
+
+    public DatosInvalidosUsuarioException(Throwable cause) {
+        super(cause);
+    }
     
     
     

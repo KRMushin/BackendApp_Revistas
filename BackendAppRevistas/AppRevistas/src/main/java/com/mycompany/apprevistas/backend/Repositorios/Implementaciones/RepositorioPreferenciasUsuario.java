@@ -5,8 +5,8 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
-import com.mycompany.apprevistas.backend.entidades.PreferenciaUsuario;
-import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.modelos.PreferenciaUsuario;
+import com.mycompany.apprevistas.backend.modelos.Usuario;
 import com.mycompany.apprevistas.backend.util.TipoPreferencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,18 +98,12 @@ public class RepositorioPreferenciasUsuario implements RepositorioCrud<Preferenc
         return p;
     }
 
-    public void guardarPreferencias(List<PreferenciaUsuario> preferencias, Usuario usuario) throws SQLException {
+    public void eliminaroPreferencias(String nombreUsuario) throws SQLException {
         
         String borrarValores = "DELETE FROM preferencias_usuario WHERE nombre_usuario = ?";
         try(PreparedStatement stmt = conn.prepareStatement(borrarValores)) {
-            stmt.setString(1, usuario.getNombreUsuario());
+            stmt.setString(1, nombreUsuario);
             int prefBorradas = stmt.executeUpdate();
-            if (prefBorradas > 0) {
-                for (int i = 0; i < preferencias.size(); i++) {
-                    PreferenciaUsuario pref = preferencias.get(i);
-                    guardar(pref);
-                }
-            }
         } 
     }
     

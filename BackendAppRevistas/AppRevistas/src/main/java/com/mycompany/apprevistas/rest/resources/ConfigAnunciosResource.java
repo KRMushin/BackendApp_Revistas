@@ -5,16 +5,17 @@
 package com.mycompany.apprevistas.rest.resources;
 
 import com.mycompany.apprevistas.backend.Servicios.ServicioConfigAnuncios;
-import com.mycompany.apprevistas.backend.entidades.ConfiguracionAnuncio;
+import com.mycompany.apprevistas.backend.Servicios.ServicioContraseñas;
+import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
+import com.mycompany.apprevistas.backend.usuariosDTOs.ActualizarContraseñaDTO;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,21 +27,18 @@ public class ConfigAnunciosResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerConfiguraciones(){
-        try {
             ServicioConfigAnuncios servicio = new ServicioConfigAnuncios();
             List<ConfiguracionAnuncio> configs = servicio.obtenerConfiguraciones();
-            
-            for (int i = 0; i < configs.size(); i++) {
-                ConfiguracionAnuncio con = configs.get(i);
-                if (con != null) {
-                    con.getTipoAnuncio();
-                }
-                
-            }
             return Response.ok(configs).build();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
     }
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response actualizarContraseña(ConfiguracionAnuncio config ){
+            ServicioConfigAnuncios servicio = new ServicioConfigAnuncios();
+            servicio.actualizarConfiguracion(config);
+            return Response.ok().build();
+        }
+    
 }
+

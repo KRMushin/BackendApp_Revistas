@@ -4,11 +4,9 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioConfigAnuncio;
-import com.mycompany.apprevistas.backend.entidades.ConfiguracionAnuncio;
-import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
-import java.sql.Connection;
-import java.sql.SQLException;
+import com.mycompany.apprevistas.ConsultasModelos.ConsultasConfigAnuncios;
+import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
 import java.util.List;
 
 /**
@@ -17,17 +15,20 @@ import java.util.List;
  */
 public class ServicioConfigAnuncios {
     
-    private RepositorioConfigAnuncio repositorioConfiguracion;
+    private ConsultasConfigAnuncios consultaConfiguraciones;
 
     public ServicioConfigAnuncios() {
-        this.repositorioConfiguracion = new RepositorioConfigAnuncio();
+            this.consultaConfiguraciones = new ConsultasConfigAnuncios();
     }
     
-    public List<ConfiguracionAnuncio> obtenerConfiguraciones() throws SQLException{
-        
-        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()){
-            repositorioConfiguracion.setConn(conn);
-            return repositorioConfiguracion.listarTodos();
+    public List<ConfiguracionAnuncio> obtenerConfiguraciones() {
+        return consultaConfiguraciones.obtenerConfiguracionesAnuncios();
+    }
+    
+    public void actualizarConfiguracion(ConfiguracionAnuncio config){
+         if (!config.esValido()) {
+            throw new DatosInvalidosUsuarioException();
         }
+         consultaConfiguraciones.actualizarConfiguracion(config);
     }
 }

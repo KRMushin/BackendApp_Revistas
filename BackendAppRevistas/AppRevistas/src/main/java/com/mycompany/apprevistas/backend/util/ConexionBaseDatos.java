@@ -43,7 +43,7 @@ public class ConexionBaseDatos {
             p.setTimeBetweenEvictionRunsMillis(30000);
             p.setMaxActive(100);
             p.setInitialSize(10);
-            p.setMaxWait(10000);
+            p.setMaxWait(1000);
             p.setRemoveAbandonedTimeout(60);
             p.setMinEvictableIdleTimeMillis(30000);
             p.setMinIdle(10);

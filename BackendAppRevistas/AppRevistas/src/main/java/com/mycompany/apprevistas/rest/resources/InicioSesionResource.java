@@ -5,9 +5,9 @@
 package com.mycompany.apprevistas.rest.resources;
 
 import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.apprevistas.backend.DTOs.CredencialUsuario;
-import com.mycompany.apprevistas.backend.DTOs.LoginDTO;
-import com.mycompany.apprevistas.backend.Servicios.ServicioAutUsuario;
+import com.mycompany.apprevistas.backend.usuariosDTOs.CredencialUsuario;
+import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
+import com.mycompany.apprevistas.backend.Servicios.ServicioAutenticarUsuario;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -24,7 +24,7 @@ public class InicioSesionResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerCredenciales(LoginDTO loginDTO){
-        ServicioAutUsuario service = new ServicioAutUsuario();
+        ServicioAutenticarUsuario service = new ServicioAutenticarUsuario();
         CredencialUsuario credencialUsuario = service.obtenerCredencialUsuario(loginDTO);
         return Response.ok(credencialUsuario).build();
     }

@@ -5,7 +5,7 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioConfigAnuncios;
-import com.mycompany.apprevistas.backend.entidades.ConfiguracionAnuncio;
+import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +42,7 @@ public class RepositorioConfigAnuncio implements RepositorioConfigAnuncios<Confi
 
     @Override
     public ConfiguracionAnuncio actualizar(ConfiguracionAnuncio modelo) throws SQLException {
-        String insertUpdate = "UPDATE precio = ? , tiempo_duracion = ? WHERE id_anuncio = ?";
+        String insertUpdate = "UPDATE configuracion_anuncios SET precio = ? , duracion_dias = ? WHERE id_configuracion = ?";
         
         try(PreparedStatement stmt = conn.prepareStatement(insertUpdate)){
              stmt.setDouble(1, modelo.getPrecio());
@@ -59,7 +59,7 @@ public class RepositorioConfigAnuncio implements RepositorioConfigAnuncios<Confi
 
     @Override
     public ConfiguracionAnuncio obtenerPorId(Long identificador) throws SQLException {
-            String insertQuery = "SELECT *FROM configuracion_anuncios WHERE id_anuncio = ?";
+            String insertQuery = "SELECT *FROM configuracion_anuncios WHERE id_configuracion = ?";
             
             try(PreparedStatement stmt = conn.prepareStatement(insertQuery)){
                  stmt.setLong(1, identificador);

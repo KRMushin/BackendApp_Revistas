@@ -5,9 +5,9 @@
 package com.mycompany.apprevistas.backend.CreadoresModelo;
 
 import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.apprevistas.backend.DTOs.RegistroUsuarioDTO;
-import com.mycompany.apprevistas.backend.DTOs.UsuarioDTO;
-import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.usuariosDTOs.RegistroUsuarioDTO;
+import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
+import com.mycompany.apprevistas.backend.modelos.Usuario;
 import com.mycompany.apprevistas.backend.util.EncriptadorDatos;
 
 /**
@@ -41,6 +41,7 @@ public class CreadorUsuario {
     public Usuario validarDatosUsuario(UsuarioDTO usuarioDTO) throws DatosInvalidosUsuarioException{
         try {
             Usuario usuario = new Usuario();
+            usuario.setNombreUsuario(usuarioDTO.getNombreUsuario());
             usuario.setNombrePila(usuarioDTO.getNombrePila());
             if (usuarioDTO.getDescripcion() != null) {
                 usuario.setDescripcion(usuarioDTO.getDescripcion());
@@ -49,8 +50,6 @@ public class CreadorUsuario {
         } catch (IllegalArgumentException | NullPointerException e) {
             throw new DatosInvalidosUsuarioException();
         }
-
-
     }
     
     

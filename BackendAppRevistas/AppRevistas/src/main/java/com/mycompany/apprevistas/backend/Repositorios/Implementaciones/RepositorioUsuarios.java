@@ -4,11 +4,12 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
-import com.mycompany.apprevistas.backend.DTOs.CredencialUsuario;
-import com.mycompany.apprevistas.backend.DTOs.LoginDTO;
+import com.mycompany.apprevistas.backend.usuariosDTOs.CredencialUsuario;
+import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioEscrituraLectura;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioLlaveEntidad;
-import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.modelos.Usuario;
+import com.mycompany.apprevistas.backend.usuariosDTOs.LlaveUsuarioDTO;
 import com.mycompany.apprevistas.backend.util.RolUsuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +22,7 @@ import java.util.Optional;
  *
  * @author kevin-mushin
  */
-public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,String>, RepositorioLlaveEntidad<LoginDTO,String> {
+public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,String>, RepositorioLlaveEntidad<LlaveUsuarioDTO,String> {
 
     private Connection conn;
 
@@ -98,7 +99,7 @@ public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,
     }
 
     @Override
-    public Optional<LoginDTO> obtenerLlaveEntidad(String nombreUsuario) throws SQLException {
+    public Optional<LlaveUsuarioDTO> obtenerLlaveEntidad(String nombreUsuario) throws SQLException {
 
         String insertQuery = "SELECT password_usuario, nombre_usuario FROM usuarios WHERE nombre_usuario = ?";
         try(PreparedStatement stmt = conn.prepareStatement(insertQuery)){
@@ -106,9 +107,10 @@ public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,
              ResultSet rs = stmt.executeQuery();
              
              if (rs.next()) {
-                 LoginDTO cu = new LoginDTO();
+                 LlaveUsuarioDTO cu = new LlaveUsuarioDTO();
                  cu.setNombreUsuario(rs.getString("nombre_usuario"));
                  cu.setPassword(rs.getString("password_usuario"));
+                 cu.setRolUsuario(RolUsuario.valueOf(rs.getString("rol_usuario")));
                  return Optional.of(cu);
              }
              return Optional.empty();

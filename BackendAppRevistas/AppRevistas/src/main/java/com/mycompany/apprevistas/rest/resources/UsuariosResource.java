@@ -4,11 +4,10 @@
  */
 package com.mycompany.apprevistas.rest.resources;
 
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.apprevistas.Excepciones.TransaccionFallidaException;
-import com.mycompany.apprevistas.backend.DTOs.UsuarioDTO;
+import com.mycompany.apprevistas.Excepciones.NotFoundException;
+import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
 import com.mycompany.apprevistas.backend.Servicios.ServicioUsuario;
-import com.mycompany.apprevistas.backend.entidades.Usuario;
+import com.mycompany.apprevistas.backend.modelos.Usuario;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
@@ -20,8 +19,9 @@ import jakarta.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.sql.SQLException;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,48 +36,36 @@ public class UsuariosResource {
     public Response obtenerPerfilUsuario(@PathParam("nombreUsuario") String nombreUsuario){
               
             ServicioUsuario userService = new ServicioUsuario();
-             Optional<Usuario> usuario = userService.obtenerUsuario(nombreUsuario);
-              
-              if (usuario.isPresent()) {
-                return Response.ok(usuario.get()).build();
-            }
-              return Response.status(Response.Status.NOT_FOUND).build();
+            Optional<Usuario> usuario = userService.obtenerPerfilUsurio(nombreUsuario);
+            return Response.ok(usuario.get()).build();
     }
     
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response actualizarUsuarioDatos(UsuarioDTO usuarioDTO){
+            ServicioUsuario userService = new ServicioUsuario();
+            userService.actualizarUsuario(usuarioDTO);
+            return Response.ok().build();
+    }
     @GET
     @Path("{nombreUsuario}/foto")
     @Produces({"image/jpeg", "image/png"})
     public Response obtenerFotoPerfil(@PathParam("nombreUsuario") String nombreUsuario){
         
         ServicioUsuario userService = new ServicioUsuario();
-    
-        try {
-            File foto = userService.obtenerFotoPerfil(nombreUsuario); // obtener la foto de perfil
-
-            if (foto != null) {
-                return Response.ok(Files.newInputStream(foto.toPath())).header("Content-Disposition", "inline; filename=\"" + foto.getName() + "\"").build(); // devuelve un imputstream
+        Optional<File> foto = userService.obtenerFotoPerfil(nombreUsuario); 
+        if (foto.isPresent()) {
+            try {
+                return Response.ok(Files.newInputStream(foto.get().toPath())).header("Content-Disposition", "inline; filename=\"" + foto.get().getName() + "\"").build(); // devuelve un imputstream
+            } catch (IOException ex) {
+                    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
             }
-            return Response.status(Response.Status.NOT_FOUND).build();
-
-        } catch (SQLException | IOException ex) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }else{
+                    return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
     
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response actualizarUsuarioDatos(UsuarioDTO usuarioDTO){
-        try {
-            ServicioUsuario userService = new ServicioUsuario();
-            userService.actualizarUsuario(usuarioDTO);
-            return Response.ok().build();
-        } catch (DatosInvalidosUsuarioException  e) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-            
-        }catch(TransaccionFallidaException | SQLException e){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+    
     
 //    @POST
 //        @Path("/{nombreUsuario}/foto")

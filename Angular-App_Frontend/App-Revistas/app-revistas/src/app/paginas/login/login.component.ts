@@ -48,9 +48,7 @@ export class LoginComponent {
         console.log(error.message);
       }
     });
-
     console.log('Datos del formulario:', objeto);
-    
   }
 
 }

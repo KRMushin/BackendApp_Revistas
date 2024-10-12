@@ -4,8 +4,8 @@
  */
 package com.mycompany.apprevistas.backend.CreadoresModelo;
 
-import com.mycompany.apprevistas.backend.DTOs.UsuarioDTO;
-import com.mycompany.apprevistas.backend.entidades.PreferenciaUsuario;
+import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
+import com.mycompany.apprevistas.backend.modelos.PreferenciaUsuario;
 import com.mycompany.apprevistas.backend.util.TipoPreferencia;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class CreadorPreferenciaUsuario {
             if (preferencias != null) {
                 for (String preferencia : preferencias) {
                     if (preferencia.matches(patronValido)) {
-                        prefs.add(new PreferenciaUsuario(preferencia, usuarioDTO.getNombrePila(), TipoPreferencia.PREFERENCIA));
+                        prefs.add(new PreferenciaUsuario(preferencia, usuarioDTO.getNombreUsuario(), TipoPreferencia.TEMA_PREFERENCIA));
                     }
                 }
             }
@@ -35,7 +35,7 @@ public class CreadorPreferenciaUsuario {
             if (hobbies != null) {
                 for (String hobby : hobbies) {
                     if (hobby.matches(patronValido)) {
-                        prefs.add(new PreferenciaUsuario(hobby, usuarioDTO.getNombrePila(), TipoPreferencia.HOBBIE));
+                        prefs.add(new PreferenciaUsuario(hobby, usuarioDTO.getNombreUsuario(), TipoPreferencia.HOBBIE));
                     }
                 }
             }
@@ -43,7 +43,7 @@ public class CreadorPreferenciaUsuario {
             if (gustos != null) {
                 for (String gusto : gustos) {
                     if (gusto.matches(patronValido)) {
-                        prefs.add(new PreferenciaUsuario(gusto, usuarioDTO.getNombrePila(), TipoPreferencia.GUSTO));
+                        prefs.add(new PreferenciaUsuario(gusto, usuarioDTO.getNombreUsuario(), TipoPreferencia.GUSTO));
                     }
                 }
             }

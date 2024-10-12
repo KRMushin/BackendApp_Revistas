@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
-import com.mycompany.apprevistas.backend.DTOs.ActContraseñaDTO;
+import com.mycompany.apprevistas.backend.usuariosDTOs.ActualizarContraseñaDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,10 +17,16 @@ import java.sql.SQLException;
 public class RepositorioContraseñas{
 
     private Connection conn;
-    
-    public String actualizar(ActContraseñaDTO contraseñaDTO) throws SQLException {
 
-       String insertUpdate = "UPDATE password_usuario = ? WHERE nombre_usuario = ?";
+    public void setConn(Connection conn) {
+        this.conn = conn;
+    }
+    
+    
+    
+    public String actualizar(ActualizarContraseñaDTO contraseñaDTO) throws SQLException {
+
+       String insertUpdate = "UPDATE usuarios SET password_usuario = ? WHERE nombre_usuario = ? ";
        try(PreparedStatement stmt = conn.prepareStatement(insertUpdate)){
            stmt.setString(1, contraseñaDTO.getNuevaPassword());
            stmt.setString(2, contraseñaDTO.getNombreUsuario());

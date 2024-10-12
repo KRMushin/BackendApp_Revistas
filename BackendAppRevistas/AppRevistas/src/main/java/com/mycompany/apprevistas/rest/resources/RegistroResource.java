@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.rest.resources;
 
-import com.mycompany.apprevistas.backend.DTOs.RegistroUsuarioDTO;
+import com.mycompany.apprevistas.backend.usuariosDTOs.RegistroUsuarioDTO;
 import com.mycompany.apprevistas.backend.Servicios.ServicioRegistro;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;

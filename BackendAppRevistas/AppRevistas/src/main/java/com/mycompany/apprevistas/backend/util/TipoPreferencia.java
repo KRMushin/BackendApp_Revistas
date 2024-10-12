@@ -12,5 +12,5 @@ public enum TipoPreferencia {
         
         HOBBIE,
         GUSTO,
-        PREFERENCIA
+        TEMA_PREFERENCIA
 }
