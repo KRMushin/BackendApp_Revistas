@@ -1,9 +1,10 @@
 import { Component, inject, Inject } from '@angular/core';
-import { AccesoService } from '../../service/acceso.service';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Login } from '../../interfaces/Login';
 import { CommonModule } from '@angular/common';
+import { Login } from '../../../interfaces/Login';
+import { jwtDecode } from 'jwt-decode';
+import { AccesoService } from '../../../service/acceso.service';
 
 @Component({
   selector: 'app-login',
@@ -37,21 +38,40 @@ export class LoginComponent {
     
     this.accesoService.login(objeto).subscribe({
       next: (data) => {
-        if (data.isSuccessful) {
+        if (data.estaAutenticado) {
           localStorage.setItem('token', data.token);
-          this.router.navigate(['/inicio']);
+
+          const tokenValor: any = jwtDecode(data.token);
+      const rolUsuario = tokenValor.rol;
+
+      console.log('Rol del usuario:', rolUsuario);
+            if (rolUsuario === 'ADMINISTRADOR') {
+              this.router.navigate(['/admin-control']);
+
+            } else if (rolUsuario === 'EDITOR') {
+              this.router.navigate(['/editor-control']);
+            }
+              else if (rolUsuario === 'COMPRADOR') {
+              this.router.navigate(['/comprador-control']);
+            } 
+              else if (rolUsuario === 'SUSCRIPTOR') {
+              this.router.navigate(['/suscriptor-control']);
+
+            } else {
+              this.router.navigate(['']);
+            }
         } else {
           alert("Las credenciales son incorrectas");
         }
       },
       error: (error) => {
-        console.log(error.message);
+        alert("Contraseña o nombre de usaurio incorrectos");
       }
     });
+    /* BORRAR DESPUES*/
     console.log('Datos del formulario:', objeto);
   }
-
 }
 /*
-    
+      
 */ 

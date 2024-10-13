@@ -9,7 +9,6 @@ com/mycompany/apprevistas/backend/usuariosDTOs/ActualizarContraseñaDTO.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioConfigAnuncio.class
 com/mycompany/apprevistas/ActualizacionesModelo/ActualizacionesUsuario.class
 com/mycompany/apprevistas/backend/modelos/PreferenciaUsuario.class
-com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioCarterasDigitiales.class
 com/mycompany/apprevistas/Excepciones/DatosInvalidosUsuarioException.class
 com/mycompany/apprevistas/backend/Repositorios/RepositorioLlaveEntidad.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorUsuario.class
@@ -21,6 +20,9 @@ com/mycompany/apprevistas/Excepciones/TransaccionFallidaException.class
 com/mycompany/apprevistas/backend/Repositorios/RepositorioEscrituraLectura.class
 com/mycompany/apprevistas/backend/util/RolUsuario.class
 com/mycompany/apprevistas/ConsultasModelos/ConsultaUsuarios.class
+com/mycompany/apprevistas/backend/CreadoresModelo/CreadorCarteraDigital.class
+com/mycompany/apprevistas/backend/Servicios/ServicioCarteraDigital.class
+com/mycompany/apprevistas/rest/resources/CarteraDigitalResource.class
 com/mycompany/apprevistas/Excepciones/MapperExcepciones/DatosInvalidosUsuarioMapper.class
 com/mycompany/apprevistas/backend/modelos/CarteraDigital.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorPreferenciaUsuario.class
@@ -36,6 +38,7 @@ com/mycompany/apprevistas/Excepciones/MapperExcepciones/DatabaseExceptionMapper.
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioFotosUsuarios.class
 com/mycompany/apprevistas/backend/Servicios/ServicioConfigAnuncios.class
 com/mycompany/apprevistas/backend/util/EncriptadorDatos.class
+com/mycompany/apprevistas/ConsultasModelos/ConsultasCarteraDigital.class
 com/mycompany/apprevistas/Excepciones/ConflictoUsuarioException.class
 com/mycompany/apprevistas/rest/resources/ConfigAnunciosResource.class
 com/mycompany/apprevistas/backend/util/ConexionBaseDatos.class
@@ -51,6 +54,8 @@ com/mycompany/apprevistas/backend/usuariosDTOs/UsuarioDTO.class
 com/mycompany/apprevistas/resources/JakartaEE10Resource.class
 com/mycompany/apprevistas/rest/resources/RegistroResource.class
 com/mycompany/apprevistas/Excepciones/MapperExcepciones/NotFoundMapper.class
+com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioCarterasDigitales.class
+com/mycompany/apprevistas/backend/usuariosDTOs/CarteraDigitalDTO.class
 com/mycompany/apprevistas/backend/Servicios/ServicioContraseñas.class
 com/mycompany/apprevistas/rest/resources/InicioSesionResource.class
 com/mycompany/apprevistas/backend/util/ServicioJWT.class

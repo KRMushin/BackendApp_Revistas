@@ -22,9 +22,11 @@ public class ServicioRegistro {
 
     public ServicioRegistro() {
         this.creadorUsuario = new CreadorUsuario();
+        this.consultaUsuario = new ConsultaUsuarios();
     }
     
     public void registrarUsuario(RegistroUsuarioDTO registroDTO) {
+            
         
               if (consultaUsuario.esUsuarioExistente(registroDTO.getNombreUsuario())) {
                   throw new ConflictoUsuarioException();
@@ -35,7 +37,7 @@ public class ServicioRegistro {
                   throw new DatosInvalidosUsuarioException();
                }
               Usuario usuario = creadorUsuario.validarRegistroUsuario(registroDTO);
-              consultaUsuario.ingresarUsuarioASistema(usuario);
+              consultaUsuario.guardarUsuario(usuario);
     }
     
     

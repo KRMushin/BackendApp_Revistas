@@ -7,6 +7,7 @@ package com.mycompany.apprevistas.backend.Servicios;
 import com.mycompany.apprevistas.ConsultasModelos.ConsultaUsuarios;
 import com.mycompany.apprevistas.Excepciones.ConflictoUsuarioException;
 import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.CredencialUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LlaveUsuarioDTO;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
@@ -38,8 +39,8 @@ public class ServicioAutenticarUsuario {
              throw new DatosInvalidosUsuarioException();
          }
          Optional<LlaveUsuarioDTO> credencial = consultasUsuario.obtenerCredencialUsuario(loginDTO.getNombreUsuario());   
-         if (!credencial.isPresent()) {
-             throw new ConflictoUsuarioException();
+         if (credencial.isEmpty()) {
+             throw new NotFoundException();
          }
          
          return autenticarUsuario(loginDTO,credencial.get());

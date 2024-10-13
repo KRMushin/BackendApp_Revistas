@@ -1,0 +1,66 @@
+<div class="d-flex">
+  <!-- Barra lateral con scroll independiente -->
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh; overflow-y: auto;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi me-2" width="40" height="32">
+        <use xlink:href="#bootstrap"></use>
+      </svg>
+      <span class="fs-4">Panel de Control</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a routerLink="/admin-control/anuncios-configuracion" class="nav-link active bg-primary text-white" aria-current="page">
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#home"></use>
+          </svg>
+          Gestiones en Anuncios
+        </a>
+      </li>
+      
+      <li>
+        <a href="#" class="nav-link text-white hover-bg-primary">
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#speedometer2"></use>
+          </svg>
+          Gestiones en Revistas
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white hover-bg-primary">
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#table"></use>
+          </svg>
+          Estadísticas de Negocio
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white hover-bg-primary">
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#grid"></use>
+          </svg>
+          Solicitudes de Clientes
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white hover-bg-primary">
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#people-circle"></use>
+          </svg>
+          Clientes
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <!-- Componente de Logout -->
+    <div class="d-flex align-items-center text-white text-decoration-none">
+      <app-cerrar-sesion></app-cerrar-sesion> <!-- Usando el componente Logout -->
+    </div>
+    
+  </div>
+
+  <!-- Contenido dinámico cargado por el router, con scroll independiente -->
+  <div class="p-4" style="flex-grow: 1; overflow-y: auto; height: 100vh;">
+    <router-outlet></router-outlet>
+  </div>
+</div>

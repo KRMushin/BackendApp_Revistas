@@ -10,9 +10,9 @@ package com.mycompany.apprevistas.backend.util;
  */
 public enum RolUsuario {
     
+        ADMINISTRADOR,
         EDITOR,
         SUSCRIPTOR,
-        ADMINISTRADOR,
         COMPRADOR
         
 }

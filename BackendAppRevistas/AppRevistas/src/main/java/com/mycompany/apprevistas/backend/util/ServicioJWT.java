@@ -27,7 +27,7 @@ public class ServicioJWT {
 
         return Jwts.builder()
                 .setSubject(llave.getNombreUsuario())
-                .claim("rol", llave.getRolUsuario())
+                .claim("rol", llave.getRolUsuario().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + TIEMPO_EXPIRACION))
                 .signWith(key, SignatureAlgorithm.HS256) // Usa el objeto Key aquí

@@ -4,6 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
+import com.mycompany.apprevistas.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.CredencialUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioEscrituraLectura;
@@ -101,19 +102,22 @@ public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,
     @Override
     public Optional<LlaveUsuarioDTO> obtenerLlaveEntidad(String nombreUsuario) throws SQLException {
 
-        String insertQuery = "SELECT password_usuario, nombre_usuario FROM usuarios WHERE nombre_usuario = ?";
+        String insertQuery = "SELECT password_usuario, nombre_usuario, rol_usuario FROM usuarios WHERE nombre_usuario = ?";
         try(PreparedStatement stmt = conn.prepareStatement(insertQuery)){
              stmt.setString(1, nombreUsuario);
              ResultSet rs = stmt.executeQuery();
-             
              if (rs.next()) {
                  LlaveUsuarioDTO cu = new LlaveUsuarioDTO();
                  cu.setNombreUsuario(rs.getString("nombre_usuario"));
                  cu.setPassword(rs.getString("password_usuario"));
-                 cu.setRolUsuario(RolUsuario.valueOf(rs.getString("rol_usuario")));
+                 String rol = rs.getString("rol_usuario");
+                System.out.println("Valor de rol_usuario: " + rol);
+                cu.setRolUsuario(RolUsuario.valueOf(rol));
+
                  return Optional.of(cu);
+             }else{
+                 throw new NotFoundException();
              }
-             return Optional.empty();
         }
     }
 }

@@ -40,6 +40,14 @@ public class ConsultaUsuarios {
         this.repositorioPrefUsuario = new RepositorioPreferenciasUsuario();
     }
     
+    public Usuario guardarUsuario(Usuario usuario){
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+              repositorioUsuarios.setConn(conn);
+              return repositorioUsuarios.guardar(usuario);
+        } catch (Exception e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
     public Optional<LlaveUsuarioDTO> obtenerCredencialUsuario(String nombreUsuario) {
         try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
               repositorioUsuarios.setConn(conn);

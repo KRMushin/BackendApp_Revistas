@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { AccesoService } from '../../service/acceso.service';
+import { AccesoService } from '../../../service/acceso.service';
 import { Router } from '@angular/router';
+import { Registro } from '../../../interfaces/Registro';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Registro } from '../../interfaces/Registro';
 import { RolUsuario } from '../../enum/RolUsuario';
 import { CommonModule } from '@angular/common';
 

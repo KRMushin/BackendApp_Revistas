@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid">
+      <!-- Logo y nombre de la app -->
+      <a class="navbar-brand" href="#">
+        <img src="https://via.placeholder.com/30" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+        Mi Aplicación
+      </a>
+  
+      <!-- Botón de colapso para dispositivos móviles -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Enlaces de navegación -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Gestiones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Estadísticas</a>
+          </li>
+        </ul>
+  
+        <!-- Componente de Logout -->
+            <div class="d-flex align-items-center text-white text-decoration-none">
+            <app-cerrar-sesion></app-cerrar-sesion> <!-- Usando el componente Logout -->
+        </div>
+      </div>
+    </div>
+  </nav>
+  
