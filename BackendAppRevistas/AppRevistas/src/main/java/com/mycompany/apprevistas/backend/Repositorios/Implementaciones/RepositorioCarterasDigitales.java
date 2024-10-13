@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author kevin-mushin
  */
-public class RepositorioCarterasDigitiales implements RepositorioCrud<CarteraDigital, String, String >{
+public class RepositorioCarterasDigitales implements RepositorioCrud<CarteraDigital, String, String >{
 
     private Connection conn;
     public void setConn(Connection conn) {
