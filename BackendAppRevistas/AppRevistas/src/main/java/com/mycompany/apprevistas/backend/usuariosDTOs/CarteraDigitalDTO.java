@@ -38,6 +38,6 @@ public class CarteraDigitalDTO {
         return nombreUsuario != null 
             && !nombreUsuario.trim().isEmpty() 
             && cantidadDinero != null 
-            && cantidadDinero > 0;
+            && cantidadDinero >= 0;
     }
 }

@@ -1,1 +1,81 @@
-<p>perfil-usuario works!</p>
+<div class="container mt-4" *ngIf="perfilUsuario">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm mb-4">
+        <div class="row g-0">
+          <div class="col-md-4 text-center bg-light p-3">
+            <!-- Espacio para la foto de perfil -->
+            <img src="assets/img/default-user.png" alt="Foto de Perfil" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+            <h5 class="card-title">{{ perfilUsuario.nombrePila }}</h5>
+            <p class="text-muted">({{ perfilUsuario.rolUsuario }})</p>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Información del Usuario</h5>
+              <p><strong>Nombre de Usuario:</strong> {{ perfilUsuario.nombreUsuario }}</p>
+              <p><strong>Descripción:</strong> {{ perfilUsuario.descripcion }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mostrar lista de preferencias -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Preferencias del Usuario</h5>
+
+          <ul class="list-group" *ngIf="perfilUsuario.preferenciasUsuario?.length; else noPreferencias">
+            <li class="list-group-item" *ngFor="let preferencia of perfilUsuario.preferenciasUsuario">
+              <strong>{{ preferencia.tipoPreferencia }}:</strong> {{ preferencia.valorPreferencia }}
+              <button class="btn btn-danger btn-sm float-end" >Eliminar</button>
+            </li>
+          </ul>
+
+          <!-- Mostrar mensaje si no hay preferencias -->
+          <ng-template #noPreferencias>
+            <p class="text-muted">Este usuario no tiene preferencias registradas.</p>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- seccion para agrgar mas preferencias -->
+
+
+      <!-- <div class="text-center mb-3">
+        <button class="btn btn-info" (click)="toggleFormulario()">
+          {{ mostrarFormulario ? 'Ocultar Formulario' : 'Agregar Nueva Preferencia' }}
+        </button>
+      </div> -->
+
+      <!-- Formulario para agregar una nueva preferencia -->
+      <div >
+        <!-- *ngIf="mostrarFormulario" -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <form >
+              <!-- (ngSubmit)="agregarPreferencia()" -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="tipoPreferencia" class="form-label">Tipo de Preferencia</label>
+                  <select class="form-select"  name="tipoPreferencia" id="tipoPreferencia" required>
+                    <option value="" disabled selected>Seleccione un tipo</option>
+                    <option value="GUSTO">Gusto</option>
+                    <option value="HOBBIE">Hobbie</option>
+                    <option value="TEMA_PREFERENCIA">Tema Preferencia</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="valorPreferencia" class="form-label">Valor de Preferencia</label>
+                  <input type="text" class="form-control"  name="valorPreferencia" id="valorPreferencia" placeholder="Ingrese su preferencia" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Agregar Preferencia</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>

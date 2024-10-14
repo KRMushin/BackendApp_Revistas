@@ -21,8 +21,9 @@ public class CreadorCarteraDigital {
            if (carteraDTO.getCantidadDinero() < 0) {
               throw new DatosInvalidosUsuarioException();
            }
-           Double cantidadNueva = carteraDTO.getCantidadDinero() + carteraSaldoActual.getSaldoDisponible();
-           carteraNueva.setSaldoDisponible(cantidadNueva);
+           Double cantidadNueva = carteraDTO.getCantidadDinero() + carteraSaldoActual.getCantidadDinero();
+           carteraNueva.setCantidadDinero(cantidadNueva);
+           carteraNueva.setNombreUsuario(carteraSaldoActual.getNombreUsuario());
            
            return Optional.of(carteraNueva);
     }

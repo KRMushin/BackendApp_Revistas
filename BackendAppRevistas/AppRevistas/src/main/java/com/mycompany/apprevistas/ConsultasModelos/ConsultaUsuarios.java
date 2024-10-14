@@ -8,11 +8,13 @@ import com.mycompany.apprevistas.Excepciones.DatabaseException;
 import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.Excepciones.TransaccionFallidaException;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioCarterasDigitales;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
 import com.mycompany.apprevistas.backend.usuariosDTOs.RegistroUsuarioDTO;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioFotosUsuarios;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioPreferenciasUsuario;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioUsuarios;
+import com.mycompany.apprevistas.backend.modelos.CarteraDigital;
 import com.mycompany.apprevistas.backend.modelos.FotoUsuario;
 import com.mycompany.apprevistas.backend.modelos.Usuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LlaveUsuarioDTO;
@@ -21,8 +23,6 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -33,17 +33,32 @@ public class ConsultaUsuarios {
     private final RepositorioUsuarios repositorioUsuarios;
     private final RepositorioFotosUsuarios repositorioFotos; 
     private final RepositorioPreferenciasUsuario repositorioPrefUsuario;
+    private final RepositorioCarterasDigitales repositorioCarteras;
     
     public ConsultaUsuarios() {
         this.repositorioUsuarios = new RepositorioUsuarios();
         this.repositorioFotos = new RepositorioFotosUsuarios();
         this.repositorioPrefUsuario = new RepositorioPreferenciasUsuario();
+        this.repositorioCarteras = new RepositorioCarterasDigitales();
     }
     
     public Usuario guardarUsuario(Usuario usuario){
         try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
-              repositorioUsuarios.setConn(conn);
-              return repositorioUsuarios.guardar(usuario);
+                repositorioUsuarios.setConn(conn);
+                repositorioCarteras.setConn(conn);
+                
+                if (conn.getAutoCommit()) {
+                    conn.setAutoCommit(false);
+                } 
+                try {
+                    repositorioUsuarios.guardar(usuario);
+                    repositorioCarteras.guardar(new CarteraDigital(usuario.getNombreUsuario(),0.0));
+                    conn.commit();
+                  return usuario;
+                } catch (SQLException e) {
+                    conn.rollback();
+                    throw new DatabaseException(e);
+                }
         } catch (Exception e) {
             throw new DatabaseException(e.getMessage());
         }

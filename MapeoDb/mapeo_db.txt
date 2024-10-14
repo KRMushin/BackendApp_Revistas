@@ -41,6 +41,10 @@ $2a$10$SwGBmSaUPix2aZgRMi8PYueaIGCm6f3sFc5E1vSNOFs8m1tb06zgG
 -------------------------------INSERTS
 INSERT INTO configuracion_anuncios (tipo_anuncio, duracion_dias, precio)
 VALUES
+('video', '14', 270.00),
+('imagen', '14', 240.00),
+('imagen_texto', '14', 290.00);
+
 ('video', '1', 42.00),
 ('video', '3', 82.00),
 ('video', '7', 132.00),
@@ -52,5 +56,5 @@ VALUES
 ('imagen_texto', '1', 35.00),
 ('imagen_texto', '3', 70.00),
 ('imagen_texto', '7', 140.00),
-('imagen_texto', '14', 290.00);
+
 

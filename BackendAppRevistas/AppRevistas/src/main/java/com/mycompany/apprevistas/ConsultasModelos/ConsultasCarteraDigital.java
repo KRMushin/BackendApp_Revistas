@@ -49,11 +49,11 @@ public class ConsultasCarteraDigital {
         }
     }
     
-    public void guardarCarteraDigital(CarteraDigital carteraDigital){
+    public void actualizarCarteraDigital(CarteraDigital carteraDigital){
     
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
              repositorioCarteras.setConn(conn);
-             repositorioCarteras.guardar(carteraDigital);
+             repositorioCarteras.actualizar(carteraDigital);
              
         } catch (Exception e) {
             throw new DatabaseException(e);

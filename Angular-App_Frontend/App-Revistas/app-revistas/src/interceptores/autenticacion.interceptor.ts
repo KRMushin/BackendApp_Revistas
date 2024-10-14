@@ -2,6 +2,11 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const autenticacionInterceptor: HttpInterceptorFn = (req, next) => {
 
+  return next(req);
+};
+/*
+
+
   if ((req.url.indexOf("login") > 0) || (req.url.indexOf("registrar") > 0)) {
     return next(req);
   }
@@ -14,5 +19,4 @@ export const autenticacionInterceptor: HttpInterceptorFn = (req, next) => {
       Authorization: `Bearer ${token}`
     }
   });
-  return next(clonReq);
-};
+*/ 

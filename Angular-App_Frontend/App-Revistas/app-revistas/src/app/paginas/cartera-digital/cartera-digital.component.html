@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <!-- Card para mostrar el saldo disponible -->
+  <div class="card text-center">
+    <div class="card-header">
+      <h4>Saldo Disponible</h4>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Recarga de usuario: {{carteraDigital?.nombreUsuario}}</h5>
+      <p class="card-text">
+        <strong>{{carteraDigital?.cantidadDinero| currency:'Q'}}</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- Formulario para recargar la cartera -->
+  <div class="mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h4>Recargar Cartera</h4>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="recargarCartera()">
+          <div class="mb-3">
+            <label for="recarga" class="form-label">Monto a Recargar (Quetzales)</label>
+            <input type="number" class="form-control" id="recarga" [(ngModel)]="montoRecarga" name="recarga" placeholder="Ingrese monto a recargar" required />
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Recargar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

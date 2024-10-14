@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { appSettings } from '../settings/appSettings';
-import { Usuario } from '../interfaces/Usuario';
 import { Login } from '../interfaces/Login';
 import { Observable } from 'rxjs';
 import { ResponseAcceso } from '../interfaces/ResponseAcceso';

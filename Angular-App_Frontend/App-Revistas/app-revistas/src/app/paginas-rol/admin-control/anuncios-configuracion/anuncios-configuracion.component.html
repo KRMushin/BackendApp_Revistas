@@ -1,1 +1,45 @@
-<p>anuncios-configuracion works!</p>
+<div class="container mt-4">
+
+  <div class="alert alert-info" role="alert">
+    <strong>Modificación de Precios de Anuncios:</strong> 
+    Estimado usuario, le informamos que ahora tiene la posibilidad de actualizar los precios base y los costos por día de cada uno de sus anuncios directamente desde la tabla a continuación.
+    <ul>
+      <li><strong>Precio de Anuncio:</strong> Indique el nuevo precio base que desea asignar a su anuncio en la columna "Nuevo Precio".</li>
+      <li><strong>Precio por Día:</strong> Modifique el costo por día del anuncio en la columna "Nueva Precio".</li>
+    </ul>
+    Después de realizar los ajustes, no olvide hacer clic en el botón <strong>"Guardar Cambios"</strong> para que sus modificaciones se apliquen correctamente. ¡Optimice su inversión y gestione los costos de sus anuncios de manera sencilla y eficiente!
+  </div>
+  
+  
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tipo de Anuncio</th>
+        <th scope="col">Precio Base de Anuncio</th>
+        <th scope="col">Nuevo Precio base</th>
+        <th scope="col">Precio por Dia</th>
+        <th scope="col">Nuevo Precio por dia</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Iteramos sobre las configuraciones de anuncios usando *ngFor -->
+      <tr *ngFor="let configuracion of configuraciones; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ configuracion.tipoAnuncio }}</td>
+        <td>{{ +configuracion.precio | currency:'Q' }}</td>
+        <td>
+          <input type="number" id="precio{{i}}" [(ngModel)]="configuracion.precio" class="form-control" />
+        </td>
+        <td>{{ +configuracion.tiempoDuracion | currency:'Q' }}</td>
+        <td>
+          <input type="number" id="tiempo{{i}}" [(ngModel)]="configuracion.tiempoDuracion" class="form-control" />
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="guardarCambios(configuracion)">Guardar Cambios</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

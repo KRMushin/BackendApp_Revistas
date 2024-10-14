@@ -33,27 +33,28 @@ public class ServicioCarteraDigital {
         }
         CarteraDigital carteraActual = obtenerCarteraActual(carteraDTO.getNombreUsuario());
         
-        if (carteraActual.getSaldoDisponible() < carteraDTO.getCantidadDinero()) {
+        if (carteraActual.getCantidadDinero() < carteraDTO.getCantidadDinero()) {
             throw new DatosInvalidosUsuarioException("Saldo insuficiente para realizar el débito");
         }
     
-        carteraActual.setSaldoDisponible(carteraActual.getSaldoDisponible() - carteraDTO.getCantidadDinero());
-        consultaCartera.guardarCarteraDigital(carteraActual);
+        carteraActual.setCantidadDinero(carteraActual.getCantidadDinero() - carteraDTO.getCantidadDinero());
+        consultaCartera.actualizarCarteraDigital(carteraActual);
 }
     
     public void recargarSaldoCartera(CarteraDigitalDTO carteraDTO){
         
         if (!carteraDTO.esValido()) {
-            throw new DatosInvalidosUsuarioException();
+            throw new DatosInvalidosUsuarioException(" La cartera lleva campos no validos");
         }
         
         CarteraDigital saldoActual = obtenerCarteraActual(carteraDTO.getNombreUsuario());
+        System.out.println(saldoActual.getNombreUsuario());
         Optional<CarteraDigital> carteraSaldoNuevo = creadorCartera.crearYValidar(carteraDTO, saldoActual);
-        
-        if (!carteraSaldoNuevo.isEmpty()) {
-            throw new DatosInvalidosUsuarioException();
+        if (carteraSaldoNuevo.isEmpty()) {
+            throw new DatosInvalidosUsuarioException("La cartera nueva se encuentra vacia");
         }
-        consultaCartera.guardarCarteraDigital(carteraSaldoNuevo.get());
+        System.out.println(carteraSaldoNuevo.get().getNombreUsuario());
+        consultaCartera.actualizarCarteraDigital(carteraSaldoNuevo.get());
     }
     
     public CarteraDigital obtenerCarteraActual(String nombreUsuario){

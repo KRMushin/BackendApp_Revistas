@@ -42,13 +42,15 @@ public class RepositorioCarterasDigitales implements RepositorioCrud<CarteraDigi
    
     @Override
     public CarteraDigital guardar(CarteraDigital modelo) throws SQLException {
-         String insertQuery = "INSERT INTO carteras_digitales(nombre_usuario) values (?)";
+         String insertQuery = "INSERT INTO carteras_digitales(usuario_representante, saldo_disponible) values (?,?)";
          
         try(PreparedStatement stmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)){
             stmt.setString(1, modelo.getNombreUsuario());
+            stmt.setDouble(2, modelo.getCantidadDinero());
             int filasAfectadas = stmt.executeUpdate();       
+            
             if (filasAfectadas == 0) {
-                throw   new  SQLException("No se concreto el ingreso de la cartera digital");
+                throw new  SQLException("No se concreto el ingreso de la cartera digital");
             }
         }
         return modelo;
@@ -56,10 +58,10 @@ public class RepositorioCarterasDigitales implements RepositorioCrud<CarteraDigi
     
     @Override
     public CarteraDigital actualizar(CarteraDigital modelo) throws SQLException {
-        String updateQuery = " UPDATE carteras_digitales SET saldo_disponible= ? WHERE nombre_usuario = ?";
+        String updateQuery = " UPDATE carteras_digitales SET saldo_disponible= ? WHERE usuario_representante = ?";
         
         try(PreparedStatement stmt = conn.prepareStatement(updateQuery)){
-            stmt.setDouble(1, modelo.getSaldoDisponible());
+            stmt.setDouble(1, modelo.getCantidadDinero());
             stmt.setString(2, modelo.getNombreUsuario());
              int filasAfectadas = stmt.executeUpdate();
              
@@ -73,7 +75,7 @@ public class RepositorioCarterasDigitales implements RepositorioCrud<CarteraDigi
     @Override
     public CarteraDigital obtenerPorId(String nombreUsuario) throws SQLException {
         CarteraDigital cartera = null;
-        String query = "SELECT * FROM carteras_digitales WHERE nombre_usuario = ?";
+        String query = "SELECT * FROM carteras_digitales WHERE usuario_representante = ?";
         
         try(PreparedStatement stmt = conn.prepareStatement(query)){
              stmt.setString(1, nombreUsuario);
@@ -87,7 +89,7 @@ public class RepositorioCarterasDigitales implements RepositorioCrud<CarteraDigi
     }
     
     private CarteraDigital crearCartera(ResultSet resultSet) throws SQLException {
-            String representante = resultSet.getString("nombre_usuario");
+            String representante = resultSet.getString("usuario_representante");
             Double saldoDisponible = resultSet.getDouble("saldo_disponible");
 
             return new CarteraDigital(representante,saldoDisponible);

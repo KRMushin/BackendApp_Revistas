@@ -11,14 +11,14 @@ package com.mycompany.apprevistas.backend.modelos;
 public class CarteraDigital {
     
     private String nombreUsuario;
-    private Double saldoDisponible;
+    private Double cantidadDinero;
 
     public CarteraDigital() {
     }
 
     public CarteraDigital(String nombreUsuario, Double saldoDisponible) {
         this.nombreUsuario = nombreUsuario;
-        this.saldoDisponible = saldoDisponible;
+        this.cantidadDinero = saldoDisponible;
     }
 
     public String getNombreUsuario() {
@@ -29,13 +29,14 @@ public class CarteraDigital {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public Double getSaldoDisponible() {
-        return saldoDisponible;
+    public Double getCantidadDinero() {
+        return cantidadDinero;
     }
 
-    public void setSaldoDisponible(Double saldoDisponible) {
-        this.saldoDisponible = saldoDisponible;
+    public void setCantidadDinero(Double cantidadDinero) {
+        this.cantidadDinero = cantidadDinero;
     }
+
     
     
     

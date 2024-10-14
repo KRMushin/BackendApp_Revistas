@@ -18,7 +18,7 @@ import jakarta.ws.rs.ext.Provider;
 public class DatabaseExceptionMapper implements ExceptionMapper<DatabaseException>{
     @Override
     public Response toResponse(DatabaseException exception) {
-        System.out.println(exception.getMessage());
-        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();   //Retorna 409 Conflict                       
+        System.out.println(exception.getMessage() + exception.getLocalizedMessage());
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(exception.getMessage() + exception.getLocalizedMessage()).build();   //Retorna 409 Conflict                       
     }
 }

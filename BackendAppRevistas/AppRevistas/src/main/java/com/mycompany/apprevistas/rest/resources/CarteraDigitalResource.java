@@ -21,7 +21,7 @@ import jakarta.ws.rs.core.Response;
  *
  * @author kevin-mushin
  */
-@Path("cartera/digital")
+@Path("/cartera/digital")
 public class CarteraDigitalResource {
     
      @GET
