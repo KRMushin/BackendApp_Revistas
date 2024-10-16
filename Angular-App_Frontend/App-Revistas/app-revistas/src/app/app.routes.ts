@@ -8,6 +8,7 @@ import { CompradorControlComponent } from './paginas-rol/comprador-control/compr
 import { AnunciosConfiguracionComponent } from './paginas-rol/admin-control/anuncios-configuracion/anuncios-configuracion.component';
 import { PerfilUsuarioComponent } from './paginas/perfil-usuario/perfil-usuario.component';
 import { CarteraDigitalComponent } from './paginas/cartera-digital/cartera-digital.component';
+import { ComprarAnuncioComponent } from './paginas/comprar-anuncio/comprar-anuncio.component';
 
 export const routes: Routes = [
 
@@ -23,7 +24,8 @@ export const routes: Routes = [
 
     path: 'comprador-control', component: CompradorControlComponent, canActivate: [autGuardGuard], data: {roles: ['COMPRADOR']}, children: [
       {path: 'perfil-usuario', component: PerfilUsuarioComponent},
-      {path: 'cartera-digital', component: CarteraDigitalComponent}
+      {path: 'cartera-digital', component: CarteraDigitalComponent},
+      {path: 'comprar-anuncio', component: ComprarAnuncioComponent}
   ]}
 
 

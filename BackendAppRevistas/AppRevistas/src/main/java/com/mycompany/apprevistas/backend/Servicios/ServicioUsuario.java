@@ -4,8 +4,8 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.ActualizacionesModelo.ActualizacionesUsuario;
-import com.mycompany.apprevistas.ConsultasModelos.ConsultaUsuarios;
+import com.mycompany.apprevistas.backend.ActualizacionesModelo.ActualizacionesUsuario;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultaUsuarios;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorPreferenciaUsuario;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;

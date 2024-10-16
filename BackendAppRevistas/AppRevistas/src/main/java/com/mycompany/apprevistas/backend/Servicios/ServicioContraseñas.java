@@ -4,9 +4,9 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.ConsultasModelos.ConsultaUsuarios;
-import com.mycompany.apprevistas.Excepciones.DatabaseException;
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultaUsuarios;
+import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.ActualizarContraseñaDTO;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioContraseñas;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;

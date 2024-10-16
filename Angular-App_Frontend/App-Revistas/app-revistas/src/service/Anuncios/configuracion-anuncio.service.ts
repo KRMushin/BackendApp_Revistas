@@ -22,5 +22,9 @@ export class ConfiguracionAnuncioService {
     return this.http.put<ConfiguracionAnuncio>(`${this.baseUrl}anuncios/configuraciones`, objeto);
   }
 
+  public comprarAnuncio(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}anuncios`, formData);
+  }
+
 
 }

@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.usuariosDTOs;
 
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.util.RolUsuario;
 
 /**

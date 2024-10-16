@@ -1,8 +1,8 @@
 export interface ConfiguracionAnuncio{
 
-    idAnuncio: Number;
+    idAnuncio: number;
     tipoAnuncio: String;
-    precio: Number;
-    tiempoDuracion: Number;
+    precio: number;
+    tiempoDuracion: number;
 
 }

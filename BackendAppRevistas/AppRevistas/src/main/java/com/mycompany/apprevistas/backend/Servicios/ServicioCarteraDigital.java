@@ -4,9 +4,9 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.ConsultasModelos.ConsultasCarteraDigital;
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.apprevistas.Excepciones.NotFoundException;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasCarteraDigital;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorCarteraDigital;
 import com.mycompany.apprevistas.backend.modelos.CarteraDigital;
 import com.mycompany.apprevistas.backend.usuariosDTOs.CarteraDigitalDTO;

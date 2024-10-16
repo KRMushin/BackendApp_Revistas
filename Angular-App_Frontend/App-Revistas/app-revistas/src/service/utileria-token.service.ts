@@ -15,6 +15,10 @@ export class utileriaToken{
         }
       }
 
+    esEntero(numero: number): boolean {
+        return Number.isInteger(numero);
+      }
+    
     public esNumero(valor: any): boolean {
       return typeof valor === 'number' && !isNaN(valor);
     }  

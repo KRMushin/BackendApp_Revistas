@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.CreadoresModelo;
 
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.RegistroUsuarioDTO;
 import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
 import com.mycompany.apprevistas.backend.modelos.Usuario;

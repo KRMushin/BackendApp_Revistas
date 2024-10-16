@@ -12,8 +12,8 @@ public class ConfiguracionAnuncio {
     
     private Long idAnuncio;
     private String tipoAnuncio;
-    private Double precio;
-    private int tiempoDuracion;
+    private Double precio; //representa al precio base
+    private Double tiempoDuracion; // representa al precio por dia
 
     /*construct vacio*/
     public ConfiguracionAnuncio() {
@@ -36,11 +36,11 @@ public class ConfiguracionAnuncio {
         this.precio = precio;
     }
 
-    public int getTiempoDuracion() {
+    public Double getTiempoDuracion() {
         return tiempoDuracion;
     }
 
-    public void setTiempoDuracion(int tiempoDuracion) {
+    public void setTiempoDuracion(Double tiempoDuracion) {
         this.tiempoDuracion = tiempoDuracion;
     }
 

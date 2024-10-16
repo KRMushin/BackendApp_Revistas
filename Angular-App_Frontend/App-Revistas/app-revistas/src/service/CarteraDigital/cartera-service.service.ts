@@ -22,4 +22,11 @@ export class CarteraDigitalService {
     return this.http.put(`${this.baseUrl}cartera/digital`, cartera);
   }
 
+
+  obtenerDatosCartera(nombreUsuario: string): Observable<CarteraDigital> {
+    return this.obtenerDatosUsuario(nombreUsuario);
+  }
+
+
+
 }

@@ -4,9 +4,9 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.ConsultasModelos.ConsultaUsuarios;
-import com.mycompany.apprevistas.Excepciones.ConflictoUsuarioException;
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultaUsuarios;
+import com.mycompany.apprevistas.backend.Excepciones.ConflictoUsuarioException;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.RegistroUsuarioDTO;
 import com.mycompany.apprevistas.backend.modelos.Usuario;

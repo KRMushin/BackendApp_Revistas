@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.CreadoresModelo;
 
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.modelos.CarteraDigital;
 import com.mycompany.apprevistas.backend.usuariosDTOs.CarteraDigitalDTO;
 import java.util.Optional;

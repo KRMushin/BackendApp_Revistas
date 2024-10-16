@@ -2,6 +2,8 @@ package com.mycompany.apprevistas;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
+import static jdk.jfr.FlightRecorder.register;
+
 
 /**
  * Configures Jakarta RESTful Web Services for the application.

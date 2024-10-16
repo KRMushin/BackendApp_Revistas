@@ -4,8 +4,10 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioConfigAnuncios;
 import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
+import com.mycompany.apprevistas.backend.util.TipoAnuncio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,11 +44,11 @@ public class RepositorioConfigAnuncio implements RepositorioConfigAnuncios<Confi
 
     @Override
     public ConfiguracionAnuncio actualizar(ConfiguracionAnuncio modelo) throws SQLException {
-        String insertUpdate = "UPDATE configuracion_anuncios SET precio = ? , duracion_dias = ? WHERE id_configuracion = ?";
+        String insertUpdate = "UPDATE configuracion_anuncios SET precio = ? , precio_dia = ? WHERE id_configuracion = ?";
         
         try(PreparedStatement stmt = conn.prepareStatement(insertUpdate)){
              stmt.setDouble(1, modelo.getPrecio());
-             stmt.setInt(2, modelo.getTiempoDuracion());
+             stmt.setDouble(2, modelo.getTiempoDuracion());
              stmt.setLong(3, modelo.getIdAnuncio());
 
              int rowsAffected = stmt.executeUpdate();
@@ -58,31 +60,28 @@ public class RepositorioConfigAnuncio implements RepositorioConfigAnuncios<Confi
     }
 
     @Override
-    public ConfiguracionAnuncio obtenerPorId(Long identificador) throws SQLException {
-            String insertQuery = "SELECT *FROM configuracion_anuncios WHERE id_configuracion = ?";
-            
+    public ConfiguracionAnuncio obtenerPorId(TipoAnuncio identificador) throws SQLException {
+            String insertQuery = "SELECT * FROM configuracion_anuncios WHERE tipo_anuncio = ?";
+
             try(PreparedStatement stmt = conn.prepareStatement(insertQuery)){
-                 stmt.setLong(1, identificador);
+                 stmt.setString(1, identificador.toString());
                  
                  ResultSet rs = stmt.executeQuery();
                  if (rs.next()) {
                     return obtenerConfiguracion(rs);
-                }
-                 return null;
+                }else{
+                     throw new DatosInvalidosUsuarioException();
+                 }
             }
     }
-    // METODO PARA MOSTRAR LAS VAINAS DISTINTAS
-    public List<ConfiguracionAnuncio> configuracionesDisponibles(String parametro){
-        String insertQuery = "SELECT DISCTINT";
-    return null;
-    }
+    
     private ConfiguracionAnuncio obtenerConfiguracion(ResultSet rs) throws SQLException {
          ConfiguracionAnuncio config = new ConfiguracionAnuncio();
         
          config.setIdAnuncio(rs.getLong("id_configuracion"));
          config.setTipoAnuncio(rs.getString("tipo_anuncio"));
          config.setPrecio(rs.getDouble("precio"));
-         config.setTiempoDuracion(rs.getInt("duracion_dias"));
+         config.setTiempoDuracion(rs.getDouble("precio_dia"));
         return config;
     }
     

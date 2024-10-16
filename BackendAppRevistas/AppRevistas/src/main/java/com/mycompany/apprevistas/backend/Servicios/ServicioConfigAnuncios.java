@@ -4,8 +4,8 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.ConsultasModelos.ConsultasConfigAnuncios;
-import com.mycompany.apprevistas.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasConfigAnuncios;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
 import java.util.List;
 
@@ -27,6 +27,7 @@ public class ServicioConfigAnuncios {
     
     public void actualizarConfiguracion(ConfiguracionAnuncio config){
          if (!config.esValido()) {
+             System.out.println("config no valida");
             throw new DatosInvalidosUsuarioException();
         }
          consultaConfiguraciones.actualizarConfiguracion(config);

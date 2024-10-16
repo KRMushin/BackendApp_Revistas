@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
-import com.mycompany.apprevistas.Excepciones.NotFoundException;
+import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.CredencialUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioEscrituraLectura;
