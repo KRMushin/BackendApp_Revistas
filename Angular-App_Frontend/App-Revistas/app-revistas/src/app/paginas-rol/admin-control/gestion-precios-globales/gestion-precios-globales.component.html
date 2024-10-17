@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="text-center my-4">
+    <h2 class="font-weight-bold text-primary">Gestión de Precios Globales</h2>
+    <p class="lead">Aquí puedes modificar los precios globales de forma rápida y sencilla.</p>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID Precio</th>
+        <th>Modelo Precio</th>
+        <th>Precio Actual</th>
+        <th>Nuevo Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Usamos *ngIf para asegurarnos de que precioForm está definido y sincronizado -->
+      <tr *ngFor="let precio of preciosGlobales; let i = index" [formGroup]="getFormGroup(i)">
+        <td>{{ precio.idPrecio }}</td>
+        <td>{{ precio.modeloPrecio }}</td>
+        <td>{{ precio.precioGlobal }}</td>
+        <td>
+          <input type="number" class="form-control" placeholder="Nuevo precio"
+                 formControlName="nuevoPrecio" />
+          <!-- Mensaje de error si el nuevoPrecio es inválido y ha sido tocado -->
+          <div *ngIf="precioForm.at(i).get('nuevoPrecio')?.invalid && precioForm.at(i).get('nuevoPrecio')?.touched" 
+               class="text-danger">
+            El precio es requerido y debe ser mayor a 0
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-primary" 
+                  [disabled]="precioForm.at(i).invalid" 
+                  (click)="actualizarPrecio(i)">
+            Actualizar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

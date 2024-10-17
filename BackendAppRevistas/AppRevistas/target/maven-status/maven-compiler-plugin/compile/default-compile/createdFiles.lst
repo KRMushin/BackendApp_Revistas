@@ -21,6 +21,7 @@ com/mycompany/apprevistas/backend/ActualizacionesModelo/ActualizacionesUsuario.c
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorUsuario.class
 com/mycompany/apprevistas/MapperExcepciones/DatosInvalidosUsuarioMapper.class
 com/mycompany/apprevistas/backend/modelos/FotoUsuario.class
+com/mycompany/apprevistas/backend/modelos/PrecioGlobal.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioPreferenciasUsuario.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioRevistas.class
 com/mycompany/apprevistas/restApi/resources/AnunciosResource.class
@@ -34,8 +35,10 @@ com/mycompany/apprevistas/backend/AnunciosDTOs/AnuncioDTO.class
 com/mycompany/apprevistas/backend/Servicios/ServicioCarteraDigital.class
 com/mycompany/apprevistas/restApi/resources/CarteraDigitalResource.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioAnuncios.class
+com/mycompany/apprevistas/restApi/resources/PreciosGlobalesResource.class
 com/mycompany/apprevistas/backend/modelos/CarteraDigital.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorPreferenciaUsuario.class
+com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasPreciosGlobales.class
 com/mycompany/apprevistas/backend/usuariosDTOs/CredencialUsuario.class
 com/mycompany/apprevistas/backend/usuariosDTOs/RegistroUsuarioDTO.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioUsuarios.class
@@ -43,6 +46,7 @@ com/mycompany/apprevistas/MapperExcepciones/NotFoundMapper.class
 com/mycompany/apprevistas/backend/modelos/Revista.class
 com/mycompany/apprevistas/backend/Excepciones/ErrorInternoException.class
 com/mycompany/apprevistas/backend/RevistasDTOs/EstadoRevistaDTO.class
+com/mycompany/apprevistas/backend/Servicios/ServicioPreciosGlobales.class
 com/mycompany/apprevistas/backend/Excepciones/NotFoundException.class
 com/mycompany/apprevistas/JakartaRestConfiguration.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioFotosUsuarios.class
@@ -76,6 +80,7 @@ com/mycompany/apprevistas/backend/Servicios/ServicioContraseñas.class
 com/mycompany/apprevistas/MapperExcepciones/FalloActualizacionMapper.class
 com/mycompany/apprevistas/restApi/resources/InicioSesionResource.class
 com/mycompany/apprevistas/backend/Excepciones/DatabaseException.class
+com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioPreciosGlobales.class
 com/mycompany/apprevistas/backend/Servicios/ServicioAnuncios.class
 com/mycompany/apprevistas/MapperExcepciones/JsonExceptionMapper.class
 com/mycompany/apprevistas/MapperExcepciones/CredencialInvalidaMapper.class

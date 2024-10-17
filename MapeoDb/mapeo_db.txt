@@ -111,7 +111,15 @@ CREATE TABLE anuncios (
     ruta_texto VARCHAR(300)
     );
 
+-------------------------------------------precios globales- --------------------------
+CREATE TABLE precios_globales (
+     id_precio BIGINT AUTO_INCREMENT PRIMARY KEY,
+    precio_global DECIMAL(10, 2) NOT NULL,
+    modelo_precio enum('REVISTA','BLOQUEO_ANUNCIO') NOT NULL
+    );
 
+INSERT INTO precios_globales (id_anuncio, precio_global, modelo_precio)
+VALUES (1, 50.50, 'REVISTA');
 
 admin12345	Admin
 $2a$10$SwGBmSaUPix2aZgRMi8PYueaIGCm6f3sFc5E1vSNOFs8m1tb06zgG

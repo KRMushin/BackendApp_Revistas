@@ -11,6 +11,7 @@ import { CarteraDigitalComponent } from './paginas/cartera-digital/cartera-digit
 import { ComprarAnuncioComponent } from './paginas/comprar-anuncio/comprar-anuncio.component';
 import { EditorControlComponent } from './paginas-rol/editor-control/editor-control.component';
 import { AnunciosSistemaComponent } from './paginas-rol/admin-control/anuncios-sistema/anuncios-sistema.component';
+import { GestionPreciosGlobalesComponent } from './paginas-rol/admin-control/gestion-precios-globales/gestion-precios-globales.component';
 
 export const routes: Routes = [
 
@@ -21,7 +22,8 @@ export const routes: Routes = [
   {path: "admin-control", component : AdminControlComponent, canActivate: [autGuardGuard], data: {roles: ['ADMINISTRADOR']}, children:[
     {path: "anuncios-configuracion", component: AnunciosConfiguracionComponent},
     {path: "perfil-usuario", component: PerfilUsuarioComponent},
-    {path: 'anunciosEnSistema', component: AnunciosSistemaComponent}
+    {path: 'anunciosEnSistema', component: AnunciosSistemaComponent},
+    {path: 'preciosGlobales' , component: GestionPreciosGlobalesComponent}
   ]},
   {
     
