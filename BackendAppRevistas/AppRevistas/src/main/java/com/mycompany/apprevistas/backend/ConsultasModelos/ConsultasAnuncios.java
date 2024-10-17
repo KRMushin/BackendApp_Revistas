@@ -70,4 +70,15 @@ public class ConsultasAnuncios {
             throw new DatabaseException(e);
         }
     }
+
+    public void actualizarEstadoAnuncio(Anuncio modelo) {
+        
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+             repositorioAnuncios.setConn(conn);
+             repositorioAnuncios.actualizar(modelo);
+        } catch (SQLException e) {
+            
+        }
+
+    }
 }

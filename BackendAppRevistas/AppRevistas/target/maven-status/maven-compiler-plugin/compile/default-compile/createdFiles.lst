@@ -77,6 +77,7 @@ com/mycompany/apprevistas/MapperExcepciones/FalloActualizacionMapper.class
 com/mycompany/apprevistas/restApi/resources/InicioSesionResource.class
 com/mycompany/apprevistas/backend/Excepciones/DatabaseException.class
 com/mycompany/apprevistas/backend/Servicios/ServicioAnuncios.class
+com/mycompany/apprevistas/MapperExcepciones/JsonExceptionMapper.class
 com/mycompany/apprevistas/MapperExcepciones/CredencialInvalidaMapper.class
 com/mycompany/apprevistas/backend/util/ServicioJWT.class
 com/mycompany/apprevistas/backend/RevistasDTOs/MantenimientoCostoDTO.class

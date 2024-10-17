@@ -2,7 +2,10 @@ import { jwtDecode } from "jwt-decode";
 
 export class utileriaToken{
 
-    public obtenerNombreUsuario(token: string | null): string | null {
+    public obtenerNombreUsuario(): string | null {
+
+      const token = localStorage.getItem('token');
+
         if (!token) return null;
   
         try {

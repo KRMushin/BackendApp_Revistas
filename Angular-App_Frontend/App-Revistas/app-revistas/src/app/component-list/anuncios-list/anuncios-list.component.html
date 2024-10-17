@@ -1,0 +1,36 @@
+<div class="table-responsive">
+<table *ngIf="anuncios && anuncios.length > 0; else noAnuncios" class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" class="px-4">Numero</th>
+        <th scope="col" class="px-4">Dueño Propietario</th>
+        <th scope="col" class="px-4">Duracion de anuncio</th>
+        <th scope="col" class="px-4">fecha de Compra</th>
+        <th scope="col" class="px-4">Tipo de Anuncio </th>
+        <th scope="col" class="px-4">Costo Anuncio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let anuncio of anuncios">
+        <td>{{ anuncio.idAnuncio }}</td>
+        <td>{{ anuncio.nombreUsuario }}</td>
+        <td>{{ anuncio.diasDuracion }} dias</td>
+        <td>{{ anuncio.fechaCompra | date:'dd/MM/yyyy' }}</td>
+        <td>{{ anuncio.tipoAnuncio | titlecase }}</td>
+        <td>{{ anuncio.precioTotal | currency: 'Q'}}</td>
+        <td>
+          <button 
+            (click)="actualizarAnuncio(anuncio.idAnuncio, !anuncio.anuncioHabilitado)"
+            class="btn btn-{{ anuncio.anuncioHabilitado ? 'danger' : 'success' }}">
+            {{ anuncio.anuncioHabilitado ? 'Desactivar' : 'Activar' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noAnuncios>
+    <div class="alert alert-warning" role="alert">
+      No hay anuncios disponibles.
+    </div>
+  </ng-template>
+  </div>

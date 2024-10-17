@@ -28,6 +28,7 @@ public class Anuncio {
     private String rutaVideo;
     private String rutaTexto;
     private boolean anuncioHabilitado;
+    private int diasDuracion;
 
     public Anuncio() {
     }
@@ -105,6 +106,14 @@ public class Anuncio {
 
     public void setAnuncioHabilitado(boolean anuncioHabilitado) {
         this.anuncioHabilitado = anuncioHabilitado;
+    }
+
+    public int getDiasDuracion() {
+        return diasDuracion;
+    }
+
+    public void setDiasDuracion(int diasDuracion) {
+        this.diasDuracion = diasDuracion;
     }
     
     

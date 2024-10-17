@@ -1,0 +1,17 @@
+/* Ajustar el ancho de la tabla */
+table {
+    width: 100%;
+    max-width: 1000px; /* Puedes ajustar el tamaño máximo */
+    margin: 0 auto;    /* Centrar la tabla */
+  }
+  
+  /* Asegurar que el contenido no se desborde */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  /* Espaciado adicional entre las filas de la tabla */
+  table tbody tr {
+    line-height: 1.5;
+  }
+  

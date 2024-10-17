@@ -22,7 +22,10 @@ export const autGuardGuard: CanActivateFn = (route, state) => {
       return true;  // Si es ADMINISTRADOR, permite el acceso.
     } else if (rolUsuario === "COMPRADOR") {
       return true;
-    } else {
+    } else if (rolUsuario === "EDITOR") {
+      return true;
+
+    }else {
       alert("No tienes permisos para acceder a esta página");
       router.navigateByUrl("/login");
       localStorage.removeItem('token');

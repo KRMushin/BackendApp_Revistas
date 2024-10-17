@@ -22,8 +22,7 @@ export class CarteraDigitalComponent implements OnInit {
   
   ngOnInit(): void {
     const tokenUtileria = new utileriaToken();
-    const token = localStorage.getItem('token');
-    const nombreUsuario = tokenUtileria.obtenerNombreUsuario(token);
+    const nombreUsuario = tokenUtileria.obtenerNombreUsuario();
     
     if(nombreUsuario != null){
       this.serviceCartera.obtenerDatosUsuario(nombreUsuario).subscribe({
@@ -43,8 +42,7 @@ export class CarteraDigitalComponent implements OnInit {
 
    recargarCartera(): void {
     const tokenUtileria = new utileriaToken();
-    const token = localStorage.getItem('token');
-    const nombreUsuario = tokenUtileria.obtenerNombreUsuario(token);
+    const nombreUsuario = tokenUtileria.obtenerNombreUsuario();
 
     if (!this.montoRecarga || this.montoRecarga <= 0) {
       alert('Ingrese un monto válido para recargar');

@@ -16,21 +16,27 @@
                 <dependency>
                         <groupId>org.glassfish.jaxb</groupId>
                         <artifactId>jaxb-runtime</artifactId>
-                        <version>3.0.0</version> <!-- o la versión más reciente -->
+                        <version>3.0.0</version> 
                 </dependency>
-                
-                <dependency>
-                        <groupId>org.mindrot</groupId>
-                        <artifactId>jbcrypt</artifactId>
-                        <version>0.4</version>
-                </dependency>
-                
                 <dependency>
                         <groupId>jakarta.platform</groupId>
                         <artifactId>jakarta.jakartaee-api</artifactId>
                         <version>${jakartaee}</version>
                         <scope>provided</scope>
                 </dependency>
+                
+                <dependency>
+                    <groupId>jakarta.ws.rs</groupId>
+                    <artifactId>jakarta.ws.rs-api</artifactId>
+                    <version>3.1.0</version>
+                </dependency>
+                <!--encriptar contraseñas-->
+                <dependency>
+                        <groupId>org.mindrot</groupId>
+                        <artifactId>jbcrypt</artifactId>
+                        <version>0.4</version>
+                </dependency>
+                
         
                 <dependency>
                     <groupId>org.glassfish.web</groupId>
@@ -39,14 +45,6 @@
                 </dependency>
         
                 <!-- the REST API -->
-                <dependency>
-                    <groupId>jakarta.ws.rs</groupId>
-                    <artifactId>jakarta.ws.rs-api</artifactId>
-                    <version>3.1.0</version>
-                </dependency>
-
-                <!-- These next two are needed because we are using Tomcat, which  -->
-                <!-- is not a full JEE server - it's just a servlet container.     -->
 
                 <!-- the Jersey implementation -->
                 <dependency>
@@ -55,6 +53,12 @@
                     <version>3.1.1</version>
                 </dependency>
                 
+                <!-- also needed for dependency injection -->
+                <dependency>
+                    <groupId>org.glassfish.jersey.inject</groupId>
+                    <artifactId>jersey-hk2</artifactId>
+                    <version>3.1.1</version>
+                </dependency>
                         <!-- support for using Jackson (JSON) with Jersey -->
                 <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
@@ -65,41 +69,16 @@
                 <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-multipart</artifactId>
-                    <version>3.1.1</version> <!-- Ajusta la versión según la que estés usando -->
+                    <version>3.1.1</version> 
                 </dependency>
 
-                <!-- also needed for dependency injection -->
-                <dependency>
-                    <groupId>org.glassfish.jersey.inject</groupId>
-                    <artifactId>jersey-hk2</artifactId>
-                    <version>3.1.1</version>
-                </dependency>
 
-            <!--ultimos agregados-->
-        <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.14.1</version> <!-- Usa la versión más reciente disponible -->
-        </dependency>
-
-        <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.14.1</version>
-        </dependency>
             <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
                 <dependency>
                     <groupId>com.fasterxml.jackson.datatype</groupId>
                     <artifactId>jackson-datatype-jsr310</artifactId>
-                    <version>2.14.1</version>
+                    <version>2.18.0</version>
                 </dependency>
-        
-                    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-jaxb-annotations -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.module</groupId>
-                <artifactId>jackson-module-jaxb-annotations</artifactId>
-                <version>2.14.1</version>
-            </dependency>
 
 
                 <dependency>
@@ -116,11 +95,6 @@
                     <type>jar</type>
                 </dependency>
                 
-                <dependency>
-                    <groupId>org.glassfish.jaxb</groupId>
-                    <artifactId>jaxb-core</artifactId>
-                    <version>3.0.0</version>
-                </dependency>
 
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
@@ -163,3 +137,32 @@
         </plugins>
     </build>
 </project>
+<!--                <dependency>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-core</artifactId>
+                    <version>3.0.0</version>
+                </dependency>-->
+                
+                
+                        
+<!--                     https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-jaxb-annotations 
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-jaxb-annotations</artifactId>
+                <version>2.18.0</version>
+            </dependency>-->
+
+
+
+<!--            ultimos agregados
+        <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.18.0</version>  Usa la versión más reciente disponible 
+        </dependency>-->
+
+<!--        <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.18.0</version>
+        </dependency>-->

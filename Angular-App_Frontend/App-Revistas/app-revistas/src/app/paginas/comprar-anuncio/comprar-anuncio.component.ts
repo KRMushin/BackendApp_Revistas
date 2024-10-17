@@ -20,7 +20,6 @@ export class ComprarAnuncioComponent implements OnInit {
   private servicePrecios: ConfiguracionAnuncioService;
   private serviceCartera: CarteraDigitalService;
   
-  /*variables que usa el component html para que sea mas dinamico*/ 
   public precios: ConfiguracionAnuncio[] = [];
   public CarteraDigital: CarteraDigital | null = null; 
 
@@ -29,13 +28,14 @@ export class ComprarAnuncioComponent implements OnInit {
   constructor(private fb: FormBuilder, servicePrecios: ConfiguracionAnuncioService, CarteraDigitalService: CarteraDigitalService) {
     this.servicePrecios = servicePrecios;
     this.serviceCartera = CarteraDigitalService;
+
     this.anuncioForm = this.fb.group({
       selectedAnuncio: [null, Validators.required],
       diasDeseados: [0, [Validators.required, Validators.min(1)]],
       archivoSeleccionado: [null],
       textoAnuncio: [null],
       precioTotal: [{ value: null, disabled: true }],
-      fechaAnuncio: [null, Validators.required]  // Nuevo campo para la fecha
+      fechaAnuncio: [null, Validators.required]  
     });
   }
 
@@ -44,8 +44,7 @@ export class ComprarAnuncioComponent implements OnInit {
       this.precios = data;
     });
     
-    const token = localStorage.getItem('token');
-    const nombreUsuario = this.UtileriaToken.obtenerNombreUsuario(token);
+    const nombreUsuario = this.UtileriaToken.obtenerNombreUsuario();
     if (nombreUsuario != null) {
       this.serviceCartera.obtenerDatosCartera(nombreUsuario).subscribe((cartera: CarteraDigital) => {
         this.CarteraDigital = cartera;
@@ -65,7 +64,6 @@ export class ComprarAnuncioComponent implements OnInit {
   calcularPrecioTotal(): void {
     const selectedAnuncio = this.anuncioForm.get('selectedAnuncio')?.value;
     const diasDeseados = this.anuncioForm.get('diasDeseados')?.value;
-    console.log('Anuncio seleccionado:', selectedAnuncio); // Añadir esta línea para depurar
 
     if (selectedAnuncio && diasDeseados > 0 && typeof selectedAnuncio.tiempoDuracion === 'number' && this.UtileriaToken.esEntero(diasDeseados)) {
       this.anuncioForm.patchValue({ precioTotal: ((selectedAnuncio.tiempoDuracion * diasDeseados) + selectedAnuncio.precio) });
@@ -95,11 +93,11 @@ export class ComprarAnuncioComponent implements OnInit {
       const formData = new FormData();
 
       const anuncioDTO = {
-        nombreUsuario: this.CarteraDigital?.nombreUsuario,  // Obtener el nombre del usuario desde tu variable
+        nombreUsuario: this.CarteraDigital?.nombreUsuario,  
         tipoAnuncio: this.anuncioForm.get('selectedAnuncio')?.value.tipoAnuncio,
         diasDuracion: this.anuncioForm.get('diasDeseados')?.value,
-        textoAnuncio: this.anuncioForm.get('textoAnuncio')?.value || '',  // Si el texto no se envía, usar una cadena vacía
-        fechaPago: this.anuncioForm.get('fechaAnuncio')?.value  // Agregar la fecha seleccionada
+        textoAnuncio: this.anuncioForm.get('textoAnuncio')?.value || '',
+        fechaPago: this.anuncioForm.get('fechaAnuncio')?.value  
       };
 
       formData.append('anuncioDTO', JSON.stringify(anuncioDTO));
@@ -109,8 +107,8 @@ export class ComprarAnuncioComponent implements OnInit {
       if (selectedAnuncio.tipoAnuncio === 'VIDEO' || selectedAnuncio.tipoAnuncio === 'IMAGEN_TEXTO') {
         const archivoSeleccionado = this.anuncioForm.get('archivoSeleccionado')?.value;
         if (archivoSeleccionado) {
-          formData.append('archivo', archivoSeleccionado);  // Añadir el archivo seleccionado al FormData
-          formData.append('nombreArchivo', archivoSeleccionado.name);    // Añadir el nombre del archivo
+          formData.append('archivo', archivoSeleccionado);  
+          formData.append('nombreArchivo', archivoSeleccionado.name);
         }
       }
 
@@ -130,20 +128,18 @@ export class ComprarAnuncioComponent implements OnInit {
     const archivoSeleccionado = this.anuncioForm.get('archivoSeleccionado');
   
     if (tipoAnuncio === 'TEXTO') {
-      // Validar solo el texto
       textoAnuncio?.setValidators([Validators.required, Validators.minLength(10)]);
       archivoSeleccionado?.clearValidators();
+   
     } else if (tipoAnuncio === 'VIDEO') {
-      // Validar solo el archivo de video
       archivoSeleccionado?.setValidators([Validators.required]);
       textoAnuncio?.clearValidators();
+
     } else if (tipoAnuncio === 'IMAGEN_TEXTO') {
-      // Validar tanto el texto como el archivo
       textoAnuncio?.setValidators([Validators.required, Validators.minLength(10)]);
       archivoSeleccionado?.setValidators([Validators.required]);
     }
   
-    // Actualizar las validaciones para que se apliquen
     textoAnuncio?.updateValueAndValidity();
     archivoSeleccionado?.updateValueAndValidity();
   }

@@ -77,12 +77,19 @@ public class ServicioAnuncios {
             carteraUsuario.get().setCantidadDinero(carteraUsuario.get().getCantidadDinero() - costoTotalAnuncio);
             anuncio.setPrecioTotal(costoTotalAnuncio);
             consultasAnuncios.guardarAnuncio(anuncio, carteraUsuario.get());
+            
         } catch (IOException ex) {
                 throw new ErrorInternoException(ex);
         }
     }
 
-
+    public void actualizarEstadoAnuncio(Long idAnuncio, boolean habilitado) {
+            Anuncio anuncio = new Anuncio();
+            anuncio.setIdAnuncio(idAnuncio);
+            anuncio.setAnuncioHabilitado(habilitado);
+            consultasAnuncios.actualizarEstadoAnuncio(anuncio);
+    }
+    
     public AnuncioDTO deserealizarDTO(String anuncioDTOJson) {
         try {
             // Usar ObjectMapper de Jackson para deserializar el JSON
@@ -92,5 +99,4 @@ public class ServicioAnuncios {
             throw new ErrorInternoException(e);
         }
     }
-    
 }

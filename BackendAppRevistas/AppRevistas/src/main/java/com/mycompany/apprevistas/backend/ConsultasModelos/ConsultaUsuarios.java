@@ -67,7 +67,7 @@ public class ConsultaUsuarios {
         try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
               repositorioUsuarios.setConn(conn);
               return repositorioUsuarios.obtenerLlaveEntidad(nombreUsuario);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new DatabaseException(e.getMessage());
         }
     }

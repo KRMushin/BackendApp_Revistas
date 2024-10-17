@@ -2,7 +2,8 @@ package com.mycompany.apprevistas;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
-import static jdk.jfr.FlightRecorder.register;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
+import org.glassfish.jersey.server.ResourceConfig;
 
 
 /**
@@ -10,6 +11,10 @@ import static jdk.jfr.FlightRecorder.register;
  * @author Juneau
  */
 @ApplicationPath("api/v1")
-public class JakartaRestConfiguration extends Application {
+public class JakartaRestConfiguration extends ResourceConfig {
     
-}
+    public JakartaRestConfiguration()  {
+        packages("com.mycompany.apprevistas.restApi.resources", "com.mycompany.apprevistas.MapperExcepciones").register(MultiPartFeature.class);
+    }
+}    
+    

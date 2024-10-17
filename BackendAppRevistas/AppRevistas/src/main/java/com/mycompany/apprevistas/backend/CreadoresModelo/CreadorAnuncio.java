@@ -30,6 +30,7 @@ public class CreadorAnuncio {
             anuncio.setNombreUsuario(anuncioDTO.getNombreUsuario());
             anuncio.setFechaCompra(anuncioDTO.getFechaPago());
             anuncio.setTipoAnuncio(anuncioDTO.getTipoAnuncio());
+            anuncio.setDiasDuracion(anuncioDTO.getDiasDuracion());
             TipoAnuncio tipoAnuncio = anuncioDTO.getTipoAnuncio();
 
         if (null != tipoAnuncio) switch (tipoAnuncio) {

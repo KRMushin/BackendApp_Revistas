@@ -5,6 +5,7 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
+import com.mycompany.apprevistas.backend.Excepciones.ErrorInternoException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import com.mycompany.apprevistas.backend.util.TipoAnuncio;
@@ -56,7 +57,7 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
 
     @Override
     public Anuncio guardar(Anuncio modelo) throws SQLException {
-        String insertQuery = "INSERT INTO anuncios(nombre_usuario, fecha_compra, tipo_anuncio, ruta_imagen_texto, ruta_video, ruta_texto, precio_total) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO anuncios(nombre_usuario, fecha_compra, tipo_anuncio, ruta_imagen_texto, ruta_video, ruta_texto, precio_total, dias_duracion) VALUES (?,?, ?, ?, ?, ?, ?, ?)";
         try(PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
                 stmt.setString(1, modelo.getNombreUsuario());
                 stmt.setDate(2, Date.valueOf(modelo.getFechaCompra()));
@@ -76,6 +77,8 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
                      stmt.setString(6, null);
                 }
                  stmt.setDouble(7, modelo.getPrecioTotal());
+                 stmt.setInt(8, modelo.getDiasDuracion());
+                 
                 stmt.executeUpdate();
                 
                 return modelo;
@@ -87,25 +90,16 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
     @Override
     public Anuncio actualizar(Anuncio modelo) throws SQLException {
 
-         String updateQuery = "UPDATE anuncios SET nombre_usuario = ?, fecha_compra = ?, tipo_anuncio = ?, ruta_imagen_texto = ?, ruta_video = ?, ruta_texto = ? WHERE id_anuncio = ?";
+         String updateQuery = "UPDATE anuncios SET habilitado = ? WHERE id_anuncio = ?";
         
         try (PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
-                stmt.setString(1, modelo.getNombreUsuario());
-                stmt.setDate(2, Date.valueOf(modelo.getFechaCompra()));
-                stmt.setString(3, modelo.getTipoAnuncio().toString());
-
-                // Asignar las rutas según el tipo de anuncio
-                if (modelo.getTipoAnuncio() == TipoAnuncio.IMAGEN_TEXTO) {
-                    stmt.setString(4, modelo.getRutaImagenTexto());
-                } else if (modelo.getTipoAnuncio() == TipoAnuncio.TEXTO) {
-                    stmt.setString(6, modelo.getRutaTexto());
-                } else {
-                    stmt.setString(5, modelo.getRutaVideo());
+                stmt.setBoolean(1,modelo.isAnuncioHabilitado());
+                stmt.setLong(2, modelo.getIdAnuncio());
+                
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected < 0) {
+                    throw new ErrorInternoException(" Error en el procesamiento de datos");
                 }
-
-                stmt.setLong(7, modelo.getIdAnuncio());
-                stmt.executeUpdate();
-
                 return modelo;
         } catch (SQLException e) {
             throw new SQLException("Error al actualizar el anuncio: " + e.getMessage(), e);
@@ -143,6 +137,7 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
             anuncio.setRutaTexto(rs.getString("ruta_texto"));
             anuncio.setPrecioTotal(rs.getDouble("precio_total"));
             anuncio.setAnuncioHabilitado(rs.getBoolean("habilitado"));
+            anuncio.setDiasDuracion(rs.getInt("dias_duracion"));
             return anuncio;
     }
 }

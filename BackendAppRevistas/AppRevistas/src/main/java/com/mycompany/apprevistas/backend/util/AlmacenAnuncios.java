@@ -28,7 +28,7 @@ public class AlmacenAnuncios {
         int contador = 1;
         while (archivoDestino.exists()) {
                 String nuevoNombreArchivo = nombreArchivo.replaceFirst("(\\.[^.]*)?$", "_" + contador + "$1");
-                rutaCompletaArchivo = PATH_ANUNCIOS + "/" + nuevoNombreArchivo;
+                rutaCompletaArchivo = PATH_ANUNCIOS + nuevoNombreArchivo;
                 archivoDestino = new File(rutaCompletaArchivo);
                 contador++;
         }
@@ -68,7 +68,7 @@ public class AlmacenAnuncios {
         int contador = 1;
         while (archivoDestino.exists()) {
             String nuevoNombreArchivo = "anuncio_texto" + "_" + contador;
-            rutaCompletaArchivo = rutaBase + "/" + nuevoNombreArchivo + extension;
+            rutaCompletaArchivo = rutaBase  + nuevoNombreArchivo + extension;
             archivoDestino = new File(rutaCompletaArchivo);
             contador++;
         }

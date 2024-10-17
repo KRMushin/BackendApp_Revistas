@@ -10,6 +10,7 @@ import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -29,16 +30,14 @@ public class AnunciosResource {
         @GET
         @Path("{nombreUsuario}")
         @Produces(MediaType.APPLICATION_JSON)
-     public Response obtenerCarteraDigital(@PathParam("nombreUsuario") String nombreUsuario){
+     public Response obtenerAnunciosUsuariol(@PathParam("nombreUsuario") String nombreUsuario){
          ServicioAnuncios service = new ServicioAnuncios();
          List<Anuncio> anuncios = service.obtenerAnunciosUsuario(nombreUsuario);
          return Response.ok().entity(anuncios).build();
      }
     
-    
-    
-    @POST
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
+        @POST
+        @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response publicarAnuncio(
             @FormDataParam("anuncioDTO") String anuncioDTOJson,
             @FormDataParam("archivo") InputStream archivoInputStream,
@@ -47,11 +46,19 @@ public class AnunciosResource {
         try {
             ServicioAnuncios service = new ServicioAnuncios();
             service.publicarAnuncio(anuncioDTOJson, archivoInputStream, nombreArchivo);
-            return Response.ok().entity("se compro correctamente el anuncio").build();
-        
+            return Response.ok().entity("se compro correctamente el anuncio")
+                    .build();
         } catch (DineroInsuficienteException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } 
+    }
+
+    @PUT
+    @Path("/{id}/actualizar")
+    public Response actualizarAnuncio(@PathParam("id") Long idAnuncio, boolean habilitado){
+        ServicioAnuncios service = new ServicioAnuncios();
+        service.actualizarEstadoAnuncio(idAnuncio, habilitado);
+        return Response.ok().build();
     }
     
 }
