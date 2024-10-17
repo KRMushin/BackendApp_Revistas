@@ -4,11 +4,8 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
-import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
 import com.mycompany.apprevistas.backend.modelos.Revista;
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoRevistaDTO;
-import com.mycompany.apprevistas.backend.RevistasDTOs.MantenimientoCostoDTO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -28,43 +25,44 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
     public void setConn(Connection conn) {
         this.conn = conn;
     }
+
     @Override
-    public List<Revista> listar(String parametro) throws SQLException {
+    public List<Revista> listar(String nombreUsuario) throws SQLException {
         List<Revista> revistas = new ArrayList<>();
-        String getList = "SELECT * FROM revistas WHERE nombre_autor = ?";
+
+        String getList = "SELECT * FROM revistas WHERE nombre_autor = ? ";
             try (PreparedStatement stmt = conn.prepareStatement(getList)) {
-                stmt.setString(1, parametro);
+                stmt.setString(1, nombreUsuario);
                 try (ResultSet rs = stmt.executeQuery()) {
                     while (rs.next()) {
                         Revista revista = crearRevista(rs);
                         revistas.add(revista);
                     }
                 }
-            } catch (SQLException e) {
-                throw new SQLException("Error al listar revistas para el usuario " + parametro, e);
             }
         return revistas;
-
     }
+
     @Override
     public Revista guardar(Revista modelo) throws SQLException {
-        String insertModel = "INSERT INTO revistas (id_categoria, ruta_revista,titulo_revista, nombre_autor, descripcion, fecha_creacion, "
-                + "costo_mantenimiento, revista_comentable, revista_likeable) values(?,?,?,?,?,?,?,?,?)";
+        String insertModel = "INSERT INTO revistas (id_archivo, id_categoria, titulo_revista, nombre_autor, descripcion, fecha_creacion, "
+                + "costo_mantenimiento, estado_revista, revista_comentable, revista_likeable) values(?,?,?,?,?,?,?,?,?,?)";
       
         try(PreparedStatement stmt = conn.prepareStatement(insertModel, PreparedStatement.RETURN_GENERATED_KEYS)) {
-                  stmt.setLong(1, modelo.getIdCategoria());
-                  stmt.setString(2, modelo.getRutaRevista());
+//                  stmt.setLong(1, modelo.getIdArchivoRevisa()); 
+                  stmt.setLong(2, modelo.getIdCategoria());
                   stmt.setString(3, modelo.getTituloRevista());
                   stmt.setString(4, modelo.getNombreAutor());
                   stmt.setString(5, modelo.getDescripcion());
                   stmt.setDate(6, Date.valueOf(modelo.getFechaCreacion()));
                   stmt.setDouble(7, modelo.getCostoMantenimiento());
-                  stmt.setBoolean(8, modelo.isRevistaComentable());
-                  stmt.setBoolean(9, modelo.isRevistaLikeable());
+                  stmt.setString(8, modelo.getEstadoRevista());
+                  stmt.setBoolean(9, modelo.isRevistaComentable());
+                  stmt.setBoolean(10, modelo.isRevistaLikeable());
                   
                   int filasAfectadas = stmt.executeUpdate();
                   if (filasAfectadas <= 0) {
-                          throw new DatosInvalidosUsuarioException();
+                      throw new SQLException("Error al publicar la revista: revise que los datos sean correctos porfavor");
                  }
                   try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
@@ -76,8 +74,8 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
                 }
                   return modelo;
         }
-
     }
+
     @Override
     public Revista actualizar(Revista modelo) throws SQLException {
         /*          METODO PARA ACTUALIZAR LOS ESTADOS DE LA REVISTA */
@@ -95,25 +93,29 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
             return modelo;
         } 
     }
+
     @Override
     public Revista obtenerPorId(Long identificador) throws SQLException {
+
+        Revista revista = null;
         String getModel = "SELECT * FROM revistas WHERE id_revista = ?";
         try(PreparedStatement stmt = conn.prepareStatement(getModel)) {
             stmt.setLong(1, identificador);
              ResultSet rs = stmt.executeQuery();
              if (rs.next()) {
-                return crearRevista(rs);
-            }  else{
-                 throw new DatosInvalidosUsuarioException();
-             }
+                revista = crearRevista(rs);
+            }
+             
+             
+             return revista;
         } catch (Exception e) {
             throw new SQLException("Error en la base de datos al obtener revista por ID");
         }
     }
-    
     private Revista crearRevista(ResultSet rs) throws SQLException {
         Revista revista = new Revista();
         revista.setIdRevista(rs.getLong("id_revista"));
+//        revista.setIdArchivoRevisa(rs.getLong("id_archivo"));
         revista.setIdCategoria(rs.getLong("id_categoria"));
         revista.setTituloRevista(rs.getString("titulo_revista"));
         revista.setNombreAutor(rs.getString("nombre_autor"));
@@ -124,54 +126,10 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
         revista.setRevistaLikeable(rs.getBoolean("revista_likeable"));
         revista.setEstadoRevista(rs.getString("estado_revista"));
         revista.setNumeroLikes(rs.getInt("numero_likes"));
-        revista.setAnunciosBloqueados(rs.getBoolean("anuncios_bloqueados"));
         revista.setAceptaSuscripciones(rs.getBoolean("acepta_suscripciones"));
         return revista;
+
     }
     
-   public void actualizarAnunciosRevista(EstadoRevistaDTO estadoDTO) throws SQLException{
-       String updateQuery = "UPDATE revistas SET anuncios_bloqueados= ?  WHERE id_revista = ?";
-       try(PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
-            stmt.setBoolean(1, estadoDTO.isEstado());
-            stmt.setLong(2, estadoDTO.getIdRevista());
-            
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected <= 0) {
-                throw new DatosInvalidosUsuarioException();
-           }
-       } catch (Exception e) {
-                throw new SQLException(e);
-       }
-   }
-   
-   public void actualizarCostoMantenimientoRevista(MantenimientoCostoDTO costoDTO) throws SQLException{
-       String updateQuery = "UPDATE revistas SET costo_mantenimiento = ?  WHERE id_revista = ?";
-       try(PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
-           stmt.setDouble(1, costoDTO.getCostoNuevo());
-           stmt.setLong(2, costoDTO.getIdRevista());
-           
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected <= 0) {
-                throw new DatosInvalidosUsuarioException();
-            }
-       } catch (Exception e) {
-                throw new SQLException(e);
-       }
-   }
-    
-   public void activarRevista(Long idRevista) throws SQLException{
-       String updateQuery = "UPDATE revistas SET estador_revista = ?  WHERE id_revista = ?";
-       try(PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
-            stmt.setString(1, "ACTIVA");
-            stmt.setLong(2, idRevista);
-            
-            int io = stmt.executeUpdate();
-            if (io <= 0) {
-               throw new DatosInvalidosUsuarioException();
-           }
-       } catch (Exception e) {
-           throw new SQLException(e);
-       }
-   }
     
 } // fin de repositorio 
