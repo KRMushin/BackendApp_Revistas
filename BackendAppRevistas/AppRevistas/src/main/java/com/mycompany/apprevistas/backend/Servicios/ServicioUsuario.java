@@ -5,7 +5,7 @@
 package com.mycompany.apprevistas.backend.Servicios;
 
 import com.mycompany.apprevistas.backend.ActualizacionesModelo.ActualizacionesUsuario;
-import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultaUsuarios;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasUsuarios;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorPreferenciaUsuario;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
@@ -21,13 +21,13 @@ public class ServicioUsuario {
     
     private CreadorUsuario creadorUsuario;
     private CreadorPreferenciaUsuario creadorPreferencias;
-    private ConsultaUsuarios consultaUsuario;
+    private ConsultasUsuarios consultaUsuario;
     private ActualizacionesUsuario actualizacionUsuario;
     
     public ServicioUsuario() {
         this.creadorUsuario = new CreadorUsuario();
         this.creadorPreferencias = new CreadorPreferenciaUsuario();
-        this.consultaUsuario = new ConsultaUsuarios();
+        this.consultaUsuario = new ConsultasUsuarios();
         this.actualizacionUsuario = new ActualizacionesUsuario();
     }
 

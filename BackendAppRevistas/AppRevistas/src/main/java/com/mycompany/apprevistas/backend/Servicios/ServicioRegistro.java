@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultaUsuarios;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasUsuarios;
 import com.mycompany.apprevistas.backend.Excepciones.ConflictoUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorUsuario;
@@ -17,12 +17,12 @@ import com.mycompany.apprevistas.backend.modelos.Usuario;
  */
 public class ServicioRegistro {
     
-    private ConsultaUsuarios consultaUsuario;
+    private ConsultasUsuarios consultaUsuario;
     private CreadorUsuario creadorUsuario;
 
     public ServicioRegistro() {
         this.creadorUsuario = new CreadorUsuario();
-        this.consultaUsuario = new ConsultaUsuarios();
+        this.consultaUsuario = new ConsultasUsuarios();
     }
     
     public void registrarUsuario(RegistroUsuarioDTO registroDTO) {

@@ -64,7 +64,16 @@ public class RepositorioPreciosGlobales {
     return listaPrecios;
 }
 
-    
-    
-    
+    public Double obtenerPrecioModelo(String datoModelo) throws SQLException {
+        String selectQuery = "SELECT precio_global FROM precios_globales WHERE modelo_precio = ?";
+        try(PreparedStatement stmt = conn.prepareStatement(selectQuery)){
+             stmt.setString(1, datoModelo);
+             ResultSet rs = stmt.executeQuery();
+             if (rs.next()) {
+                return rs.getDouble("precio_global");
+            }else {
+                 throw new NotFoundException();
+             }
+        }
+    }
 }

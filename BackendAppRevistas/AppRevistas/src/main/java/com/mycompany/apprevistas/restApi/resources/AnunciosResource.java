@@ -5,7 +5,7 @@
 package com.mycompany.apprevistas.restApi.resources;
 
 import com.mycompany.apprevistas.backend.Excepciones.DineroInsuficienteException;
-import com.mycompany.apprevistas.backend.Servicios.ServicioAnuncios;
+import com.mycompany.apprevistas.backend.Servicios.Anuncios.ServicioAnuncios;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;

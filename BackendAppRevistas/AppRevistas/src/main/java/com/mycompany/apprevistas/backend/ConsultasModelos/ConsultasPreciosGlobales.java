@@ -43,5 +43,12 @@ public class ConsultasPreciosGlobales {
         }
     }
     
-
+    public Double obtenerPrecioGlobalModelo(String modelo){
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+             repositorioPreciosGlobales.setConn(conn);
+             return repositorioPreciosGlobales.obtenerPrecioModelo(modelo);
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
 }

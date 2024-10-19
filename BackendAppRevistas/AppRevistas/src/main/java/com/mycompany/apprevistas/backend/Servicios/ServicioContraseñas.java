@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultaUsuarios;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasUsuarios;
 import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.ActualizarContraseñaDTO;
@@ -22,12 +22,12 @@ public class ServicioContraseñas {
     
     private RepositorioContraseñas repositorioContraseña;
     private EncriptadorDatos encriptador;
-    private ConsultaUsuarios consultaUsuario;
+    private ConsultasUsuarios consultaUsuario;
     
     public ServicioContraseñas() {
         this.repositorioContraseña = new RepositorioContraseñas();
         this.encriptador = new EncriptadorDatos();
-        this.consultaUsuario = new ConsultaUsuarios();
+        this.consultaUsuario = new ConsultasUsuarios();
     }
     
     public void actualizarContraseña(ActualizarContraseñaDTO contraseñaDTO) {

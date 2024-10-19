@@ -6,7 +6,7 @@ package com.mycompany.apprevistas.backend.ConsultasModelos;
 
 import com.mycompany.apprevistas.backend.AnunciosDTOs.AnuncioDTO;
 import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
-import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioAnuncios;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.anuncios.RepositorioAnuncios;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioCarterasDigitales;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import com.mycompany.apprevistas.backend.modelos.CarteraDigital;

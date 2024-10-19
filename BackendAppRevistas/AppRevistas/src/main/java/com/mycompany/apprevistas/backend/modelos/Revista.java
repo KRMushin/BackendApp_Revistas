@@ -6,6 +6,7 @@ package com.mycompany.apprevistas.backend.modelos;
 
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -15,30 +16,22 @@ public class Revista {
     
 //    private Long idArchivoRevista;
     private Long idRevista;
-    private Long idCategoria;
-    private String rutaRevista;
-    
+    private Long idCategoria;    
     private String tituloRevista;
     private String nombreAutor;
     private String descripcion;
     private Double costoMantenimiento;
     private LocalDate fechaCreacion;
     private String estadoRevista;
-    private int numeroLikes;
+    private List<Long> idEtiquetas;
     
-    private boolean revistaComentable;
-    private boolean revistaLikeable;
-    private boolean aceptaSuscripciones;
-    private boolean anunciosBloqueados;
-
     public Revista() {
     
     }
     
     
-//    private byte[] pdfRevistaLectura; // archivo para leer el pdf 
-//    private InputStream pdfRevista; // archivo para almacenar el pdf
     /*SETTERS Y GETTERS*/
+
     public Long getIdRevista() {
         return idRevista;
     }
@@ -103,53 +96,14 @@ public class Revista {
         this.estadoRevista = estadoRevista;
     }
 
-    public boolean isRevistaComentable() {
-        return revistaComentable;
+    public List<Long> getIdEtiquetas() {
+        return idEtiquetas;
     }
 
-    public void setRevistaComentable(boolean revistaComentable) {
-        this.revistaComentable = revistaComentable;
-    }
-
-    public boolean isRevistaLikeable() {
-        return revistaLikeable;
-    }
-
-    public void setRevistaLikeable(boolean revistaLikeable) {
-        this.revistaLikeable = revistaLikeable;
-    }
-
-    public boolean isAceptaSuscripciones() {
-        return aceptaSuscripciones;
-    }
-
-    public void setAceptaSuscripciones(boolean aceptaSuscripciones) {
-        this.aceptaSuscripciones = aceptaSuscripciones;
-    }
-
-    public int getNumeroLikes() {
-        return numeroLikes;
-    }
-
-    public void setNumeroLikes(int numeroLikes) {
-        this.numeroLikes = numeroLikes;
-    }
-
-    public String getRutaRevista() {
-        return rutaRevista;
-    }
-
-    public void setRutaRevista(String rutaRevista) {
-        this.rutaRevista = rutaRevista;
-    }
-
-    public boolean isAnunciosBloqueados() {
-        return anunciosBloqueados;
-    }
-
-    public void setAnunciosBloqueados(boolean anunciosBloqueados) {
-        this.anunciosBloqueados = anunciosBloqueados;
+    public void setIdEtiquetas(List<Long> idEtiquetas) {
+        this.idEtiquetas = idEtiquetas;
     }
     
+
     
 }

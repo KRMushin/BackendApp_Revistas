@@ -12,6 +12,7 @@ import { ComprarAnuncioComponent } from './paginas/comprar-anuncio/comprar-anunc
 import { EditorControlComponent } from './paginas-rol/editor-control/editor-control.component';
 import { AnunciosSistemaComponent } from './paginas-rol/admin-control/anuncios-sistema/anuncios-sistema.component';
 import { GestionPreciosGlobalesComponent } from './paginas-rol/admin-control/gestion-precios-globales/gestion-precios-globales.component';
+import { PublicarRevistaComponent } from './paginas-rol/editor-control/publicar-revista/publicar-revista.component';
 
 export const routes: Routes = [
 
@@ -38,6 +39,7 @@ export const routes: Routes = [
       path: 'editor-control', component: EditorControlComponent, canActivate: [autGuardGuard], data: {roles: ['EDITOR']}, children: [
         {path: 'perfil-usuario', component: PerfilUsuarioComponent},
         {path: 'cartera-digital', component: CarteraDigitalComponent},
+        {path: 'publicarRevista', component: PublicarRevistaComponent}
     ]}
 
 

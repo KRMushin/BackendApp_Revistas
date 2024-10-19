@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.restApi.resources;
 
-import com.mycompany.apprevistas.backend.Servicios.ServicioAnuncios;
+import com.mycompany.apprevistas.backend.Servicios.Anuncios.ServicioAnuncios;
 import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasPreciosGlobales;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Servicios.ServicioPreciosGlobales;

@@ -6,7 +6,7 @@ package com.mycompany.apprevistas.backend.ConsultasModelos;
 
 import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
-import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioConfigAnuncio;
+import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.anuncios.RepositorioConfigAnuncio;
 import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import com.mycompany.apprevistas.backend.util.TipoAnuncio;

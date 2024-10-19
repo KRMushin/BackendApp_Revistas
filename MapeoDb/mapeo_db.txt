@@ -44,8 +44,9 @@ CREATE TABLE revistas (
     titulo_revista VARCHAR(50) NOT NULL, 
     nombre_autor VARCHAR(20) NOT NULL,
     descripcion VARCHAR(100), 
-    costo_mantenimiento DECIMAL(10,2) NOT NULL,
     fecha_publicacion DATE NOT NULL,
+    costo_mantenimiento DECIMAL(10,2) NOT NULL,
+
     estado_revista ENUM('ACTIVA','INACTIVA','EN_ESPERA') NOT NULL DEFAULT 'EN_ESPERA',
     
     FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
@@ -59,13 +60,12 @@ CREATE TABLE configuracion_revistas (
     acepta_suscripciones TINYINT(1) NOT NULL DEFAULT 1, 
     anuncios_bloqueados TINYINT(1) NOT NULL DEFAULT 0,  
 
-    FOREIGN KEY (id_revista) REFERENCES revistas(id_revista) -- Llave foránea que referencia a 'revistas'
+    FOREIGN KEY (id_revista) REFERENCES revistas(id_revista) 
 );
 
 CREATE TABLE archivos_revistas (
     id_revista BIGINT PRIMARY KEY,                 
-    archivo MEDIUMBLOB NOT NULL,              
-    fecha_publicacion DATE NOT NULL,   
+    archivo MEDIUMBLOB NOT NULL,
     FOREIGN KEY (id_revista) REFERENCES revistas(id_revista) 
 );
 -- se inicializa cuando un usuario da like xd
@@ -111,8 +111,6 @@ CREATE TABLE revista_categoria (
     FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
 
-
--- Tabla intermedia para la relación muchos a muchos entre revistas y etiquetas
 CREATE TABLE revista_etiqueta (
     id_revista BIGINT, 
     id_etiqueta BIGINT, 

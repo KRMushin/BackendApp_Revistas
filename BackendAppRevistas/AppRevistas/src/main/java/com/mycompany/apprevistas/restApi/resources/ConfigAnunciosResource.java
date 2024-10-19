@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.restApi.resources;
 
-import com.mycompany.apprevistas.backend.Servicios.ServicioConfigAnuncios;
+import com.mycompany.apprevistas.backend.Servicios.Anuncios.ServicioConfigAnuncios;
 import com.mycompany.apprevistas.backend.Servicios.ServicioContraseñas;
 import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
 import com.mycompany.apprevistas.backend.usuariosDTOs.ActualizarContraseñaDTO;

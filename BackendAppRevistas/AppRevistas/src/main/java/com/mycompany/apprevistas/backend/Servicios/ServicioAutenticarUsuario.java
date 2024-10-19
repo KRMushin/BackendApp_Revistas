@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Servicios;
 
-import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultaUsuarios;
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasUsuarios;
 import com.mycompany.apprevistas.backend.Excepciones.ConflictoUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
@@ -21,13 +21,13 @@ import java.util.Optional;
  */
 public class ServicioAutenticarUsuario {
     
-    private ConsultaUsuarios consultasUsuario;
+    private ConsultasUsuarios consultasUsuario;
     private ServicioJWT serviceJWT;
     private EncriptadorDatos encriptador;
     
     
     public ServicioAutenticarUsuario() {
-        this.consultasUsuario = new ConsultaUsuarios();
+        this.consultasUsuario = new ConsultasUsuarios();
         this.encriptador = new EncriptadorDatos();
         this.serviceJWT = new ServicioJWT();
         
