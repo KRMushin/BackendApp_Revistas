@@ -70,4 +70,11 @@ public class ServicioRevistas {
         }
         return consultasRevista.obtenerPublicacionesUsuario(nombreUsuario);
     }
+
+    public Revista obtenerDatosRevista(Long idRevista) {
+        if (!consultasRevista.existeRevista(idRevista)) {
+            throw new DatosInvalidosUsuarioException("La revista no existe");
+        }
+        return consultasRevista.obtenerDatosRevista(idRevista);
+    }
 }

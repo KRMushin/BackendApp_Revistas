@@ -58,6 +58,11 @@ public class EstadoRevistaDTO {
     public void setIdRevista(Long idRevista) {
         this.idRevista = idRevista;
     }
+
+    @Override
+    public String toString() {
+        return "EstadoRevistaDTO{" + "idRevista=" + idRevista + ", esComentable=" + esComentable + ", esLikeable=" + esLikeable + ", aceptaSuscripciones=" + aceptaSuscripciones + ", anunciosBloqueados=" + anunciosBloqueados + '}';
+    }
     
     
    

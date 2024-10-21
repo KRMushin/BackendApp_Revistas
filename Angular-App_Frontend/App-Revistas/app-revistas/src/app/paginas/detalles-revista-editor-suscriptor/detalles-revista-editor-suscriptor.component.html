@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">Detalles de la Revista</h1>
+  
+    <!-- Mostrar un mensaje de carga si la revista no está disponible -->
+    <div *ngIf="!revista; else loadedContent" class="text-center">
+      <p>Cargando datos de la revista...</p>
+    </div>
+  
+    <!-- Mostrar los detalles de la revista solo cuando se haya cargado -->
+    <ng-template #loadedContent>
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h2 class="text-center" style="font-size: 2rem;">{{ revista.tituloRevista }}</h2>
+        </div>
+  
+        <div class="card-body">
+          <h5 class="card-title">Descripción</h5>
+          <p class="card-text">{{ revista.descripcion }}</p>
+  
+          <!-- categorias -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Categoría</h5>
+              <p class="card-text">{{ categoria.nombreCategoria }}</p>
+          
+              <h6>Etiquetas:</h6>
+              <ul *ngIf="categoria.etiquetas.length > 0; else noEtiquetas">
+                <li class="card-text" *ngFor="let etiqueta of categoria.etiquetas">
+                  {{ etiqueta.etiqueta }}
+                </li>
+              </ul>
+              <ng-template #noEtiquetas>
+                <p>No hay etiquetas asociadas a esta categoría.</p>
+              </ng-template>
+            </div>
+          </div>
+          
+  
+          <h5 class="card-title">Fecha de Creación</h5>
+          <p class="card-text">{{ revista.fechaCreacion | date: 'dd/MM/yyyy' }}</p>
+  
+          <h5 class="card-title">Autor</h5>
+          <p class="card-text">{{ revista.nombreAutor }}</p>
+  
+          <h5 class="card-title">Estado de la Revista</h5>
+          <p class="card-text">{{ revista.estadoRevista }}</p>
+  
+          <h5 class="card-title">Costo de Mantenimiento</h5>
+          <p class="card-text">{{ revista.costoMantenimiento | currency }}</p>
+        </div>
+  
+        <div class="card-footer d-flex justify-content-end">
+          <button class="btn btn-primary">Leer más</button>
+          <button class="btn btn-secondary ml-2" (click)="goBack()">Regresar</button>
+        </div>
+      </div>
+
+      
+      <!-- // componente para cargar los componentes de la revista solo si es un editor,esto para poder activa/ desactivar -->
+      @if (editorAutorizado) {
+        <app-configuracion-revista [idRevista]="revista.idRevista"></app-configuracion-revista>
+      }
+    </ng-template>
+    
+  </div>
+  
+  

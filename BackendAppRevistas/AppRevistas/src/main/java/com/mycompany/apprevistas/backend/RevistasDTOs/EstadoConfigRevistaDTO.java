@@ -40,6 +40,11 @@ public class EstadoConfigRevistaDTO {
     public void setTipoEstado(EstadoRevista tipoEstado) {
         this.tipoEstado = tipoEstado;
     }
+
+    @Override
+    public String toString() {
+        return "EstadoConfigRevistaDTO{" + "idRevista=" + idRevista + ", estado=" + estado + ", tipoEstado=" + tipoEstado + '}';
+    }
     
     
     

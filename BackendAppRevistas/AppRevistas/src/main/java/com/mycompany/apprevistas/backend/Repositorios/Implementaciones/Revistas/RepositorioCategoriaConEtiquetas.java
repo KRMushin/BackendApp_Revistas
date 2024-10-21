@@ -41,6 +41,22 @@ public class RepositorioCategoriaConEtiquetas {
         return categorias;
         
     }
+    public Categoria categoriaConEtiqueta(Long idCategoria) throws SQLException {
+        Categoria categoria = null;
+        String obtnerCategoria = "SELECT * FROM categorias WHERE id_Categoria = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(obtnerCategoria)) {
+                stmt.setLong(1, idCategoria);
+        
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    categoria = crearCategoria(rs);
+                    categoria.setEtiquetas(obtenerEtiquetas(categoria.getIdCategoria()));
+                }
+        }
+            return categoria;  // Retornar la categoría con sus etiquetas (o null si no se encontró ninguna)
+}
+
 
     private Categoria crearCategoria(ResultSet rs) throws SQLException {
         Long idCategoria = rs.getLong("id_categoria");
@@ -69,4 +85,5 @@ public class RepositorioCategoriaConEtiquetas {
             }
             return etiquetas;
     }
+    
 }

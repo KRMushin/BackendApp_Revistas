@@ -32,4 +32,8 @@ public class ServicioCategoriaConEtiqueta {
     public Optional<List<Categoria>> obtenerCategoriasConEtiqueta(){
         return categoriaConsultas.obtenerCategoriasConEtiquetas();
     } 
+
+    public Optional<Categoria> obtenerCategoria(Long idCategoria) {
+        return categoriaConsultas.obtenerCategoriaConEtiqueta(idCategoria);
+    }
 }

@@ -18,9 +18,29 @@ export class utileriaToken{
           const nombreUsuario = tokenValor.sub || null;  
           return nombreUsuario;
         } catch (e) {
-          console.error('Error decoding token:', e);
+          console.error('Error decodificando token:', e);
           return null;
         }
+      }
+    
+      public obtenerRol(): string | null {
+        const token = localStorage.getItem('token');
+    
+        if (!token) return null;
+    
+        try {
+          const tokenValor: any = jwtDecode(token);
+          const rol = tokenValor.rol || null;
+          return rol;
+        } catch (e) {
+          console.error('Error decodificando token:', e);
+          return null;
+        }
+      }
+
+      public autorizarEditor(): boolean {
+        const rol = this.obtenerRol();
+        return rol === 'EDITOR';
       }
 
     esEntero(numero: number): boolean {

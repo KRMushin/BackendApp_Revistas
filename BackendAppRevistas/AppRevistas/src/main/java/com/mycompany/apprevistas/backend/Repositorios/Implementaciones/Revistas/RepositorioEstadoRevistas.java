@@ -39,10 +39,12 @@ public class RepositorioEstadoRevistas {
     public void actualizarEstadoRevista(EstadoConfigRevistaDTO estado) throws SQLException{
         String updateQuery = "UPDATE configuracion_revistas SET " + estado.getTipoEstado().obtenerConsulta() + " = ? WHERE id_revista = ?";
         
+    
         try(PreparedStatement stmt = conn.prepareStatement(updateQuery)){
              stmt.setBoolean(1, estado.isEstado());
              stmt.setLong(2, estado.getIdRevista());
             int rows = stmt.executeUpdate();
+            
             if (rows <= 0) {
                 throw new DatosInvalidosUsuarioException();
             }

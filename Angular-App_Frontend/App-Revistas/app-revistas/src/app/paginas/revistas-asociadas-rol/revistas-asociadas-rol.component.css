@@ -1,0 +1,37 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: blue;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-group .btn {
+  min-width: 120px;
+}
+
+.carousel-item .text-center {
+  margin-top: 20px;
+}
+
+.carousel-caption h5 {
+  font-size: 1.5rem;
+  padding: 10px;
+  background-color: rgba(0, 0, 255, 0.7);
+  border-radius: 5px;
+}
+
+.badge {
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.badge {
+  font-size: 1rem;
+  padding: 8px;
+  margin-top: 10px;
+}
+.revista-imagen {
+  max-width: 300px; 
+  height: auto;     
+}

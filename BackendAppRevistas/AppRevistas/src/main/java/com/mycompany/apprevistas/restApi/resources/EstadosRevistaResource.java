@@ -29,13 +29,18 @@ public class EstadosRevistaResource {
     public Response obtenerEstadosRevista(@PathParam("idRevista") Long idRevista){
         ServicioRevistas service = new ServicioRevistas();
         EstadoRevistaDTO estado = service.obtenerEstadosRevista(idRevista);
+        
+        System.out.println(estado.toString());
         return Response.ok().entity(estado).build();
     }
     
     @PUT
     @Path("{idRevista}/actualizarEstado")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response actualizarRevista(EstadoConfigRevistaDTO estado){
+    public Response actualizarEstadoRevista(EstadoConfigRevistaDTO estado){
+         
+        System.out.println("depuracion --------------------------");
+        System.out.println(estado.toString());
         ServicioRevistas service = new ServicioRevistas();
         service.actualizarEstadoRevista(estado);
         return Response.ok().build();

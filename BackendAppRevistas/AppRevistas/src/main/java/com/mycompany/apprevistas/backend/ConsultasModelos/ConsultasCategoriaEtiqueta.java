@@ -33,5 +33,13 @@ public class ConsultasCategoriaEtiqueta {
             throw new DatabaseException();
         }
     }
+    public Optional<Categoria> obtenerCategoriaConEtiqueta(Long idCategoria) {
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+            categorias.setConn(conn);
+            return Optional.of(categorias.categoriaConEtiqueta(idCategoria));
+        } catch (SQLException e) {
+            throw new DatabaseException();
+        }
+    }
     
 }

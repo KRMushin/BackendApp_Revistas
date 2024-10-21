@@ -125,5 +125,14 @@ public class ConsultasRevistas {
             throw new DatabaseException(ex);
         }
     }
+
+    public Revista obtenerDatosRevista(Long idRevista) {
+    try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+            repositorioRevistas.setConn(conn);
+                return repositorioRevistas.obtenerPorId(idRevista);
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex);
+        }
+    }
 }
 

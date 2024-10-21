@@ -13,6 +13,8 @@ import { EditorControlComponent } from './paginas-rol/editor-control/editor-cont
 import { AnunciosSistemaComponent } from './paginas-rol/admin-control/anuncios-sistema/anuncios-sistema.component';
 import { GestionPreciosGlobalesComponent } from './paginas-rol/admin-control/gestion-precios-globales/gestion-precios-globales.component';
 import { PublicarRevistaComponent } from './paginas-rol/editor-control/publicar-revista/publicar-revista.component';
+import { PublicacionesHechasComponent } from './paginas-rol/editor-control/publicaciones-hechas/publicaciones-hechas.component';
+import { DetallesRevistaEditorSuscriptorComponent } from './paginas/detalles-revista-editor-suscriptor/detalles-revista-editor-suscriptor.component';
 
 export const routes: Routes = [
 
@@ -39,8 +41,11 @@ export const routes: Routes = [
       path: 'editor-control', component: EditorControlComponent, canActivate: [autGuardGuard], data: {roles: ['EDITOR']}, children: [
         {path: 'perfil-usuario', component: PerfilUsuarioComponent},
         {path: 'cartera-digital', component: CarteraDigitalComponent},
-        {path: 'publicarRevista', component: PublicarRevistaComponent}
-    ]}
+        {path: 'publicarRevista', component: PublicarRevistaComponent},
+        {path: 'misPublicaciones', component: PublicacionesHechasComponent},
+        { path: 'misPublicaciones/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent } 
+
+      ]}
 
 
 ];

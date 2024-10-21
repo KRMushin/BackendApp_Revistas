@@ -28,4 +28,5 @@ export class AnunciosSistemaComponent implements OnInit{
       console.error('Nombre de usuario es null');
     }
   }
+  
 }

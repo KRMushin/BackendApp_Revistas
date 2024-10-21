@@ -38,6 +38,14 @@ public class RevistasResource {
          List<LlaveRevistaDTO> revistas = revistaService.obtenerPublicacionesUsuario(nombreUsuario);
         return Response.ok().entity(revistas).build();
     }
+    @GET 
+    @Path("{idRevista}/datosRevista")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obtenerDatosRevista(@PathParam("idRevista") Long idRevista){
+         ServicioRevistas revistaService = new ServicioRevistas();
+         Revista revista = revistaService.obtenerDatosRevista(idRevista); 
+         return Response.ok().entity(revista).build();
+    }
     
     @POST
     @Path("/publicar")
