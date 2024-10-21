@@ -47,6 +47,19 @@ public class RevistasResource {
          return Response.ok().entity(revista).build();
     }
     
+    @GET
+    @Path("{idRevista}/pdfRevista")
+    @Produces("application/pdf") 
+    public Response obtenerPdf(@PathParam("idRevista") Long idRevista){
+         
+        ServicioRevistas revistaService = new ServicioRevistas();
+         InputStream pdf = revistaService.obtnerRevistaPDF(idRevista);
+        return Response.ok(pdf)
+                .header("Content-Disposition", "inline; filename=revista_" + idRevista + ".pdf")
+                .build();
+
+    }
+
     @POST
     @Path("/publicar")
     @Produces(MediaType.APPLICATION_JSON)
@@ -62,8 +75,6 @@ public class RevistasResource {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response guardarArchivoRevista(@PathParam("idRevista") Long idRevista,
                                                                       @FormDataParam("revistaPDF") InputStream revistaInputStream) {
-        System.out.println("Recibido ID de revista: " + idRevista);
-        System.out.println("Archivo recibido: " + revistaInputStream);
         ServicioRevistas revistasService = new ServicioRevistas();
         revistasService.guardarRevistaPDF(idRevista,revistaInputStream);
         return Response.ok().build();

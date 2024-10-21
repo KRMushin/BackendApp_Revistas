@@ -72,23 +72,7 @@ public class ConsultasRevistas {
         }
     }
 
-    public void guardarRevistaPDF(Long idRevista, InputStream revistaInputStream) {
-        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
-            repocitorioConfigRevistas.setConn(conn);
-            if (conn.getAutoCommit()) {
-                conn.setAutoCommit(false);
-            }
-            try {
-                 repocitorioConfigRevistas.guardarArchivoPDF(revistaInputStream, idRevista);
-                 conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-                throw new DatabaseException(e);
-            }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex);
-        }
-    }
+
 
     public boolean existeRevista(Long idRevista) {
         try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){

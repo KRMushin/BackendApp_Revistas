@@ -5,6 +5,7 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas;
 
 import com.mycompany.apprevistas.backend.Excepciones.ErrorInternoException;
+import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,17 +38,18 @@ public class RepositorioRevistasPDF {
     }
     public InputStream obtenerArchivoPorId(Long idArchivoPDF) throws SQLException {
         
-        String query = "SELECT archivo FROM ARCHIVOS_REVISTA WHERE id_archivo = ?";
+        String query = "SELECT archivo FROM archivos_revistas WHERE id_archivo = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setLong(1, idArchivoPDF);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return rs.getBlob("archivo").getBinaryStream();
+                }else{
+                    throw new NotFoundException();
                 }
             }
         }
-        return null; 
     }
 
     public boolean existeRevista(Long idRevista) throws SQLException {

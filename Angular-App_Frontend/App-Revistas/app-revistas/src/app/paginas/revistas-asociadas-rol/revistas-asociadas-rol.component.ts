@@ -3,6 +3,7 @@ import { LlaveRevista } from '../../../interfaces/Revistas/LlaveRevista';
 import { CommonModule } from '@angular/common';
 import { utileriaToken } from '../../../service/utileria-token.service';
 import { Router } from '@angular/router';
+import { CargarPdfRevistaService } from '../../vistas-archivos/cargar-pdf-revista.service';
 
 @Component({
   selector: 'app-revistas-asociadas-rol',
@@ -15,11 +16,12 @@ export class RevistasAsociadasRolComponent implements OnInit{
     @Input() revistas: LlaveRevista[] | undefined;
     
     private utileriaToken = inject(utileriaToken);
-    private router = inject(Router); // Inyecta Router para navegar
+    private router = inject(Router); 
+
 
     editorAutorizado: boolean = false;
 
-    constructor() { }
+    constructor(private cargarPdf: CargarPdfRevistaService) { }
     
     ngOnInit(): void {
 
@@ -29,6 +31,7 @@ export class RevistasAsociadasRolComponent implements OnInit{
     }
 
     verRevista(idRevista: number) : void {
+      this.cargarPdf.cargarPDFEnOtraVentana(idRevista);
     }
     //editor
     detallesRevista(idRevista: number) : void {

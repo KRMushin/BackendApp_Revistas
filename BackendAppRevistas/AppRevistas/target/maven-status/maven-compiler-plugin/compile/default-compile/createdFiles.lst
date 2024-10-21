@@ -61,6 +61,7 @@ com/mycompany/apprevistas/backend/usuariosDTOs/LlaveUsuarioDTO.class
 com/mycompany/apprevistas/restApi/resources/EstadosRevistaResource.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasConfigAnuncios.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/CategoriaEtiquetasRevista.class
+com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasArchivosRevistas.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasCarteraDigital.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorAnuncio.class
 com/mycompany/apprevistas/backend/modelos/PreferenciaUsuario.class

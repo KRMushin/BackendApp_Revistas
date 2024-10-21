@@ -34,9 +34,12 @@ export class RevistasService {
     return this.http.get<RevistaDatosDTO>(`${this.baseApiUrl}revistas/${idRevista}/datosRevista`);
   }
 
+  public obtenerPdfRevista(idRevista: number): Observable<Blob> {
+    return this.http.get(`${this.baseApiUrl}revistas/${idRevista}/pdfRevista`, { responseType: 'blob' });
+  }
+
   public obtenerConfiguracionesRevista(idRevista: number): Observable<ConfiguracionesRevista> {
     return this.http.get<ConfiguracionesRevista>(`${this.baseApiUrl}estadoRevista/${idRevista}/obtenerEstados`);
-    // estadoRevista/2/obtenerEstados
   }
   
   

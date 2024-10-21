@@ -4,6 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Servicios.Revistas;
 
+import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasArchivosRevistas;
 import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasRevistas;
 import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasUsuarios;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorRevista;
@@ -23,7 +24,8 @@ import java.util.Optional;
  * @author kevin-mushin
  */
 public class ServicioRevistas {
-    
+
+    private ConsultasArchivosRevistas consultasArchivos;
     private ConsultasRevistas consultasRevista;
     private ConsultasUsuarios consultasUsuarios;
     private CreadorRevista creadorRevistas;
@@ -32,6 +34,7 @@ public class ServicioRevistas {
         this.consultasRevista = new ConsultasRevistas();
         this.creadorRevistas = new CreadorRevista();
         this.consultasUsuarios = new ConsultasUsuarios();
+        this.consultasArchivos = new ConsultasArchivosRevistas();
     }
     
     public Revista publicarDatosRevista(RevistaDTO revistaDTO){
@@ -47,7 +50,7 @@ public class ServicioRevistas {
             if (!consultasRevista.existeRevista(idRevista)) {
                 throw new  NotFoundException();
             }
-            consultasRevista.guardarRevistaPDF(idRevista,revistaInputStream);
+            consultasArchivos.guardarRevistaPDF(idRevista,revistaInputStream);
     }
 
     public EstadoRevistaDTO obtenerEstadosRevista(Long idRevista) {
@@ -76,5 +79,16 @@ public class ServicioRevistas {
             throw new DatosInvalidosUsuarioException("La revista no existe");
         }
         return consultasRevista.obtenerDatosRevista(idRevista);
+    }
+    
+    public InputStream obtnerRevistaPDF(Long idRevista){
+        if (!consultasRevista.existeRevista(idRevista)) {
+            throw new DatosInvalidosUsuarioException("La revista no existe");
+        }
+        Optional<InputStream> pdf = consultasArchivos.obtnerRevistaPDF(idRevista);
+        if (pdf.isEmpty()) {
+            throw new NotFoundException();
+        }
+        return pdf.get();
     }
 }
