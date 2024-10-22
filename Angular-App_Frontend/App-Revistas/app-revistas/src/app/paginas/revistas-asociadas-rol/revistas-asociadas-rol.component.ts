@@ -35,7 +35,7 @@ export class RevistasAsociadasRolComponent implements OnInit{
     }
     //editor
     detallesRevista(idRevista: number) : void {
-      this.router.navigate(['/editor-control/misPublicaciones/detallesRevista', idRevista]);
+      this.router.navigate(['/editor-control/misPublicaciones/detallesRevista', 1000]);
     }
     
     comprarBloqueoAnuncios(idRevista: number) : void {

@@ -63,27 +63,5 @@ public class UsuariosResource {
         }else{
                     return Response.status(Response.Status.NOT_FOUND).build();
         }
-    }
-    
-    
-    
-//    @POST
-//        @Path("/{nombreUsuario}/foto")
-//        @Consumes(MediaType.MULTIPART_FORM_DATA)
-//        @Produces(MediaType.TEXT_PLAIN)
-//        public Response actualizarFotoPerfil(@PathParam("nombreUsuario") String nombreUsuario, 
-//                                        @FormDataParam("file") InputStream fileInputStream,
-//                                         @FormDataParam("file") FormDataContentDisposition archivoDatos) throws SQLException, DatosInvalidosUsuarioException {
-//            try {
-//                ServicioUsuario userService = new ServicioUsuario();
-//                FotoUsuario ft = userService.actualizarFotoUsuario(fileInputStream,archivoDatos,nombreUsuario);
-//                    return Response.ok().entity(ft).build();
-//
-//            } catch ( SQLException e) {
-//                    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-//
-//            } catch (DatosInvalidosUsuarioException e){
-//                    return Response.status(Response.Status.BAD_REQUEST).build();
-//            }
-//        }
+    } 
 }
