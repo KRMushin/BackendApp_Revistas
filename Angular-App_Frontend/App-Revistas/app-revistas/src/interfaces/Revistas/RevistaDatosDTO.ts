@@ -9,4 +9,6 @@ export interface RevistaDatosDTO {
     tituloRevista: string;
     idCategoria: number;
 
+    costoBloqueoAnuncios: number;
+
 }

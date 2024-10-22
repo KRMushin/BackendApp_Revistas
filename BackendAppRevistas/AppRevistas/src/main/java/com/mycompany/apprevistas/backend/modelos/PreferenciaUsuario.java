@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.modelos;
 
-import com.mycompany.apprevistas.backend.util.TipoPreferencia;
+import com.mycompany.apprevistas.backend.constantes.TipoPreferencia;
 
 /**
  *

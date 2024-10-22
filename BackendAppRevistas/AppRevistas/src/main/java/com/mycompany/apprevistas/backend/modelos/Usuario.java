@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.modelos;
 
-import com.mycompany.apprevistas.backend.util.RolUsuario;
+import com.mycompany.apprevistas.backend.constantes.RolUsuario;
 import java.util.List;
 
 /**

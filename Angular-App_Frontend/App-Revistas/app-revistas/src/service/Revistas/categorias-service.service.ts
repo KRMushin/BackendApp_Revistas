@@ -18,6 +18,7 @@ export class CategoriasService {
     return this.http.get<Categoria[]>(`${this.baseApiUrl}categorias`);
   }
   public obtnerCategoriaEtiqueta(idCategoria: number): Observable<Categoria> {
+    console.log(idCategoria + "idCategoria")
     return this.http.get<Categoria>(`${this.baseApiUrl}categorias/${idCategoria}/datosCategoria`);
   }
 

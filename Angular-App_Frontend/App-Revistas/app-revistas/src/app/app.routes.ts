@@ -15,6 +15,8 @@ import { GestionPreciosGlobalesComponent } from './paginas-rol/admin-control/ges
 import { PublicarRevistaComponent } from './paginas-rol/editor-control/publicar-revista/publicar-revista.component';
 import { PublicacionesHechasComponent } from './paginas-rol/editor-control/publicaciones-hechas/publicaciones-hechas.component';
 import { DetallesRevistaEditorSuscriptorComponent } from './paginas/detalles-revista-editor-suscriptor/detalles-revista-editor-suscriptor.component';
+import { GestionRevistasComponent } from './paginas-rol/admin-control/gestion-revistas/gestion-revistas.component';
+import { CostosRevistasComponent } from './paginas-rol/admin-control/costos-revistas/costos-revistas.component';
 
 export const routes: Routes = [
 
@@ -26,7 +28,9 @@ export const routes: Routes = [
     {path: "anuncios-configuracion", component: AnunciosConfiguracionComponent},
     {path: "perfil-usuario", component: PerfilUsuarioComponent},
     {path: 'anunciosEnSistema', component: AnunciosSistemaComponent},
-    {path: 'preciosGlobales' , component: GestionPreciosGlobalesComponent}
+    {path: 'preciosGlobales' , component: GestionPreciosGlobalesComponent},
+    {path: 'gestionRevistas', component: CostosRevistasComponent},
+    {path: 'activacionRevistas', component: GestionRevistasComponent}
   ]},
   {
     

@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios;
 
-import com.mycompany.apprevistas.backend.util.TipoAnuncio;
+import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
 import java.sql.SQLException;
 import java.util.List;
 

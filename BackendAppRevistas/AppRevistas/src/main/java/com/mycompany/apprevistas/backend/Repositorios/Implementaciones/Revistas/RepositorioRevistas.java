@@ -7,8 +7,7 @@ package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas
 import com.mycompany.apprevistas.backend.Excepciones.ErrorInternoException;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
-import com.mycompany.apprevistas.backend.Repositorios.RepositorioLlaveEntidad;
-import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.NuevoCostoDTO;
 import com.mycompany.apprevistas.backend.modelos.Revista;
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -108,6 +106,18 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
              }
         } 
     }
+    
+    public void activarRevista(Long idRevista) throws SQLException {
+        
+        String insertUpdate = " UPDATE revistas SET estado_revista = ? WHERE id_revista = ? ";
+        try(PreparedStatement stmt = conn.prepareStatement(insertUpdate)){
+             stmt.setString(1, "ACTIVA");
+             stmt.setLong(2, idRevista);
+             int l = stmt.executeUpdate();
+             
+        }
+    
+    }
    
     private Revista crearRevista(ResultSet rs) throws SQLException {
         Revista revista = new Revista();
@@ -122,4 +132,17 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
         return revista;
     }
 
+    public void actualizarCostoRevista(NuevoCostoDTO nuevoCosto) throws SQLException {
+        String insertUpdate = "UPDATE revistas SET " + nuevoCosto.getTipoCosto().obtenerConsulta() + "= ? WHERE id_revista = ?";
+        try(PreparedStatement stmt = conn.prepareStatement(insertUpdate)){
+            stmt.setDouble(1, nuevoCosto.getCosto());
+            stmt.setLong(2, nuevoCosto.getIdRevista());
+            
+            int filas = stmt.executeUpdate();
+            
+            if (filas <= 0) {
+                throw new ErrorInternoException(" Verificar la cadena de consulta ");
+            }
+        }
+    }
 } // fin de repositorio 

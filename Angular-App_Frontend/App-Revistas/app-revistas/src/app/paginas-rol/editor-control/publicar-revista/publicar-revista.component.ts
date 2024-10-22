@@ -104,6 +104,7 @@ subir(): void {
     })
   ).subscribe({
     next: () => {
+      this.archivoPDF = null;  
       console.log('Publicación y PDF subidos con éxito');
       alert('Publicación y PDF subidos con éxito');
     },

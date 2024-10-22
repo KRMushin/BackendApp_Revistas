@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <div class="row">
+      <!-- Revistas Activas -->
+      <div class="col-md-12">
+        <h3>Revistas Activas</h3>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Costo Mantenimiento</th>
+              <th>Costo Bloqueo Anuncios</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let revista of revistasActivas">
+              <td>{{ revista.tituloRevista }}</td>
+              
+              <!-- Costo Mantenimiento y Botón -->
+              <td>
+                <div class="input-group">
+                  <input type="number" class="form-control" [(ngModel)]="revista.costoMantenimiento" />
+                  <div class="input-group-append">
+                    <button class="btn btn-primary"
+                      (click)="modificarMantenimiento(revista.idRevista, revista.costoMantenimiento)">
+                      Modificar
+                    </button>
+                  </div>
+                </div>
+              </td>
+  
+              <!-- Costo Bloqueo Anuncios y Botón -->
+              <td>
+                <div class="input-group">
+                  <input type="number" class="form-control" [(ngModel)]="revista.costoBloqueoAnuncios" />
+                  <div class="input-group-append">
+                    <button class="btn btn-secondary"
+                      (click)="modificarBloqueoAnuncios(revista.idRevista, revista.costoBloqueoAnuncios)">
+                      Modificar
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  

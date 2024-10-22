@@ -7,7 +7,7 @@ package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
 import com.mycompany.apprevistas.backend.modelos.PreferenciaUsuario;
 import com.mycompany.apprevistas.backend.modelos.Usuario;
-import com.mycompany.apprevistas.backend.util.TipoPreferencia;
+import com.mycompany.apprevistas.backend.constantes.TipoPreferencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,0 +1,40 @@
+<p>gestion-revistas works!</p>
+<div class="container mt-4">
+    <div class="row">
+        <!-- Revistas en Espera -->
+        <div class="col-md-12">
+            <h3>Revistas en Espera</h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Costo Mantenimiento</th>
+                        <th>Modificar Mantenimiento</th>
+                        <th>Activar Revista</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let revista of revistasEnEspera">
+                        <td>{{ revista.tituloRevista }}</td>
+                        <td>
+                            <input type="number" id="mantenimiento-{{ revista.idRevista }}" class="form-control"
+                                [(ngModel)]="revista.costoMantenimiento" />
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-lg"
+                                (click)="modificarMantenimiento(revista.idRevista, revista.costoMantenimiento)">
+                                Modificar Mantenimiento
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-lg"
+                                (click)="activarRevista(revista.idRevista)">
+                                Activar Revista
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

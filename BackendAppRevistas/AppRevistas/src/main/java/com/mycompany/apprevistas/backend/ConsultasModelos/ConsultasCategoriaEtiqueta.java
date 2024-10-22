@@ -5,6 +5,7 @@
 package com.mycompany.apprevistas.backend.ConsultasModelos;
 
 import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas.RepositorioCategoriaConEtiquetas;
 import com.mycompany.apprevistas.backend.modelos.Categoria;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
@@ -36,6 +37,10 @@ public class ConsultasCategoriaEtiqueta {
     public Optional<Categoria> obtenerCategoriaConEtiqueta(Long idCategoria) {
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
             categorias.setConn(conn);
+            Categoria categori = categorias.categoriaConEtiqueta(idCategoria);
+            if (categori == null) {
+                throw new DatosInvalidosUsuarioException();
+            }
             return Optional.of(categorias.categoriaConEtiqueta(idCategoria));
         } catch (SQLException e) {
             throw new DatabaseException();

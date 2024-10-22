@@ -11,7 +11,7 @@ import com.mycompany.apprevistas.backend.Repositorios.RepositorioEscrituraLectur
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioLlaveEntidad;
 import com.mycompany.apprevistas.backend.modelos.Usuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LlaveUsuarioDTO;
-import com.mycompany.apprevistas.backend.util.RolUsuario;
+import com.mycompany.apprevistas.backend.constantes.RolUsuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

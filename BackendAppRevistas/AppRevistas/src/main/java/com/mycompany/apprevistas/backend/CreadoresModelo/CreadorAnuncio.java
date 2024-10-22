@@ -8,7 +8,7 @@ import com.mycompany.apprevistas.backend.AnunciosDTOs.AnuncioDTO;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import com.mycompany.apprevistas.backend.util.AlmacenAnuncios;
-import com.mycompany.apprevistas.backend.util.TipoAnuncio;
+import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
 import java.io.IOException;
 import java.io.InputStream;
 

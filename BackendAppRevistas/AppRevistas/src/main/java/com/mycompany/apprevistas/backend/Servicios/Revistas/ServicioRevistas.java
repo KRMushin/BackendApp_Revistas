@@ -91,4 +91,11 @@ public class ServicioRevistas {
         }
         return pdf.get();
     }
+
+    public void activarRevista(Long idRevista) {
+        if (!consultasRevista.existeRevista(idRevista)) {
+            throw new DatosInvalidosUsuarioException("La revista no existe");
+        }
+        consultasRevista.activarRevista(idRevista);
+    }
 }

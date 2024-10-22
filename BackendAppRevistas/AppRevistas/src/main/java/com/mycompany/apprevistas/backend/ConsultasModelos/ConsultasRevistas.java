@@ -17,12 +17,9 @@ import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoRevistaDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
 import com.mycompany.apprevistas.backend.modelos.Revista;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -72,8 +69,6 @@ public class ConsultasRevistas {
         }
     }
 
-
-
     public boolean existeRevista(Long idRevista) {
         try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
                 repocitorioConfigRevistas.setConn(conn);
@@ -117,6 +112,24 @@ public class ConsultasRevistas {
         } catch (SQLException ex) {
             throw new DatabaseException(ex);
         }
+    }
+
+    public void activarRevista(Long idRevista) {
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+                repositorioRevistas.setConn(conn);
+                    repositorioRevistas.activarRevista(idRevista);
+            } catch (SQLException ex) {
+                throw new DatabaseException(ex);
+            }
+    }
+
+    public Revista obtenerPorId(Long idRevista) {
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+                repositorioRevistas.setConn(conn);
+                return repositorioRevistas.obtenerPorId(idRevista);
+            } catch (SQLException ex) {
+                throw new DatabaseException(ex);
+            }
     }
 }
 

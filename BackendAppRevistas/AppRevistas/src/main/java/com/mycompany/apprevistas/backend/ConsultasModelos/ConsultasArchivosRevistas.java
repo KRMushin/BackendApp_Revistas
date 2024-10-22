@@ -31,8 +31,10 @@ public class ConsultasArchivosRevistas {
         this.repocitorioConfigRevistas = new RepositorioRevistasPDF();
     }
     
+   
         public void guardarRevistaPDF(Long idRevista, InputStream revistaInputStream) {
-        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+            System.out.println("guardando en el id de la revista" + idRevista);
+            try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
             repocitorioConfigRevistas.setConn(conn);
             if (conn.getAutoCommit()) {
                 conn.setAutoCommit(false);

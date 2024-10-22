@@ -8,7 +8,7 @@ import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioExcept
 import com.mycompany.apprevistas.backend.Excepciones.ErrorInternoException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
-import com.mycompany.apprevistas.backend.util.TipoAnuncio;
+import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

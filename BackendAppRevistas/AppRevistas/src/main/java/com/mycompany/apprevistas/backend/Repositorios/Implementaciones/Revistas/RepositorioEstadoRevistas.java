@@ -8,6 +8,7 @@ import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioExcept
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoConfigRevistaDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.NuevoCostoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

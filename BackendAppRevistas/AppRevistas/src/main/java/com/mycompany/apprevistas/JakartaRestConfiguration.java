@@ -14,7 +14,10 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class JakartaRestConfiguration extends ResourceConfig {
     
     public JakartaRestConfiguration()  {
-        packages("com.mycompany.apprevistas.restApi.resources", "com.mycompany.apprevistas.MapperExcepciones").register(MultiPartFeature.class);
+        packages("com.mycompany.apprevistas.restApi.resources", 
+                        "com.mycompany.apprevistas.restApi.resources.Anuncios",
+                        "com.mycompany.apprevistas.restApi.resources.Revistas",
+                        "com.mycompany.apprevistas.MapperExcepciones").register(MultiPartFeature.class);
     }
 }    
     

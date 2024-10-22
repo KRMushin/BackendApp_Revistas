@@ -14,6 +14,8 @@ public class LlaveRevistaDTO {
     private String tituloRevista;
     private String descripcion;
     private String estadoRevista;
+    private Double costoMantenimiento;
+    private Double costoBloqueoAnuncios;
 
     public LlaveRevistaDTO() {
     }
@@ -49,6 +51,23 @@ public class LlaveRevistaDTO {
     public void setEstadoRevista(String estadoRevista) {
         this.estadoRevista = estadoRevista;
     }
+
+    public Double getCostoMantenimiento() {
+        return costoMantenimiento;
+    }
+
+    public void setCostoMantenimiento(Double costoMantenimiento) {
+        this.costoMantenimiento = costoMantenimiento;
+    }
+
+    public Double getCostoBloqueoAnuncios() {
+        return costoBloqueoAnuncios;
+    }
+
+    public void setCostoBloqueoAnuncios(Double costoBloqueoAnuncios) {
+        this.costoBloqueoAnuncios = costoBloqueoAnuncios;
+    }
+
     
     
     

@@ -29,7 +29,7 @@ public class RepositorioRevistasPDF {
                 stmt.setLong(1, id);
                 stmt.setBlob(2, archivoPDF);
                 int affectedRows = stmt.executeUpdate();
-                System.out.println(affectedRows);
+                System.out.println(affectedRows + " cantid adfesafsdaf");
                 if (affectedRows == 0) {
                     throw new ErrorInternoException();
                 }
@@ -38,7 +38,7 @@ public class RepositorioRevistasPDF {
     }
     public InputStream obtenerArchivoPorId(Long idArchivoPDF) throws SQLException {
         
-        String query = "SELECT archivo FROM archivos_revistas WHERE id_archivo = ?";
+        String query = "SELECT archivo FROM archivos_revistas WHERE id_revista = ?";
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setLong(1, idArchivoPDF);
 

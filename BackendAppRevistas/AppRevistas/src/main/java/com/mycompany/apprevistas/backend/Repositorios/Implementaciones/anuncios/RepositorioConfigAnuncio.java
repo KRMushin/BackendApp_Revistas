@@ -7,7 +7,7 @@ package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.anuncios
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioConfigAnuncios;
 import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
-import com.mycompany.apprevistas.backend.util.TipoAnuncio;
+import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

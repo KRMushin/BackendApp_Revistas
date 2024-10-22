@@ -6,7 +6,7 @@ package com.mycompany.apprevistas.backend.CreadoresModelo;
 
 import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
 import com.mycompany.apprevistas.backend.modelos.PreferenciaUsuario;
-import com.mycompany.apprevistas.backend.util.TipoPreferencia;
+import com.mycompany.apprevistas.backend.constantes.TipoPreferencia;
 import java.util.ArrayList;
 import java.util.List;
 
