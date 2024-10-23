@@ -4,6 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 
+import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.CredencialUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
@@ -116,7 +117,7 @@ public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,
 
                  return Optional.of(cu);
              }else{
-                 throw new NotFoundException();
+                 throw new DatosInvalidosUsuarioException();
              }
         }
     }

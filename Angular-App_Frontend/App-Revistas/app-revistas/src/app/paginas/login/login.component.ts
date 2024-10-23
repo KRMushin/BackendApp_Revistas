@@ -15,6 +15,7 @@ import { AccesoService } from '../../../service/acceso.service';
 })
 export class LoginComponent {
 
+  mostrarPassword: boolean = false;
   private accesoService = inject(AccesoService);
   private router = inject(Router); // para redireccionar de una pg a otra
   public formBuild = inject(FormBuilder);
@@ -26,7 +27,6 @@ export class LoginComponent {
 
   iniciarSesion() {
     
-    // validacion de campos completos
     if(this.loginForm.invalid){
       return;
     }  
@@ -65,13 +65,8 @@ export class LoginComponent {
         }
       },
       error: (error) => {
-        alert("Contraseña o nombre de usaurio incorrectos");
+        console.log("datos invalidos");
       }
     });
-    /* BORRAR DESPUES*/
-    console.log('Datos del formulario:', objeto);
   }
 }
-/*
-      
-*/ 

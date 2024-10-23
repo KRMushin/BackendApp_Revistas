@@ -4,11 +4,9 @@
  */
 package com.mycompany.apprevistas.restApi.resources;
 
-import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.CredencialUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.LoginDTO;
 import com.mycompany.apprevistas.backend.Servicios.ServicioAutenticarUsuario;
-import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;

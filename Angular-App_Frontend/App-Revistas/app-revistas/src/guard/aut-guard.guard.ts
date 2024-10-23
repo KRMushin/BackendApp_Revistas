@@ -32,7 +32,7 @@ export const autGuardGuard: CanActivateFn = (route, state) => {
       return false;
     }
   } else {
-    alert("No tienes permisos para acceder a esta página");
+    alert("No tienes permisos para acceder a esta página lol");
     router.navigateByUrl("/login");
     localStorage.removeItem('token');
     return false;

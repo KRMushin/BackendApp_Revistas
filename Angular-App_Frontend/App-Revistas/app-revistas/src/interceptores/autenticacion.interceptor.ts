@@ -1,22 +1,22 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const autenticacionInterceptor: HttpInterceptorFn = (req, next) => {
+  if (req.url.includes('login') || req.url.includes('registrar')) {
+    console.log('Solicitud sin token');
+    return next(req); 
+  }
+  const token = localStorage.getItem('token');
 
+  if (token) {
+    const clonReq = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  
+    // Pasamos la solicitud clonada con el token
+    return next(clonReq);
+  }
+  
   return next(req);
 };
-/*
-
-
-  if ((req.url.indexOf("login") > 0) || (req.url.indexOf("registrar") > 0)) {
-    return next(req);
-  }
-
-  //a cada request se le invoca el constructor de tokens 
-
-  const token = localStorage.getItem("token");
-  const clonReq = req.clone({
-    setHeaders: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-*/ 

@@ -66,6 +66,7 @@ com/mycompany/apprevistas/backend/modelos/Usuario.class
 com/mycompany/apprevistas/backend/usuariosDTOs/LlaveUsuarioDTO.class
 com/mycompany/apprevistas/backend/constantes/TipoCostoRevista.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasConfigAnuncios.class
+com/mycompany/apprevistas/MapperExcepciones/SinAutorizacionMapper.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/CategoriaEtiquetasRevista.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasArchivosRevistas.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasCarteraDigital.class
@@ -100,11 +101,13 @@ com/mycompany/apprevistas/backend/util/ValidadorCompras.class
 com/mycompany/apprevistas/backend/Excepciones/TransaccionFallidaException.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioRevistasPDF.class
 com/mycompany/apprevistas/backend/Excepciones/DatosInvalidosUsuarioException.class
+com/mycompany/apprevistas/backend/util/AutenticadorJWT.class
 com/mycompany/apprevistas/backend/Excepciones/ConflictoUsuarioException.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorRevista.class
 com/mycompany/apprevistas/restApi/resources/revistas/RevistasResource.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasCategoriaEtiqueta.class
 com/mycompany/apprevistas/MapperExcepciones/DatabaseExceptionMapper.class
+com/mycompany/apprevistas/backend/Excepciones/SinAutorizacionException.class
 com/mycompany/apprevistas/backend/modelos/ConfiguracionAnuncio.class
 com/mycompany/apprevistas/resources/JakartaEE10Resource.class
 com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioRevistas.class

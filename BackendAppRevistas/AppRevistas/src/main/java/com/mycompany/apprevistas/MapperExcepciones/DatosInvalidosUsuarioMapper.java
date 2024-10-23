@@ -15,8 +15,9 @@ import jakarta.ws.rs.ext.Provider;
  */
 @Provider
 public class DatosInvalidosUsuarioMapper implements ExceptionMapper<DatosInvalidosUsuarioException> {
+    @Override
     public Response toResponse(DatosInvalidosUsuarioException exception) {
-        return Response.status(Response.Status.BAD_REQUEST).entity(exception.getCause() + "localidad" + exception.getClass()).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity("{\"message\": \"" + exception.getMessage() + "\"}").build();
     }
 }
 

@@ -4,18 +4,18 @@
  */
 package com.mycompany.apprevistas.restApi.resources;
 
-import com.mycompany.apprevistas.backend.Servicios.Anuncios.ServicioAnuncios;
 import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasPreciosGlobales;
-import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Servicios.ServicioPreciosGlobales;
-import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import com.mycompany.apprevistas.backend.modelos.PrecioGlobal;
+import com.mycompany.apprevistas.backend.util.AutenticadorJWT;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
@@ -26,10 +26,15 @@ import java.util.List;
  */
 @Path("preciosGlobales")
 public class PreciosGlobalesResource {
+    
+     private AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
 
-        @GET
+        @GET // obtencion de precios globales admin
         @Produces(MediaType.APPLICATION_JSON)
-     public Response obtenerTodos(){
+     public Response obtenerTodos(@Context HttpHeaders headerRequest){
+       
+         autenticadorJWT.validarTokenl(headerRequest); // este metodo lanza una exception
+         
          ConsultasPreciosGlobales service = new ConsultasPreciosGlobales();
          List<PrecioGlobal> anuncios= service.obtnerTodos();
          return Response.ok().entity(anuncios).build();
@@ -37,8 +42,12 @@ public class PreciosGlobalesResource {
         @PUT
         @Path("/{idPrecio}/actualizar")
         @Consumes(MediaType.APPLICATION_JSON)
-     public Response actualizarPrecio(@PathParam("idPrecio") Long idPrecio, Double nuevoPrecio){
-        ServicioPreciosGlobales service = new ServicioPreciosGlobales();
+     public Response actualizarPrecio(@PathParam("idPrecio") Long idPrecio,Double nuevoPrecio,
+                                                            @Context HttpHeaders headerRequest){
+
+         autenticadorJWT.validarTokenl(headerRequest); // este metodo lanza una exception
+         
+         ServicioPreciosGlobales service = new ServicioPreciosGlobales();
         service.actualizarPrecioGlobal(idPrecio, nuevoPrecio);
         return Response.ok().build();
      }

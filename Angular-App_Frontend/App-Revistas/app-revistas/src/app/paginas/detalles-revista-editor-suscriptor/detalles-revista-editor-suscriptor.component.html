@@ -21,14 +21,14 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Categoría</h5>
-              <p class="card-text">{{ categoria.nombreCategoria }}</p>
+              <p class="card-text">{{ categoria?.nombreCategoria }}</p>
           
-              <h6>Etiquetas:</h6>
+              <!-- <h6>Etiquetas:</h6>
               <ul *ngIf="categoria.etiquetas.length > 0; else noEtiquetas">
                 <li class="card-text" *ngFor="let etiqueta of categoria.etiquetas">
                   {{ etiqueta.etiqueta }}
                 </li>
-              </ul>
+              </ul> -->
               <ng-template #noEtiquetas>
                 <p>No hay etiquetas asociadas a esta categoría.</p>
               </ng-template>

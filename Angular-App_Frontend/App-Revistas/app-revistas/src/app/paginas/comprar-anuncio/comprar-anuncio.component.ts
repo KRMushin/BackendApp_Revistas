@@ -51,7 +51,7 @@ export class ComprarAnuncioComponent implements OnInit {
       });
     }
     this.anuncioForm.get('selectedAnuncio')?.valueChanges.subscribe(value => {
-      this.aplicarValidacionesDinamicas(value.tipoAnuncio); // Aplicar validaciones dinámicas según el tipo de anuncio
+      this.aplicarValidacionesDinamicas(value?.tipoAnuncio); // Aplicar validaciones dinámicas según el tipo de anuncio
       this.calcularPrecioTotal();
     });
 
@@ -113,6 +113,8 @@ export class ComprarAnuncioComponent implements OnInit {
       }
 
       this.servicePrecios.comprarAnuncio(formData).subscribe(() => {
+        alert('La compra fue un éxito');
+        this.anuncioForm.reset();
       });
 
 

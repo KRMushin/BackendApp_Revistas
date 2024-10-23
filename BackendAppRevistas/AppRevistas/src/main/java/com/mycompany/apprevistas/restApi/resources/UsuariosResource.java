@@ -4,7 +4,6 @@
  */
 package com.mycompany.apprevistas.restApi.resources;
 
-import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
 import com.mycompany.apprevistas.backend.Servicios.ServicioUsuario;
 import com.mycompany.apprevistas.backend.modelos.Usuario;
@@ -20,8 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,6 +32,7 @@ public class UsuariosResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerPerfilUsuario(@PathParam("nombreUsuario") String nombreUsuario){
               
+            //crear una validacion solo que contenta un rol valido 
             ServicioUsuario userService = new ServicioUsuario();
             Optional<Usuario> usuario = userService.obtenerPerfilUsurio(nombreUsuario);
             return Response.ok(usuario.get()).build();

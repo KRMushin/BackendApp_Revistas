@@ -48,16 +48,7 @@ export class RegistroComponent {
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        // Manejar los diferentes códigos de error
-        if (error.status === 409) {
-          alert('Error: El nombre de usuario ya existe.');
-        } else if (error.status === 400) {
-          alert('Error: Datos inválidos en el formulario.');
-        } else if (error.status === 500) {
-          alert('Error: Problema en el servidor.');
-        } else {
-          alert('Error desconocido.');
-        }
+        console.error('Error al registrar usuario:', error);
       }
 
     });  

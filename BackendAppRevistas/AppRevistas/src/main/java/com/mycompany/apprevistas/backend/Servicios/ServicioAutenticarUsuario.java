@@ -40,7 +40,7 @@ public class ServicioAutenticarUsuario {
          }
          Optional<LlaveUsuarioDTO> credencial = consultasUsuario.obtenerCredencialUsuario(loginDTO.getNombreUsuario());   
          if (credencial.isEmpty()) {
-             throw new NotFoundException();
+             throw new DatosInvalidosUsuarioException();
          }
          
          return autenticarUsuario(loginDTO,credencial.get());
