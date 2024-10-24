@@ -10,5 +10,7 @@ export interface RevistaDatosDTO {
     idCategoria: number;
 
     costoBloqueoAnuncios: number;
+    bloquearAnuncios: boolean;
+
 
 }

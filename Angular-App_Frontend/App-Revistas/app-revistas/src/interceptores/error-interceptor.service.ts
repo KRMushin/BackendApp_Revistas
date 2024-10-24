@@ -20,6 +20,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       
       }else if(error.status === 409 && req.url.includes('/registrar')){
         errorMensaje = 'El nombre de usuario ya está en uso. Por favor, elija otro.';
+
+      }else if(error.status === 409 && req.url.includes('/anuncios')){
+        errorMensaje = ' DINERO INSUFICIENTE, recarga tu cartera para poder publicar un anuncio.';
+
       }else{
         switch (error.status) {
           case 400: // Bad Request
@@ -49,7 +53,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         duration: 5000, 
         horizontalPosition: 'center',
         verticalPosition: 'top',
-        panelClass: ['custom-snackbar']
+        panelClass: ['custom-snackbar', 'large-snackbar']
       });
       return throwError(() => new Error(errorMensaje));
     })

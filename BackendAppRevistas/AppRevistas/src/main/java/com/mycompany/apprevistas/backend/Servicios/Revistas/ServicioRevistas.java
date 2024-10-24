@@ -78,7 +78,10 @@ public class ServicioRevistas {
         if (!consultasRevista.existeRevista(idRevista)) {
             throw new DatosInvalidosUsuarioException("La revista no existe");
         }
-        return consultasRevista.obtenerDatosRevista(idRevista);
+        Revista revista = consultasRevista.obtenerDatosRevista(idRevista);
+        EstadoRevistaDTO estado = consultasRevista.ObtenerEstadoRevista(idRevista);
+        revista.setBloquearAnuncios(estado.isAnunciosBloqueados());
+        return revista;
     }
     
     public InputStream obtnerRevistaPDF(Long idRevista){

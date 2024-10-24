@@ -1,41 +1,58 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-sm">
-    <div class="container-fluid">
-      <!-- Logo y nombre de la app -->
-      <a class="navbar-brand" href="#">
-        <img src="https://via.placeholder.com/30" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-        Mi Aplicación
-      </a>
-  
-      <!-- Botón de colapso para dispositivos móviles -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <!-- Enlaces de navegación -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text-warning" routerLink="/editor-control/cartera-digital">Recargar Cartera</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-info" routerLink="/editor-control/publicarRevista">Publicar Revista</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-warning" routerLink="/editor-control/misPublicaciones">Mis publicaciones</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/editor-control/perfil-usuario">Ver Perfil </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-danger" href="#">Estadísticas</a>
-          </li>
-        </ul>
-  
-        <!-- Componente de Logout -->
-        <div class="d-flex align-items-center text-white text-decoration-none">
-          <app-cerrar-sesion></app-cerrar-sesion>
-        </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="https://via.placeholder.com/30" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+      Mi Aplicación
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-warning" routerLink="/editor-control/cartera-digital">Recargar Cartera</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-info" routerLink="/editor-control/publicarRevista">Publicar Revista</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-warning" routerLink="/editor-control/misPublicaciones">Mis publicaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/editor-control/perfil-usuario">Ver Perfil </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="#">Estadísticas</a>
+        </li>
+      </ul>
+
+      <!-- Componente de Logout es cargado por cada control de rol -->
+      <div class="d-flex align-items-center text-white text-decoration-none">
+        <app-cerrar-sesion></app-cerrar-sesion>
       </div>
     </div>
+  </div>
 </nav>
-<router-outlet></router-outlet>
+<!-- fin de la barra de navegacion -->
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <!-- Barra lateral  -->
+    <div class="col-md-2">
+      <app-barra-lateral-anuncio></app-barra-lateral-anuncio>
+    </div>
+
+    <!-- Contenido central (router outlet) -->
+    <div class="col-md-8">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Barra lateral derecha -->
+    <div class="col-md-2">
+      <app-barra-lateral-anuncio></app-barra-lateral-anuncio>
+    </div>
+  </div>
+</div>

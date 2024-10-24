@@ -1,0 +1,30 @@
+
+@if (cargarAnuncio) {
+    @if (LlaveAnuncio.tipoAnuncio === 'TEXTO') {
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+              <div class="col h-100">
+                <div class="p-3 bg-secondary text-light rounded shadow-lg d-flex flex-column justify-content-center align-items-center h-100 w-100">
+                    <p class="h5">¡Anuncio Especial!</p>
+                    <p>{{ LlaveAnuncio.contenidoTexto }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    } @else if (LlaveAnuncio.tipoAnuncio === 'VIDEO' && anuncioVideo) {
+        <video #videoRef [src]="anuncioVideo" muted autoplay playsinline class="img-fluid video-anuncio" (loadedmetadata)="onVideoLoaded($event)"
+          (ended)="onVideoEnded($event)">
+        </video>
+    }@else if (LlaveAnuncio.tipoAnuncio === 'IMAGEN_TEXTO') {
+        <div class="fondo-texto">
+            <p class="texto-anuncio">{{ LlaveAnuncio.contenidoTexto }}</p>
+        </div>
+        <img [src]="anuncioImagen" alt="Imagen del anuncio" class="img-anuncio">
+    }
+}@else{
+        <p>free Ads</p>
+
+}
+
+  
+  

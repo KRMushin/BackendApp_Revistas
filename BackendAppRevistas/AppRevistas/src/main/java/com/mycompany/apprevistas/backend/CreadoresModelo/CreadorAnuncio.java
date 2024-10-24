@@ -38,7 +38,8 @@ public class CreadorAnuncio {
                     if (!nombreArchivo.endsWith(".jpg") && !nombreArchivo.endsWith(".png")) {
                         throw new DatosInvalidosUsuarioException("el archivo no termina en png o jpg");
                     }
-                    anuncio.setRutaTexto(almacenArchivos.almacenarTexto(anuncioDTO.getTextoAnuncio(),nombreArchivo));
+//                    anuncio.setRutaTexto(almacenArchivos.almacenarTexto(anuncioDTO.getTextoAnuncio(),nombreArchivo));
+                    anuncio.setRutaTexto(anuncioDTO.getTextoAnuncio());
                     anuncio.setRutaImagenTexto(almacenArchivos.guardarArchivoAnuncio(archivoInputStream, nombreArchivo));
                     break;
                 case VIDEO:
@@ -48,7 +49,9 @@ public class CreadorAnuncio {
                     anuncio.setRutaVideo(almacenArchivos.guardarArchivoAnuncio(archivoInputStream, nombreArchivo));
                     break;
                 case TEXTO:
-                    anuncio.setRutaTexto(almacenArchivos.almacenarTexto(anuncioDTO.getTextoAnuncio(),nombreArchivo));
+//                    anuncio.setRutaTexto(almacenArchivos.almacenarTexto(anuncioDTO.getTextoAnuncio(),nombreArchivo));
+                    anuncio.setRutaTexto(anuncioDTO.getTextoAnuncio());
+
                     break;
                 default:
                     break;

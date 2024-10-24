@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { utileriaToken } from '../../../service/utileria-token.service';
 import { Router } from '@angular/router';
 import { CargarPdfRevistaService } from '../../vistas-archivos/cargar-pdf-revista.service';
+import { ControladorAnunciosService } from '../../../service/Anuncios/controlador-anuncios.service';
 
 @Component({
   selector: 'app-revistas-asociadas-rol',
@@ -21,13 +22,16 @@ export class RevistasAsociadasRolComponent implements OnInit{
 
     editorAutorizado: boolean = false;
 
-    constructor(private cargarPdf: CargarPdfRevistaService) { }
+    constructor(private cargarPdf: CargarPdfRevistaService,
+                private controladorAnuncios:ControladorAnunciosService
+    ) { }
     
     ngOnInit(): void {
 
       if (this.utileriaToken.obtenerRol() === 'EDITOR') {
         this.editorAutorizado = true;
       }
+      
     }
 
     verRevista(idRevista: number) : void {
@@ -35,6 +39,7 @@ export class RevistasAsociadasRolComponent implements OnInit{
     }
     //editor
     detallesRevista(idRevista: number) : void {
+      this.controladorAnuncios.bloquearAnuncios();
       this.router.navigate(['/editor-control/misPublicaciones/detallesRevista', idRevista]);
     }
     
@@ -46,4 +51,6 @@ export class RevistasAsociadasRolComponent implements OnInit{
     }
     previsualizarRevista(idRevista: number) : void {
     }
+
+    
 }

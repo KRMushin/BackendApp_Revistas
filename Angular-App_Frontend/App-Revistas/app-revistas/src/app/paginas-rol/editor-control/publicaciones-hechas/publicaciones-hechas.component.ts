@@ -3,6 +3,7 @@ import { utileriaToken } from '../../../../service/utileria-token.service';
 import { RevistasService } from '../../../../service/Revistas/revistas-service.service';
 import { LlaveRevista } from '../../../../interfaces/Revistas/LlaveRevista';
 import { RevistasAsociadasRolComponent } from "../../../paginas/revistas-asociadas-rol/revistas-asociadas-rol.component";
+import { ControladorAnunciosService } from '../../../../service/Anuncios/controlador-anuncios.service';
 
 @Component({
   selector: 'app-publicaciones-hechas',
@@ -18,6 +19,7 @@ export class PublicacionesHechasComponent implements OnInit{
 
   public llavesRevistas: LlaveRevista[] = [];
 
+  constructor(private controladorAnuncios: ControladorAnunciosService) {}
   ngOnInit(): void {
 
     const nombreUsuario = this.utileriaToken.obtenerNombreUsuario();
@@ -29,5 +31,9 @@ export class PublicacionesHechasComponent implements OnInit{
     } else {
       console.error('Nombre de usuario es null');
     }
+  }
+
+  ngOnDestroy(): void {
+    this.controladorAnuncios.recargarAnuncios();
   }
 }

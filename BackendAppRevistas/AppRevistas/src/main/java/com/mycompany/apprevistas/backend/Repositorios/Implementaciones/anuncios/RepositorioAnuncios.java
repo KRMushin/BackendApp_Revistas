@@ -4,6 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.anuncios;
 
+import com.mycompany.apprevistas.backend.AnunciosDTOs.LlaveAnuncioDTO;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.ErrorInternoException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
@@ -21,7 +22,7 @@ import java.util.List;
  *
  * @author kevin-mushin
  */
-public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String> {
+public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>  {
 
     private Connection conn;
 
@@ -126,6 +127,22 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
 
     }
     
+    public List<LlaveAnuncioDTO> obtnerLlavesAnuncios() throws SQLException{
+        List<LlaveAnuncioDTO> llaves = new ArrayList<>();
+        
+        String selectQuery = "SELECT id_anuncio, ruta_imagen_texto, ruta_video, ruta_texto , tipo_anuncio FROM anuncios WHERE habilitado = TRUE ";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(selectQuery)) {
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                  llaves.add(crearLlaveDTO(rs));
+            }
+            return llaves;
+        } catch (SQLException e) {
+            throw new SQLException("Error al obtener el anuncio: " + e.getMessage(), e);
+        }
+    }
+    
     private Anuncio crearAnuncio(ResultSet rs) throws SQLException{
             Anuncio anuncio = new Anuncio();
             anuncio.setIdAnuncio(rs.getLong("id_anuncio"));
@@ -138,6 +155,16 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
             anuncio.setPrecioTotal(rs.getDouble("precio_total"));
             anuncio.setAnuncioHabilitado(rs.getBoolean("habilitado"));
             anuncio.setDiasDuracion(rs.getInt("dias_duracion"));
+            return anuncio;
+    }
+
+    private LlaveAnuncioDTO crearLlaveDTO(ResultSet rs) throws SQLException {
+        LlaveAnuncioDTO anuncio = new LlaveAnuncioDTO();
+            anuncio.setIdAnuncio(rs.getLong("id_anuncio"));
+            anuncio.setTipoAnuncio(TipoAnuncio.valueOf(rs.getString("tipo_anuncio")));
+            anuncio.setRutaTextoImagen(rs.getString("ruta_imagen_texto"));
+            anuncio.setRutaVideo(rs.getString("ruta_video"));
+            anuncio.setContenidoTexto(rs.getString("ruta_texto"));
             return anuncio;
     }
 }

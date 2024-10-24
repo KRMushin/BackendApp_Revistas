@@ -24,6 +24,7 @@ public class Revista {
     private LocalDate fechaCreacion;
     private String estadoRevista;
     private List<Long> idEtiquetas;
+    private boolean bloquearAnuncios;
     
     public Revista() {
     
@@ -102,6 +103,14 @@ public class Revista {
 
     public void setIdEtiquetas(List<Long> idEtiquetas) {
         this.idEtiquetas = idEtiquetas;
+    }
+
+    public boolean isBloquearAnuncios() {
+        return bloquearAnuncios;
+    }
+
+    public void setBloquearAnuncios(boolean bloquearAnuncios) {
+        this.bloquearAnuncios = bloquearAnuncios;
     }
     
 

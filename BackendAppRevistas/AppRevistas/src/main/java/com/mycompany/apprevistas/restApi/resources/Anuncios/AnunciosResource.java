@@ -60,7 +60,7 @@ public class AnunciosResource {
             return Response.ok()
                     .build();
         } catch (DineroInsuficienteException e) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            return Response.status(Response.Status.CONFLICT).build();
         } 
     }
 

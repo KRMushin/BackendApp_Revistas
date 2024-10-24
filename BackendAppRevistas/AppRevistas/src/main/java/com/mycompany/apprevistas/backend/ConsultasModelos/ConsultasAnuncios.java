@@ -5,6 +5,7 @@
 package com.mycompany.apprevistas.backend.ConsultasModelos;
 
 import com.mycompany.apprevistas.backend.AnunciosDTOs.AnuncioDTO;
+import com.mycompany.apprevistas.backend.AnunciosDTOs.LlaveAnuncioDTO;
 import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.anuncios.RepositorioAnuncios;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioCarterasDigitales;
@@ -14,6 +15,7 @@ import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -81,4 +83,24 @@ public class ConsultasAnuncios {
         }
 
     }
+    
+    public List<LlaveAnuncioDTO> obtnerLlavesAnuncios(){
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+             repositorioAnuncios.setConn(conn);
+             return repositorioAnuncios.obtnerLlavesAnuncios();
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    public Optional<Anuncio> obtenerPorId(Long idAnuncio) {
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+             repositorioAnuncios.setConn(conn);
+             return Optional.of(repositorioAnuncios.obtenerPorId(idAnuncio));
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+    
+     
 }

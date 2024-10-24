@@ -5,6 +5,7 @@ import { utileriaToken } from '../../../service/utileria-token.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ControladorAnunciosService } from '../../../service/Anuncios/controlador-anuncios.service';
 
 @Component({
   selector: 'app-cartera-digital',
@@ -19,11 +20,14 @@ export class CarteraDigitalComponent implements OnInit {
   public carteraDigital: CarteraDigital | undefined;
   private router = inject(Router);
   public montoRecarga: number = 0;
-  
+
+  constructor(private controladorAnuncios: ControladorAnunciosService){}
+ 
   ngOnInit(): void {
+
     const tokenUtileria = new utileriaToken();
     const nombreUsuario = tokenUtileria.obtenerNombreUsuario();
-    
+
     if(nombreUsuario != null){
       this.serviceCartera.obtenerDatosUsuario(nombreUsuario).subscribe({
         next:(carteraDigital: CarteraDigital) => {
@@ -66,7 +70,7 @@ export class CarteraDigitalComponent implements OnInit {
           });
         },
         error: (error) => {
-          alert('Error al realizar la recarga');
+          console.log('Error al realizar la recarga');
         }
       });
     } else {
@@ -74,4 +78,9 @@ export class CarteraDigitalComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
   }
+  
+  ngOnDestroy(): void {
+    this.controladorAnuncios.recargarAnuncios();
+  }
+
 }

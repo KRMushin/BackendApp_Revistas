@@ -9,6 +9,7 @@ import { utileriaToken } from '../../../service/utileria-token.service';
 import { ConfiguracionRevistaComponent } from "../../paginas-rol/editor-control/configuracion-revista/configuracion-revista.component";
 import { Categoria } from '../../../interfaces/Revistas/Categoria';
 import { CategoriasService } from '../../../service/Revistas/categorias-service.service';
+import { ControladorAnunciosService } from '../../../service/Anuncios/controlador-anuncios.service';
 
 
 
@@ -31,21 +32,24 @@ export class DetallesRevistaEditorSuscriptorComponent implements OnInit{
     private utileriaToken: utileriaToken,
     private serviceCategoria: CategoriasService) {}
 
-  private revistasService = inject(RevistasService);
-  
-  ngOnInit(): void {
+    private revistasService = inject(RevistasService);
+    private controladorAnuncios = inject(ControladorAnunciosService)
 
+  ngOnInit(): void {
+    this.controladorAnuncios.bloquearAnuncios();
     this.idRevista = Number(this.ruta.snapshot.paramMap.get('idRevista'));
 
     this.revistasService.obtenerDatosRevista(this.idRevista).subscribe({
       next: (revista: RevistaDatosDTO) => {
+        if(revista.bloquearAnuncios){
+          this.controladorAnuncios.bloquearAnuncios();
+        }else{
+          this.controladorAnuncios.permitirAnuncios();
+        }
         this.revista = revista;
       },
       error: (err) => {
         console.error('Error al cargar los datos de la revista', err);
-      },
-      complete: () => {
-        console.log('Carga de revista completada');
       }
     });
 
@@ -61,6 +65,9 @@ export class DetallesRevistaEditorSuscriptorComponent implements OnInit{
     if(this.utileriaToken.autorizarEditor()){
       this.editorAutorizado = true;
     }
+  }
+  ngOnDestroy(): void {
+    this.controladorAnuncios.permitirAnuncios();
   }
 
   goBack(): void {

@@ -112,11 +112,15 @@ export class ComprarAnuncioComponent implements OnInit {
         }
       }
 
-      this.servicePrecios.comprarAnuncio(formData).subscribe(() => {
-        alert('La compra fue un éxito');
-        this.anuncioForm.reset();
+      this.servicePrecios.comprarAnuncio(formData).subscribe({
+        next: () => {
+          alert('La compra fue un éxito');
+          this.anuncioForm.reset();
+        },
+        error: (err) => {
+          console.error('Error al realizar la compra:', err);
+        }
       });
-
 
     console.log('Datos que se están enviando:');
     formData.forEach((value, key) => {

@@ -8,6 +8,7 @@ import { CategoriasService } from '../../../../service/Revistas/categorias-servi
 import { utileriaToken } from '../../../../service/utileria-token.service';
 import { CommonModule } from '@angular/common';
 import { concatMap, identity } from 'rxjs';
+import { ControladorAnunciosService } from '../../../../service/Anuncios/controlador-anuncios.service';
 
 @Component({
   selector: 'app-publicar-revista',
@@ -28,7 +29,8 @@ export class PublicarRevistaComponent implements OnInit{
   constructor(private formBuilder: FormBuilder,
               private revistasService: RevistasService,
               private categoriasService: CategoriasService,
-              private utileriaToken: utileriaToken) {}
+              private utileriaToken: utileriaToken,
+              private controladorAnuncios: ControladorAnunciosService) {}
   
   ngOnInit(): void {
     this.publicacionRevistaForm = this.formBuilder.group({
@@ -143,7 +145,9 @@ subir(): void {
       }
     }
   }
-  
+  ngOnDestroy(): void {
+    this.controladorAnuncios.recargarAnuncios();
+  }
   limpiar(): void {
     this.publicacionRevistaForm.reset();
   }

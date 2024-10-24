@@ -3,6 +3,7 @@ import { UsuariosService } from '../../../service/Usuarios/usuarios-service.serv
 import { Usuario } from '../../../interfaces/Usuarios/usuario';
 import { jwtDecode } from 'jwt-decode';
 import { CommonModule, NgIf } from '@angular/common';
+import { ControladorAnunciosService } from '../../../service/Anuncios/controlador-anuncios.service';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -16,12 +17,15 @@ export class PerfilUsuarioComponent implements OnInit{
   private usuarioService = inject(UsuariosService);
   public perfilUsuario: Usuario | undefined;
 
+  constructor(private controladorAnuncios: ControladorAnunciosService) {}
+
   ngOnInit() {
     const token = localStorage.getItem('token');
     const nombreUsuario = this.obtenerNombreUsuario(token);
   
     if (nombreUsuario !== null) {
       // Hacer la petición para obtener los datos del usuario
+      
       this.usuarioService.obtenerDatosUsuario(nombreUsuario).subscribe({
         next: (usuario: Usuario) => {
           this.perfilUsuario = usuario;  // Asignar los datos recibidos al perfil del usuario
@@ -48,6 +52,10 @@ export class PerfilUsuarioComponent implements OnInit{
         console.error('Error decoding token:', e);
         return null;
       }
+    }
+
+    ngOnDestroy(): void {
+      this.controladorAnuncios.recargarAnuncios();
     }
   }
 

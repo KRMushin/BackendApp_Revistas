@@ -61,7 +61,7 @@ public class ServicioAnuncios {
             AnuncioDTO anuncioDTO = deserealizarDTO(anuncioDTOJson);
             
             if (!anuncioDTO.esValido()) {
-                throw new DatosInvalidosUsuarioException();
+                throw new DatosInvalidosUsuarioException("el anuncio no es valido");
             }
             
             Optional<CarteraDigital> carteraUsuario = consultasCarteras.obtenerCarteraDigitalUsuario(anuncioDTO.getNombreUsuario());

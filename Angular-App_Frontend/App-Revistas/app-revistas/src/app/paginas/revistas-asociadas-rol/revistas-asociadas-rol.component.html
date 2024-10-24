@@ -14,17 +14,20 @@
         <div class="text-center mt-3">
           <span class="badge bg-primary">{{ revista.tituloRevista }}</span>
         </div>
-        
+
         <!-- Botones centrados bajo el estado -->
         <div class="text-center mt-3">
           <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="verRevista(revista.idRevista)">Ver Revista</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary me-2" (click)="detallesRevista(revista.idRevista)">Configuración Revista</button>
-            <button *ngIf="editorAutorizado" type="button" class="btn btn-sm btn-outline-danger" (click)="comprarBloqueoAnuncios(revista.idRevista)">Bloquear Anuncios</button>
+            <button type="button" class="btn btn-sm btn-outline-primary me-2"
+              (click)="verRevista(revista.idRevista)">Ver Revista</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary me-2"
+              (click)="detallesRevista(revista.idRevista)">Configuración Revista</button>
+            <button *ngIf="editorAutorizado" type="button" class="btn btn-sm btn-outline-danger"
+              (click)="comprarBloqueoAnuncios(revista.idRevista)">Bloquear Anuncios</button>
           </div>
           <small class="text-muted mt-2 d-block">ID: {{ revista.idRevista }}</small>
         </div>
-        
+
       </div>
     </div>
 
@@ -39,13 +42,15 @@
     </button>
   </div>
   @if (editorAutorizado) {
-    <div class="alert alert-info mt-4" role="alert">
-        <h5 class="alert-heading">Bienvenido, Editor</h5>
-        <p class="mb-0">
-            ¡Nos alegra verte de nuevo! Aquí puedes gestionar tus publicaciones, revisar el contenido que has creado y hacer los ajustes necesarios para mejorar tus revistas.
-            Si deseas modificar alguna revista o bloquear anuncios, utiliza los botones disponibles bajo cada publicación. ¡Sigue creando y mejorando tus contenidos!
-        </p>
-    </div>
+  <div class="alert alert-info mt-4" role="alert">
+    <h5 class="alert-heading">Bienvenido, Editor</h5>
+    <p class="mb-0">
+      ¡Nos alegra verte de nuevo! Aquí puedes gestionar tus publicaciones, revisar el contenido que has creado y hacer
+      los ajustes necesarios para mejorar tus revistas.
+      Si deseas modificar alguna revista o bloquear anuncios, utiliza los botones disponibles bajo cada publicación.
+      ¡Sigue creando y mejorando tus contenidos!
+    </p>
+  </div>
   }
 
 </div>
@@ -53,41 +58,3 @@
 <div *ngIf="!revistas || revistas.length === 0" class="alert alert-warning mt-4" role="alert">
   No hay revistas disponibles.
 </div>
-
-
-
-
-
-
-<!-- <h2 class="text-center mt-4 fw-bold">¡Estas son tus publicaciones hechas!</h2>
-
-<div class="container mt-4" *ngIf="revistas && revistas.length > 0">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let revista of revistas">
-        <div class="card mb-4 shadow-sm" >
-            <img src="images/PORTADAREVISTA.webp" class="card-img-top revista-img" alt="{{ revista.tituloRevista }}">
-            <div class="card-body">
-            <h5 class="card-title">{{ revista.tituloRevista }}</h5>
-            <p class="card-text">{{ revista.descripcionRevista  }}</p>
-            <span class="badge bg-primary">{{ revista.estadoRevista }}</span>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-primary" (click)="verRevista(revista.idRevista)">Ver Revista</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="detallesRevista(revista.idRevista)"> Configuracion Revista </button>
-                @if (editorAutorizado) {
-                    <button type="button" class="btn btn-sm btn-outline-danger" (click)="comprarBloqueoAnuncios(revista.idRevista)">Bloquear Anuncios</button>
-                }
-            </div>
-        </div>
-        <small class="text-muted">ID: {{ revista.idRevista }}</small>
-        </div>
-    </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  <div *ngIf="!revistas || revistas.length === 0" class="alert alert-warning mt-4" role="alert">
-    No hay revistas disponibles.
-  </div> -->
-  
