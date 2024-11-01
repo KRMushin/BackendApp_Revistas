@@ -56,7 +56,7 @@
       </div>
 
       
-      <!-- // componente para cargar los componentes de la revista solo si es un editor,esto para poder activa/ desactivar -->
+      <!-- // componente para cargar la configuracion de la revista solo si es un editor,esto para poder activa/ desactivar -->
       @if (editorAutorizado) {
         <app-configuracion-revista [idRevista]="revista.idRevista"></app-configuracion-revista>
       }

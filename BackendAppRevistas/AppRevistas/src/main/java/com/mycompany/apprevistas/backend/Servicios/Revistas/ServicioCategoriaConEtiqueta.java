@@ -5,7 +5,7 @@
 package com.mycompany.apprevistas.backend.Servicios.Revistas;
 
 import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasCategoriaEtiqueta;
-import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasRevistas;
+import com.mycompany.apprevistas.backend.ConsultasModelos.Revistas.ConsultasRevistas;
 import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas.RepositorioCategoriaConEtiquetas;

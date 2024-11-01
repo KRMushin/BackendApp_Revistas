@@ -20,10 +20,9 @@
           <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-primary me-2"
               (click)="verRevista(revista.idRevista)">Ver Revista</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary me-2"
-              (click)="detallesRevista(revista.idRevista)">Configuración Revista</button>
-            <button *ngIf="editorAutorizado" type="button" class="btn btn-sm btn-outline-danger"
-              (click)="comprarBloqueoAnuncios(revista.idRevista)">Bloquear Anuncios</button>
+            @if(editorAutorizado){
+              <app-opciones-editor-revista [revista]="revista"></app-opciones-editor-revista>
+            }  
           </div>
           <small class="text-muted mt-2 d-block">ID: {{ revista.idRevista }}</small>
         </div>
@@ -51,10 +50,18 @@
       ¡Sigue creando y mejorando tus contenidos!
     </p>
   </div>
-  }
+}
 
 </div>
 
 <div *ngIf="!revistas || revistas.length === 0" class="alert alert-warning mt-4" role="alert">
   No hay revistas disponibles.
 </div>
+
+<!-- <button type="button" class="btn btn-sm btn-outline-secondary me-2"
+  (click)="detallesRevista(revista.idRevista)">Configuración Revista</button>
+<button *ngIf="editorAutorizado" type="button" class="btn btn-sm btn-outline-danger"
+  (click)="comprarBloqueoAnuncios(revista.idRevista)">Bloquear Anuncios</button>
+
+<button *ngIf="editorAutorizado" type="button" class="btn btn-sm btn-outline-danger"
+  (click)="comprarBloqueoAnuncios(revista.idRevista)">Bloquear Anuncios</button> -->

@@ -43,6 +43,10 @@ export class utileriaToken{
         return rol === 'EDITOR';
       }
 
+      public autorizarSuscriptor(): boolean {
+        const rol = this.obtenerRol();
+        return rol === 'SUSCRIPTOR';
+      }
     esEntero(numero: number): boolean {
         return Number.isInteger(numero);
       }

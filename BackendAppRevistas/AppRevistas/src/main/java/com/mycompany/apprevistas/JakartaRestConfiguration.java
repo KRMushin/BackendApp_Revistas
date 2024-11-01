@@ -1,5 +1,6 @@
 package com.mycompany.apprevistas;
 
+import com.mycompany.apprevistas.AutenticadorFiltro.AutenticadorFiltro;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
@@ -17,7 +18,18 @@ public class JakartaRestConfiguration extends ResourceConfig {
         packages("com.mycompany.apprevistas.restApi.resources", 
                         "com.mycompany.apprevistas.restApi.resources.Anuncios",
                         "com.mycompany.apprevistas.restApi.resources.Revistas",
-                        "com.mycompany.apprevistas.MapperExcepciones").register(MultiPartFeature.class);
+                        "com.mycompany.apprevistas.MapperExcepciones");
+                        register(AutenticadorFiltro.class);
+                        register(MultiPartFeature.class);
     }
 }    
     
+/*
+public JakartaRestConfiguration()  {
+        packages("com.mycompany.apprevistas.restApi.resources", 
+                        "com.mycompany.apprevistas.restApi.resources.Anuncios",
+                        "com.mycompany.apprevistas.restApi.resources.Revistas",
+                        "com.mycompany.apprevistas.MapperExcepciones").register(MultiPartFeature.class);
+    }
+
+*/

@@ -19,15 +19,12 @@ import jakarta.ws.rs.core.Response;
 @Path("actualizar/contraseña")
 public class ContraseñasResource {
     
-     private final AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
      
      @PUT
      @Path("{nombreUsuario}")
      @Consumes(MediaType.APPLICATION_JSON)
-     public Response actualizarContraseña(ActualizarContraseñaDTO contraseñaDTO,
-                                                                   @Context HttpHeaders headerRequest){
+     public Response actualizarContraseña(ActualizarContraseñaDTO contraseñaDTO){
          
-           autenticadorJWT.validarTokenl(headerRequest); 
             ServicioContraseñas passwordService = new ServicioContraseñas();
             passwordService.actualizarContraseña(contraseñaDTO);
             return Response.ok().build();

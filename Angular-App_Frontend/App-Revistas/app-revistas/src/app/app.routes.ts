@@ -17,6 +17,10 @@ import { PublicacionesHechasComponent } from './paginas-rol/editor-control/publi
 import { DetallesRevistaEditorSuscriptorComponent } from './paginas/detalles-revista-editor-suscriptor/detalles-revista-editor-suscriptor.component';
 import { GestionRevistasComponent } from './paginas-rol/admin-control/gestion-revistas/gestion-revistas.component';
 import { CostosRevistasComponent } from './paginas-rol/admin-control/costos-revistas/costos-revistas.component';
+import { ComprarBloqueoAnunciosComponent } from './paginas-rol/editor-control/comprar-bloqueo-anuncios/comprar-bloqueo-anuncios.component';
+import { NumerosRevistaRolComponent } from './paginas/numeros-revista-rol/numeros-revista-rol.component';
+import { SuscriptorControlComponent } from './paginas-rol/suscriptor-control/suscriptor-control.component';
+import { VerPdfComponent } from './vistas-archivos/ver-pdf/ver-pdf.component';
 
 export const routes: Routes = [
 
@@ -42,14 +46,28 @@ export const routes: Routes = [
     ]},
     {
       
-      path: 'editor-control', component: EditorControlComponent, canActivate: [autGuardGuard], data: {roles: ['EDITOR']}, children: [
+      path: 'editor-control', 
+      component: EditorControlComponent, 
+      canActivate: [autGuardGuard], data: {roles: ['EDITOR']}, 
+      children: [
         {path: 'perfil-usuario', component: PerfilUsuarioComponent},
         {path: 'cartera-digital', component: CarteraDigitalComponent},
         {path: 'publicarRevista', component: PublicarRevistaComponent},
         {path: 'misPublicaciones', component: PublicacionesHechasComponent},
-        { path: 'misPublicaciones/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent } 
+        {path: 'misPublicaciones/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent } ,
+        {path: 'misPublicaciones/comprarBloqueoAnuncios/:idRevista', component:ComprarBloqueoAnunciosComponent},
+        {path: 'misPublicaciones/publicarNumero/:idRevista/:tituloRevista', component: NumerosRevistaRolComponent},
+        {path: 'misPublicaciones/verArchivoPDF/:idRevista/:tipoArchivo', component: VerPdfComponent}
+    ]},
+    {
 
-      ]}
+      path: 'suscriptor-control', 
+      component: SuscriptorControlComponent, 
+      canActivate: [autGuardGuard],
+      data: {roles: ['SUSCRIPTOR']}, 
+      children: [
+        
+      ]
 
-
+    }
 ];

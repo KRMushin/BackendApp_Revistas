@@ -1,0 +1,49 @@
+<app-modal-component>
+  [titulo]="'Publicacion exitosa'"
+  [mensaje]="mensajeModal"
+  [botonCerrar]="'Cerrar'">
+</app-modal-component>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Publicar número de revista: {{tituloRevista}}</h2>
+    <button class="btn btn-primary btn-lg" type="button" (click)="regresar()">Regresar</button>
+  </div>
+    <form [formGroup]="formPublicarNumero" (ngSubmit)="subirNumero()" class="needs-validation" novalidate>
+      
+      
+      <div class="mb-3">
+        <label for="tituloNumero" class="form-label">Título del número</label>
+        <input type="text" class="form-control" id="tituloNumero" formControlName="tituloNumero" placeholder="Ingrese el título del número" required>
+        <div *ngIf="formPublicarNumero.get('tituloNumero')?.touched && formPublicarNumero.get('tituloNumero')?.invalid" class="text-danger">
+          El título del número es requerido.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="fechaPublicacion" class="form-label">Fecha de publicación</label>
+        <input type="date" class="form-control" id="fechaPublicacion" formControlName="fechaPublicacion" required>
+        <div *ngIf="formPublicarNumero.get('fechaPublicacion')?.touched && formPublicarNumero.get('fechaPublicacion')?.invalid" class="text-danger">
+          La fecha de publicación es requerida.
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="archivo" class="form-label">Subir numero PDF de la revista </label>
+        <input type="file" class="form-control" id="archivo" (change)="archivoSeleccionadoHandler($event)" accept="application/pdf">
+        
+        <div *ngIf="formPublicarNumero.get('archivo')?.errors?.['required'] && formPublicarNumero.get('archivo')?.touched" class="text-danger">
+          El archivo es requerido.
+        </div>
+  
+        <div *ngIf="!archivoValido" class="text-danger">
+          El archivo debe ser un PDF válido.
+        </div>
+      </div>
+  
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!esFormularioValido()">Publicar</button>
+      </div>
+    </form>
+  </div>
+  

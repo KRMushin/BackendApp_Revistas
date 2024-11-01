@@ -4,11 +4,12 @@ import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } fro
 import { BarraLateralAnuncioComponent } from '../../paginas/barra-lateral-anuncio/barra-lateral-anuncio.component';
 import { ControladorAnunciosService } from '../../../service/Anuncios/controlador-anuncios.service';
 import { filter } from 'rxjs';
+import { ModalComponentComponent } from '../../modal-component/modal-component.component';
 
 @Component({
   selector: 'app-editor-control',
   standalone: true,
-  imports: [CerrarSesionComponent, RouterLink, RouterLinkActive, RouterOutlet, BarraLateralAnuncioComponent],
+  imports: [CerrarSesionComponent, RouterLink, RouterLinkActive, RouterOutlet, BarraLateralAnuncioComponent, ModalComponentComponent],
   templateUrl: './editor-control.component.html',
   styleUrl: './editor-control.component.css'
 })

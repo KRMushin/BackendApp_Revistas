@@ -27,15 +27,12 @@ import jakarta.ws.rs.core.Response;
 @Path("/cartera/digital")
 public class CarteraDigitalResource {
     
-         private final AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
 
          @GET
          @Path("{nombreUsuario}")
          @Produces(MediaType.APPLICATION_JSON)
-         public Response obtenerCarteraDigital(@PathParam("nombreUsuario") String nombreUsuario,
-                                                                      @Context HttpHeaders headerRequest){
+         public Response obtenerCarteraDigital(@PathParam("nombreUsuario") String nombreUsuario){
              
-             autenticadorJWT.validarTokenl(headerRequest); 
              ServicioCarteraDigital serviceCarteras  = new ServicioCarteraDigital();
              CarteraDigital cartera = serviceCarteras.obtenerCarteraActual(nombreUsuario);
              return Response.ok(cartera).build();
@@ -44,22 +41,19 @@ public class CarteraDigitalResource {
      
          @PUT
          @Consumes(MediaType.APPLICATION_JSON)
-         public Response recargarCartera(CarteraDigitalDTO carteraDigital, 
-                                                            @Context HttpHeaders headerRequest){
+         public Response recargarCartera(CarteraDigitalDTO carteraDigital){
          
-             autenticadorJWT.validarTokenl(headerRequest); // este metodo lanza una exception
              ServicioCarteraDigital serviceCarteras  = new ServicioCarteraDigital();
-             serviceCarteras.recargarSaldoCartera(carteraDigital);
-             return Response.ok().build();
+             CarteraDigital carteraRecargada = serviceCarteras.recargarSaldoCartera(carteraDigital);
+             System.out.println("       RETORNARA " + carteraRecargada.getCantidadDinero());
+             return Response.ok(carteraRecargada).build();
      }
      
      
          @POST
          @Consumes(MediaType.APPLICATION_JSON)
-         public Response debitarCartera(CarteraDigitalDTO carteraDigital, 
-                                                         @Context HttpHeaders headerRequest){
+         public Response debitarCartera(CarteraDigitalDTO carteraDigital){
          
-             autenticadorJWT.validarTokenl(headerRequest); // este metodo lanza una exception
              ServicioCarteraDigital serviceCarteras  = new ServicioCarteraDigital();
              serviceCarteras.debitarSaldoCartera(carteraDigital);
              return Response.ok().build();

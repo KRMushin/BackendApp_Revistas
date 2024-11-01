@@ -6,7 +6,6 @@ package com.mycompany.apprevistas.backend.Servicios.Anuncios;
 
 import com.mycompany.apprevistas.backend.AnunciosDTOs.LlaveAnuncioDTO;
 import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasAnuncios;
-import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorAnuncioMultipart;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
@@ -24,13 +23,11 @@ import java.util.Random;
 public class ServicioDespliegueAnuncios {
     
     private ConsultasAnuncios consultasAnuncios;
-    private CreadorAnuncioMultipart creadorAnuncio;
     private AlmacenAnuncios almacenAnuncios;
     private Random random;
 
     public ServicioDespliegueAnuncios() {
         this.consultasAnuncios = new ConsultasAnuncios();
-        this.creadorAnuncio = new CreadorAnuncioMultipart();
         this.random = new Random();
         this.almacenAnuncios = new AlmacenAnuncios();
     }
@@ -44,7 +41,6 @@ public class ServicioDespliegueAnuncios {
         return Optional.of(anuncioLlave);
     }
     
-    
     public Optional<InputStream> obtenerArchivoAnuncio(Long idAnuncio) {
             Optional<Anuncio> anuncio = consultasAnuncios.obtenerPorId(idAnuncio);
             
@@ -55,8 +51,7 @@ public class ServicioDespliegueAnuncios {
                 String rutaArchivo = obtenerRuta(anuncio.get());
                 return Optional.of(almacenAnuncios.obtenerArchivo(rutaArchivo));
             } catch (FileNotFoundException ex) {
-                System.out.println("NO SE ENCONTRO ESA MIERDA");
-                    throw new NotFoundException("NO SE ENCONTRO ESA MIERDA");
+                    throw new NotFoundException("No se encontro el recurso solicitado");
             }
     }
     
@@ -78,28 +73,6 @@ public class ServicioDespliegueAnuncios {
     }
 }
 
-
-//    public Optional<FormDataMultiPart> obtnerAnuncioAleatorio(){
-//        List<LlaveAnuncioDTO> llaves = consultasAnuncios.obtnerLlavesAnuncios();
-//        
-//        if (llaves.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        LlaveAnuncioDTO anuncioLlave = obtnerAnuncioAleatorio(llaves);
-//
-//        try {
-//            return creadorAnuncio.obtnerMultipart(anuncioLlave);
-//        } catch (IOException ex) {
-//            return Optional.empty();
-//        }
-//    }
-//
-//    private LlaveAnuncioDTO obtnerAnuncioAleatorio(List<LlaveAnuncioDTO> llaves) {
-//        int numeroRandom = random.nextInt(llaves.size());
-//        System.out.println("numeor generardo " + numeroRandom);
-//        System.out.println(llaves.get(numeroRandom).getTipoAnuncio());
-//        return llaves.get(numeroRandom);
-//    }
 
 
 

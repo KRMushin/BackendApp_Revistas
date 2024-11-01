@@ -7,13 +7,10 @@ package com.mycompany.apprevistas.restApi.resources.revistas;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioCategoriaConEtiqueta;
 import com.mycompany.apprevistas.backend.modelos.Categoria;
-import com.mycompany.apprevistas.backend.util.AutenticadorJWT;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
@@ -26,13 +23,10 @@ import java.util.Optional;
 @Path("categorias")
 public class CategoriaEtiquetaResource {
 
-    private final AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response obtenerCategoriasConEtiquetas(@Context HttpHeaders headerRequest){
-        
-        autenticadorJWT.validarTokenl(headerRequest); 
+    public Response obtenerCategoriasConEtiquetas(){
         
         ServicioCategoriaConEtiqueta service = new ServicioCategoriaConEtiqueta();
         Optional<List<Categoria>> categoriasEtiqueta = service.obtenerCategoriasConEtiqueta();
@@ -45,11 +39,8 @@ public class CategoriaEtiquetaResource {
     @GET
     @Path("{idCategoria}/datosCategoria")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response obtenerCategoriaConEtiqueta(@PathParam("idCategoria") Long idCategoria,
-                                                                                @Context HttpHeaders headerRequest){
+    public Response obtenerCategoriaConEtiqueta(@PathParam("idCategoria") Long idCategoria){
         
-        autenticadorJWT.validarTokenl(headerRequest); 
-
         ServicioCategoriaConEtiqueta service = new ServicioCategoriaConEtiqueta();
         Optional<Categoria> categoriaEtiqueta = service.obtenerCategoria(idCategoria);
             if (categoriaEtiqueta.isEmpty()) {

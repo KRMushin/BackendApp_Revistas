@@ -6,4 +6,7 @@ export interface LlaveRevista{
     descripcionRevista: string;
     estadoRevista: string;
 
+    costoMantenimiento: number;
+    costoBloqueoAnuncios: number;
+
 }

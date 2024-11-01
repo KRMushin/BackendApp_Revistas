@@ -1,4 +1,4 @@
-import { Component, inject, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit, ViewChild } from '@angular/core';
 import { ConfiguracionAnuncioService } from '../../../service/Anuncios/configuracion-anuncio.service';
 import { ConfiguracionAnuncio } from '../../../interfaces/Anuncios/Configuracion-anuncio';
 import { CommonModule, CurrencyPipe } from '@angular/common';
@@ -6,15 +6,19 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CarteraDigitalService } from '../../../service/CarteraDigital/cartera-service.service';
 import { CarteraDigital } from '../../../interfaces/Usuarios/CarteraDigital';
 import { utileriaToken } from '../../../service/utileria-token.service';
+import { ModalComponentComponent } from '../../modal-component/modal-component.component';
 
 @Component({
   selector: 'app-comprar-anuncio',
   standalone: true,
-  imports: [CommonModule, FormsModule, CurrencyPipe, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, CurrencyPipe, ReactiveFormsModule, ModalComponentComponent],
   templateUrl: './comprar-anuncio.component.html',
   styleUrls: ['./comprar-anuncio.component.css']
 })
 export class ComprarAnuncioComponent implements OnInit {
+
+  @ViewChild(ModalComponentComponent) modal!: ModalComponentComponent; // Referencia al componente modal
+
 
   private UtileriaToken = new utileriaToken();
   private servicePrecios: ConfiguracionAnuncioService;
@@ -24,6 +28,7 @@ export class ComprarAnuncioComponent implements OnInit {
   public CarteraDigital: CarteraDigital | null = null; 
 
   public anuncioForm: FormGroup;
+  router: any;
 
   constructor(private fb: FormBuilder, servicePrecios: ConfiguracionAnuncioService, CarteraDigitalService: CarteraDigitalService) {
     this.servicePrecios = servicePrecios;
@@ -44,14 +49,10 @@ export class ComprarAnuncioComponent implements OnInit {
       this.precios = data;
     });
     
-    const nombreUsuario = this.UtileriaToken.obtenerNombreUsuario();
-    if (nombreUsuario != null) {
-      this.serviceCartera.obtenerDatosCartera(nombreUsuario).subscribe((cartera: CarteraDigital) => {
-        this.CarteraDigital = cartera;
-      });
-    }
+    this.mostrarCarteraDigital();
+    
     this.anuncioForm.get('selectedAnuncio')?.valueChanges.subscribe(value => {
-      this.aplicarValidacionesDinamicas(value?.tipoAnuncio); // Aplicar validaciones dinámicas según el tipo de anuncio
+      this.aplicarValidacionesDinamicas(value?.tipoAnuncio); 
       this.calcularPrecioTotal();
     });
 
@@ -59,6 +60,18 @@ export class ComprarAnuncioComponent implements OnInit {
       this.calcularPrecioTotal();
     });
 
+  }
+
+  mostrarCarteraDigital(): void {
+    const nombreUsuario = this.UtileriaToken.obtenerNombreUsuario();
+    if (nombreUsuario != null) {
+      this.serviceCartera.obtenerDatosCartera(nombreUsuario).subscribe((cartera: CarteraDigital) => {
+        this.CarteraDigital = cartera;
+      });
+    } else {
+      alert('Sin autorización');
+      this.router.navigateByUrl('/login');
+    }
   }
 
   calcularPrecioTotal(): void {
@@ -116,8 +129,10 @@ export class ComprarAnuncioComponent implements OnInit {
         next: () => {
           alert('La compra fue un éxito');
           this.anuncioForm.reset();
+          this.mostrarCarteraDigital();
         },
         error: (err) => {
+          this.modal.mostrarModal('Dinero insuficiente', 'Recarga tu cartera para realizar la compra.');
           console.error('Error al realizar la compra:', err);
         }
       });

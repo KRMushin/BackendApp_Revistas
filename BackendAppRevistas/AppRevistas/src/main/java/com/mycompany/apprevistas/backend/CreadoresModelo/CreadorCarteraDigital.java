@@ -24,7 +24,7 @@ public class CreadorCarteraDigital {
            Double cantidadNueva = carteraDTO.getCantidadDinero() + carteraSaldoActual.getCantidadDinero();
            carteraNueva.setCantidadDinero(cantidadNueva);
            carteraNueva.setNombreUsuario(carteraSaldoActual.getNombreUsuario());
-           
+           System.out.println(cantidadNueva);
            return Optional.of(carteraNueva);
     }
 

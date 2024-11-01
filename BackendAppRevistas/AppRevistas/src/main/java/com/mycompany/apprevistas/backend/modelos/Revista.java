@@ -21,6 +21,7 @@ public class Revista {
     private String nombreAutor;
     private String descripcion;
     private Double costoMantenimiento;
+    private Double costoBloqueosAnuncios;
     private LocalDate fechaCreacion;
     private String estadoRevista;
     private List<Long> idEtiquetas;
@@ -111,6 +112,14 @@ public class Revista {
 
     public void setBloquearAnuncios(boolean bloquearAnuncios) {
         this.bloquearAnuncios = bloquearAnuncios;
+    }
+
+    public Double getCostoBloqueosAnuncios() {
+        return costoBloqueosAnuncios;
+    }
+
+    public void setCostoBloqueosAnuncios(Double costoBloqueosAnuncios) {
+        this.costoBloqueosAnuncios = costoBloqueosAnuncios;
     }
     
 

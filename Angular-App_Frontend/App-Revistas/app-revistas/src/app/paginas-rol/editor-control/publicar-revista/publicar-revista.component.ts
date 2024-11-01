@@ -109,6 +109,7 @@ subir(): void {
       this.archivoPDF = null;  
       console.log('Publicación y PDF subidos con éxito');
       alert('Publicación y PDF subidos con éxito');
+      this.limpiar();
     },
     error: (error) => {
       console.error('Error en alguna de las operaciones', error);

@@ -4,7 +4,7 @@
  */
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas;
 
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoRevista;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevista;
 import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
 import com.mycompany.apprevistas.backend.constantes.RevistaEstadoVisibilidad;
 import com.mycompany.apprevistas.backend.modelos.Revista;
@@ -59,6 +59,23 @@ public class RepositorioLlavesRevista {
             }
         return revistas;
     }
+    
+    public Optional<LlaveRevistaDTO> obtenerLlavePorId(Long idRevista) throws SQLException {
+    
+            String getById = "SELECT * FROM revistas WHERE id_revista = ?";
+    
+            try (PreparedStatement stmt = conn.prepareStatement(getById)) {
+                stmt.setLong(1, idRevista);
+
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        return Optional.of(crearLlave(rs));
+                    }
+                    return Optional.empty();
+                }
+            }
+}
+
         
     private LlaveRevistaDTO crearLlave(ResultSet rs) throws SQLException {
             LlaveRevistaDTO llave = new LlaveRevistaDTO();

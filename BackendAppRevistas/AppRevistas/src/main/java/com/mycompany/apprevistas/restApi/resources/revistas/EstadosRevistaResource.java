@@ -4,9 +4,9 @@
  */
 package com.mycompany.apprevistas.restApi.resources.revistas;
 
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoConfigRevistaDTO;
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoRevistaDTO;
-import com.mycompany.apprevistas.backend.RevistasDTOs.NuevoCostoDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoConfigRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.NuevoCostoDTO;
 import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioCostosRevistas;
 import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioRevistas;
 import com.mycompany.apprevistas.backend.util.AutenticadorJWT;
@@ -28,15 +28,12 @@ import jakarta.ws.rs.core.Response;
 @Path("estadoRevista")
 public class EstadosRevistaResource {
 
-    private final AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
     // estados se refiere a datos como suscripciones activas etc
     @GET
     @Path("{idRevista}/obtenerEstados")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response obtenerEstadosRevista(@PathParam("idRevista") Long idRevista,
-                                                                       @Context HttpHeaders headerRequest){
+    public Response obtenerEstadosRevista(@PathParam("idRevista") Long idRevista){
         
-            autenticadorJWT.validarTokenl(headerRequest); 
 
             ServicioRevistas service = new ServicioRevistas();
             EstadoRevistaDTO estado = service.obtenerEstadosRevista(idRevista);
@@ -46,9 +43,7 @@ public class EstadosRevistaResource {
     @PUT
     @Path("{idRevista}/actualizarEstado")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response actualizarEstadoConfiguracionRevista(EstadoConfigRevistaDTO estado,
-                                                                                                @Context HttpHeaders headerRequest){
-        autenticadorJWT.validarTokenl(headerRequest); 
+    public Response actualizarEstadoConfiguracionRevista(EstadoConfigRevistaDTO estado){
          
         ServicioRevistas service = new ServicioRevistas();
         service.actualizarEstadoRevista(estado);
@@ -58,10 +53,7 @@ public class EstadosRevistaResource {
     @PUT
     @Path("/actualizarCostoRevista")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response actualizarCostoRevista(NuevoCostoDTO nuevoCosto, 
-                                                                     @Context HttpHeaders headerRequest){
-
-        autenticadorJWT.validarTokenl(headerRequest); 
+    public Response actualizarCostoRevista(NuevoCostoDTO nuevoCosto){
 
         ServicioCostosRevistas service = new ServicioCostosRevistas();
         service.actualizarCostoRevista(nuevoCosto);

@@ -4,14 +4,14 @@
  */
 package com.mycompany.apprevistas.backend.Servicios.Revistas;
 
-import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasArchivosRevistas;
-import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasRevistas;
+import com.mycompany.apprevistas.backend.ConsultasModelos.Revistas.ConsultasArchivosRevistas;
+import com.mycompany.apprevistas.backend.ConsultasModelos.Revistas.ConsultasRevistas;
 import com.mycompany.apprevistas.backend.ConsultasModelos.ConsultasUsuarios;
 import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorRevista;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoConfigRevistaDTO;
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoConfigRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevistaDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.RevistaDTO;
 import com.mycompany.apprevistas.backend.modelos.Revista;

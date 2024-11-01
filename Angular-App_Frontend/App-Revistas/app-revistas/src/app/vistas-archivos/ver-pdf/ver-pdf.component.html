@@ -1,0 +1,13 @@
+
+<div class="container my-4">
+    <div class="card shadow-lg">
+      <button class="btn btn-primary mb-3" (click)="regresar()">Regresar</button>
+
+      <div class="card-body p-0">
+        @if (urlSource) {
+            <iframe [src]="urlSource" width="100%" height="600px" allowfullscreen></iframe>
+        }
+    </div>
+    </div>
+  </div>
+  

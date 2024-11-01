@@ -31,16 +31,12 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 @Path("revistas")
 public class RevistasResource {
         
-    private final AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
     
     @GET 
     @Path("{nombreUsuario}/publicaciones")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response obtenerRevistasAsociadasUsuario(@PathParam("nombreUsuario") String nombreUsuario,
-                                                                                          @Context HttpHeaders headerRequest){
+    public Response obtenerRevistasAsociadasUsuario(@PathParam("nombreUsuario") String nombreUsuario){
         
-        autenticadorJWT.validarTokenl(headerRequest); 
-
          ServicioRevistas revistaService = new ServicioRevistas();
          List<LlaveRevistaDTO> revistas = revistaService.obtenerPublicacionesUsuario(nombreUsuario);
         return Response.ok().entity(revistas).build();
@@ -49,9 +45,7 @@ public class RevistasResource {
     @GET 
     @Path("{idRevista}/datosRevista")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response obtenerDatosRevista(@PathParam("idRevista") Long idRevista,
-                                                                    @Context HttpHeaders headerRequest){
-        autenticadorJWT.validarTokenl(headerRequest); 
+    public Response obtenerDatosRevista(@PathParam("idRevista") Long idRevista){
 
          ServicioRevistas revistaService = new ServicioRevistas();
          Revista revista = revistaService.obtenerDatosRevista(idRevista); 
@@ -61,10 +55,8 @@ public class RevistasResource {
     @GET
     @Path("{idRevista}/pdfRevista")
     @Produces("application/pdf") 
-    public Response obtenerPdf(@PathParam("idRevista") Long idRevista, 
-                                                @Context HttpHeaders headerRequest){
+    public Response obtenerPdf(@PathParam("idRevista") Long idRevista){
          
-        autenticadorJWT.validarTokenl(headerRequest); 
 
         ServicioRevistas revistaService = new ServicioRevistas();
          InputStream pdf = revistaService.obtnerRevistaPDF(idRevista);
@@ -77,9 +69,8 @@ public class RevistasResource {
     @Path("/publicar")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response publicarRevista(RevistaDTO revistaDTO, @Context HttpHeaders headerRequest){
+    public Response publicarRevista(RevistaDTO revistaDTO){
         
-        autenticadorJWT.validarTokenl(headerRequest); 
 
          ServicioRevistas revistaService = new ServicioRevistas();
          Revista revista = revistaService.publicarDatosRevista(revistaDTO);
@@ -90,9 +81,7 @@ public class RevistasResource {
     @Path("{idRevista}/guardarPDF")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response guardarArchivoRevista(@PathParam("idRevista") Long idRevista,
-                                                                      @FormDataParam("revistaPDF") InputStream revistaInputStream,
-                                                                      @Context HttpHeaders headerRequest) {
-        autenticadorJWT.validarTokenl(headerRequest); 
+                                                                      @FormDataParam("revistaPDF") InputStream revistaInputStream) {
 
         ServicioRevistas revistasService = new ServicioRevistas();
         revistasService.guardarRevistaPDF(idRevista,revistaInputStream);
@@ -100,9 +89,7 @@ public class RevistasResource {
     }
     @PUT
     @Path("/activarRevista/{idRevista}")
-    public Response ActivarRevista(@PathParam("idRevista") Long idRevista, @Context HttpHeaders headerRequest){
-
-        autenticadorJWT.validarTokenl(headerRequest); 
+    public Response ActivarRevista(@PathParam("idRevista") Long idRevista){
 
         ServicioRevistas revistasService = new ServicioRevistas();
         revistasService.activarRevista(idRevista);

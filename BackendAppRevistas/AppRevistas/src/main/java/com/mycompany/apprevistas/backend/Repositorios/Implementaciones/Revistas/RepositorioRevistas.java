@@ -7,7 +7,7 @@ package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas
 import com.mycompany.apprevistas.backend.Excepciones.ErrorInternoException;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
-import com.mycompany.apprevistas.backend.RevistasDTOs.NuevoCostoDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.NuevoCostoDTO;
 import com.mycompany.apprevistas.backend.modelos.Revista;
 import java.sql.Connection;
 import java.sql.Date;
@@ -49,7 +49,7 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
     @Override
     public Revista guardar(Revista modelo) throws SQLException {
         String insertModel = "INSERT INTO revistas (id_categoria, titulo_revista, nombre_autor, descripcion, fecha_publicacion, "
-                + "costo_mantenimiento) values(?,?,?,?,?,?)";
+                + "costo_mantenimiento, costo_bloqueo_anuncios) values(?,?,?,?,?,?,?)";
       
         try(PreparedStatement stmt = conn.prepareStatement(insertModel, PreparedStatement.RETURN_GENERATED_KEYS)) {
                   stmt.setLong(1, modelo.getIdCategoria());
@@ -58,6 +58,7 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
                   stmt.setString(4, modelo.getDescripcion());
                   stmt.setDate(5, Date.valueOf(modelo.getFechaCreacion()));
                   stmt.setDouble(6, modelo.getCostoMantenimiento());
+                  stmt.setDouble(7, modelo.getCostoBloqueosAnuncios());
                   
                   int filasAfectadas = stmt.executeUpdate();
                   if (filasAfectadas <= 0) {

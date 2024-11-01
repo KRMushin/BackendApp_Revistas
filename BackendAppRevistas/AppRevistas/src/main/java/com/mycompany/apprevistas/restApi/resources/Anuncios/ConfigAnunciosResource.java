@@ -25,30 +25,23 @@ import java.util.List;
 @Path("/anuncios/configuraciones")
 public class ConfigAnunciosResource {
     
-    private final AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
-    
 
         @GET
         @Produces(MediaType.APPLICATION_JSON)
-        public Response obtenerConfiguraciones(@Context HttpHeaders headerRequest){
+        public Response obtenerConfiguraciones(){
 
-                autenticadorJWT.validarTokenl(headerRequest); 
                 ServicioConfigAnuncios servicio = new ServicioConfigAnuncios();
                 List<ConfiguracionAnuncio> configs = servicio.obtenerConfiguraciones();
-                return Response.ok(configs)
-                            .build();
+                return Response.ok(configs).build();
         }
     
         @PUT
         @Consumes(MediaType.APPLICATION_JSON)
-        public Response actualizarConfiguracion(@Context HttpHeaders headerRequest, 
-                                                                        ConfiguracionAnuncio config ){
+        public Response actualizarConfiguracion(ConfiguracionAnuncio config ){
                          
-        autenticadorJWT.validarTokenl(headerRequest); 
         ServicioConfigAnuncios servicio = new ServicioConfigAnuncios();
             servicio.actualizarConfiguracion(config);
-            return Response.ok()
-                        .build();
+            return Response.ok().build();
         }
     
 }

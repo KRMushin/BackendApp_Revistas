@@ -43,6 +43,7 @@ export class CarteraDigitalComponent implements OnInit {
       
     }
   }
+  
 
    recargarCartera(): void {
     const tokenUtileria = new utileriaToken();
@@ -62,7 +63,9 @@ export class CarteraDigitalComponent implements OnInit {
       this.serviceCartera.recargarCartera(nuevaCartera).subscribe({
         next: (response) => {
           alert('Recarga exitosa');
-
+          this.montoRecarga = 0;
+          
+      
           this.serviceCartera.obtenerDatosUsuario(nombreUsuario).subscribe({
             next: (carteraDigital: CarteraDigital) => {
               this.carteraDigital = carteraDigital;

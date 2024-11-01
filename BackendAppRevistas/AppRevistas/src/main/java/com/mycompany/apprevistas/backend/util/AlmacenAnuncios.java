@@ -47,51 +47,10 @@ public class AlmacenAnuncios {
     public InputStream obtenerArchivo(String rutaArchivoAnuncio) throws FileNotFoundException {
     File archivoImagen = new File(rutaArchivoAnuncio);
 
-        System.out.println("El anuncio no existe en la ruta especificada: " + rutaArchivoAnuncio);
     if (!archivoImagen.exists()) {
-        System.out.println("            no existe la vaina xddd");
         throw new FileNotFoundException("El anuncio no existe en la ruta especificada: " + rutaArchivoAnuncio);
     }
     return new FileInputStream(archivoImagen);  // Devolver un InputStream para la imagen
 }
 
-
-//    public InputStream obtenerVideoAnuncio(String rutaVideo) throws FileNotFoundException {
-//    File archivoVideo = new File(rutaVideo);
-//
-//    if (!archivoVideo.exists()) {
-//        throw new FileNotFoundException("El video no existe en la ruta especificada: " + rutaVideo);
-//    }
-//
-//    return new FileInputStream(archivoVideo);  // Devolver un InputStream para el video
-//}
-
 }
-
-
-//public String almacenarTexto(String textoAnuncio, String nombreArchivo) throws IOException {
-//    String rutaCompletaArchivo = generarNombreUnicoTexto(PATH_ANUNCIOS, nombreArchivo, ".txt");
-//        System.out.println(rutaCompletaArchivo);
-//            File archivoDestino = new File(rutaCompletaArchivo);
-//
-//            try (FileWriter writer = new FileWriter(archivoDestino)) {
-//                writer.write(textoAnuncio);
-//            }
-//
-//            System.out.println("    EL ARCHIVO SE ALMACENO CORRECTAMENTE" + rutaCompletaArchivo);
-//            return rutaCompletaArchivo; 
-//    }
-//    
-//    private String generarNombreUnicoTexto(String rutaBase, String nombreArchivo, String extension) {
-//        String rutaCompletaArchivo = rutaBase + "anuncio_texto" + extension;
-//        File archivoDestino = new File(rutaCompletaArchivo);
-//
-//        int contador = 1;
-//        while (archivoDestino.exists()) {
-//            String nuevoNombreArchivo = "anuncio_texto" + "_" + contador;
-//            rutaCompletaArchivo = rutaBase  + nuevoNombreArchivo + extension;
-//            archivoDestino = new File(rutaCompletaArchivo);
-//            contador++;
-//        }
-//        return rutaCompletaArchivo; 
-//    }

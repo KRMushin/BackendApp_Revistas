@@ -7,7 +7,10 @@
             <div class="mb-3">
             <label for="nombreUsuario" class="form-label">Nombre de usuario</label>
             <input type="text" class="form-control" id="nombreUsuario" formControlName="nombreUsuario" placeholder="Ingresa tu nombre de usuario" required>
+            <div *ngIf="loginForm.get('nombreUsuario')?.invalid && loginForm.get('nombreUsuario')?.touched" class="text-danger">
+                El nombre de usuario es requerido.
             </div>
+        </div>
             <div class="mb-3 position-relative">
                 <label for="password" class="form-label">Contraseña</label>
                 <input [type]="mostrarPassword ? 'text' : 'password'" 
@@ -16,6 +19,9 @@
                        formControlName="password" 
                        placeholder="Ingresa tu contraseña" 
                        required>
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                        La contraseña es requerida.
+                </div>       
                 <button type="button" class="btn btn-outline-secondary btn-sm position-absolute top-50 end-0 translate-middle-y me-2" 
                         (click)="mostrarPassword = !mostrarPassword" 
                         tabindex="-1">
@@ -24,7 +30,7 @@
             </div>
             
             <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Iniciar Sesión</button>
             </div>
         </form>
     </div>

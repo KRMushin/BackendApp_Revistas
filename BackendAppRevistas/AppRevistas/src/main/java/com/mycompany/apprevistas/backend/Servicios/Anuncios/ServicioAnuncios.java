@@ -59,7 +59,6 @@ public class ServicioAnuncios {
     public void publicarAnuncio(String anuncioDTOJson, InputStream archivoInputStream, String nombreArchivo) throws DineroInsuficienteException{
         try {
             AnuncioDTO anuncioDTO = deserealizarDTO(anuncioDTOJson);
-            
             if (!anuncioDTO.esValido()) {
                 throw new DatosInvalidosUsuarioException("el anuncio no es valido");
             }

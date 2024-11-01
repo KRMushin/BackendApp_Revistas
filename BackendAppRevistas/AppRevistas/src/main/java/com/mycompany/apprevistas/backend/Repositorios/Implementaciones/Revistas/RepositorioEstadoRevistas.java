@@ -6,9 +6,9 @@ package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas
 
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoConfigRevistaDTO;
-import com.mycompany.apprevistas.backend.RevistasDTOs.EstadoRevistaDTO;
-import com.mycompany.apprevistas.backend.RevistasDTOs.NuevoCostoDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoConfigRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevistaDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.NuevoCostoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,8 +39,6 @@ public class RepositorioEstadoRevistas {
     
     public void actualizarEstadoRevista(EstadoConfigRevistaDTO estado) throws SQLException{
         String updateQuery = "UPDATE configuracion_revistas SET " + estado.getTipoEstado().obtenerConsulta() + " = ? WHERE id_revista = ?";
-        
-    
         try(PreparedStatement stmt = conn.prepareStatement(updateQuery)){
              stmt.setBoolean(1, estado.isEstado());
              stmt.setLong(2, estado.getIdRevista());

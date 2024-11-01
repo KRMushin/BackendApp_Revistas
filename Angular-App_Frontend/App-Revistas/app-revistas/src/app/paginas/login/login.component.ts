@@ -46,6 +46,7 @@ export class LoginComponent {
 
       console.log('Rol del usuario:', rolUsuario);
             if (rolUsuario === 'ADMINISTRADOR') {
+              
               this.router.navigate(['/admin-control']);
 
             } else if (rolUsuario === 'EDITOR') {

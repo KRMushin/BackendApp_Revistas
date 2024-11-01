@@ -1,6 +1,5 @@
 import { Component, inject, Inject, Input, OnInit } from '@angular/core';
 import { RevistasService } from '../../../service/Revistas/revistas-service.service';
-import { Revista } from '../../../interfaces/Revistas/Revista';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';

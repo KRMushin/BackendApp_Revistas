@@ -1,0 +1,36 @@
+
+
+@if (editorAutorizado) {
+    <app-publicar-numero-revista (numeroPublicado)="cargarNumerosRevista()"></app-publicar-numero-revista>
+}
+<br>
+<!-- Bloque para mostrar los números de la revista -->
+<div class="container mt-4">
+  <p class="h4 text-center">Números de esta revista: 
+    <span class="badge bg-primary">{{ numerosRevista?.length }}</span>
+  </p>
+  <br>
+  <ng-container *ngIf="numerosRevista && numerosRevista.length > 0; else noNumeros">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let numero of numerosRevista; let i = index" class="card h-25">
+        <div class="card-body">
+          <p class="card-text"><strong>Número de revista: {{ i + 1 }} </strong></p>
+        </div>
+        <img src="images/NUMEROREVISTA.webp" class="card-img-top" alt="Imagen de la revista">
+        <div class="card-body">
+          <h5 class="card-title">Título: {{ numero.tituloNumero }}</h5>
+          <h6 class="card-text">Fecha de publicación: {{ numero.fechaPublicacion | date:'shortDate' }}</h6>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" (click)="verNumeroRevista(numero.idNumeroRevista)">Ver Número Revista</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noNumeros>
+    <div class="alert alert-warning text-center" role="alert">
+      No hay números disponibles para esta revista.
+    </div>
+  </ng-template>
+</div>

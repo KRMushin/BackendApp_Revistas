@@ -137,6 +137,24 @@ CREATE TABLE precios_globales (
     precio_global DECIMAL(10, 2) NOT NULL,
     modelo_precio enum('REVISTA','BLOQUEO_ANUNCIO') NOT NULL
     );
+    --------------------------------- numeros revista -------------------
+    
+CREATE TABLE numeros_revista (
+    id_numero BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_revista BIGINT NOT NULL,
+    archivo_pdf MEDIUMBLOB NOT NULL,
+    CONSTRAINT fk_revista FOREIGN KEY (id_revista) REFERENCES revistas(id_revista)
+);
+
+CREATE TABLE bloqueos_anuncios_compras (
+    id_compra BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_revista BIGINT NOT NULL,
+    fecha_compra DATE NOT NULL,
+    dias_compra INT NOT NULL,
+    costo_total DECIMAL(10, 2) NOT NULL
+);
+
+    
 
 INSERT INTO precios_globales (id_anuncio, precio_global, modelo_precio)
 VALUES (1, 50.50, 'REVISTA');

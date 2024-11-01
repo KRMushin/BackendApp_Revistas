@@ -30,15 +30,12 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 @Path("anuncios")
 public class AnunciosResource {
     
-        private final AutenticadorJWT autenticadorJWT = new AutenticadorJWT();
     
         @GET
         @Path("{nombreUsuario}")
         @Produces(MediaType.APPLICATION_JSON)
-     public Response obtenerAnunciosUsuariol(@PathParam("nombreUsuario") String nombreUsuario,
-                                                                           @Context HttpHeaders headerRequest){
+     public Response obtenerAnunciosUsuariol(@PathParam("nombreUsuario") String nombreUsuario){
 
-            autenticadorJWT.validarTokenl(headerRequest); 
 
             ServicioAnuncios service = new ServicioAnuncios();
              List<Anuncio> anuncios = service.obtenerAnunciosUsuario(nombreUsuario);
@@ -49,12 +46,9 @@ public class AnunciosResource {
         @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response publicarAnuncio(@FormDataParam("anuncioDTO") String anuncioDTOJson,
                                                             @FormDataParam("archivo") InputStream archivoInputStream,
-                                                            @FormDataParam("nombreArchivo") String nombreArchivo,
-                                                            @Context HttpHeaders headerRequest) {
+                                                            @FormDataParam("nombreArchivo") String nombreArchivo) {
 
         try {
-               autenticadorJWT.validarTokenl(headerRequest); 
-               
                 ServicioAnuncios service = new ServicioAnuncios();
                 service.publicarAnuncio(anuncioDTOJson, archivoInputStream, nombreArchivo);
             return Response.ok()
@@ -66,10 +60,7 @@ public class AnunciosResource {
 
     @PUT
     @Path("/{id}/actualizar")
-    public Response actualizarAnuncio(@PathParam("id") Long idAnuncio, boolean habilitado,
-                                                                @Context HttpHeaders headerRequest){
-
-        autenticadorJWT.validarTokenl(headerRequest); 
+    public Response actualizarAnuncio(@PathParam("id") Long idAnuncio, boolean habilitado){
 
         ServicioAnuncios service = new ServicioAnuncios();
         service.actualizarEstadoAnuncio(idAnuncio, habilitado);

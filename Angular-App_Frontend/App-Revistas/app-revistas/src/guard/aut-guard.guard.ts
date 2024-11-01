@@ -24,8 +24,11 @@ export const autGuardGuard: CanActivateFn = (route, state) => {
       return true;
     } else if (rolUsuario === "EDITOR") {
       return true;
-
-    }else {
+    
+    } else if (rolUsuario === "SUSCRIPTOR") {
+      return true;
+    }
+    else {
       alert("No tienes permisos para acceder a esta página");
       router.navigateByUrl("/login");
       localStorage.removeItem('token');
@@ -39,3 +42,37 @@ export const autGuardGuard: CanActivateFn = (route, state) => {
   }
 };
 
+/*
+  export const autGuardGuard: CanActivateFn = (route, state) => {
+  const token = localStorage.getItem('token') || ""; 
+  const router = inject(Router);
+
+  if (token !== "") {
+    const tokenValor: any = jwtDecode(token);
+    const rolUsuario = tokenValor.rol;
+
+    if (tokenExpirado(token)) {
+      alert("Tu sesión ha expirado. Por favor, vuelve a iniciar sesión.");
+      localStorage.removeItem('token');
+      router.navigateByUrl("/login");
+      return false;
+    }
+
+    // Verificar si la ruta requiere roles específicos
+    if (route.data['roles'] && !route.data['roles'].includes(rolUsuario)) {
+      alert("No tienes permisos para acceder a esta página");
+      localStorage.removeItem('token');
+      router.navigateByUrl("/login");
+      return false;
+    }
+
+    return true;  // Si el rol coincide con lo esperado, permite el acceso
+  } else {
+    alert("No tienes permisos para acceder a esta página");
+    router.navigateByUrl("/login");
+    localStorage.removeItem('token');
+    return false;
+  }
+};
+
+*/

@@ -18,6 +18,8 @@ export class RegistroComponent {
   private accesoServiceRest = inject(AccesoService);
   private router = inject(Router);
   private formBuilder = inject(FormBuilder);
+  mostrarPassword: boolean = false;
+
   
   public registroForm = this.formBuilder.group({
     nombreUsuario: ['', Validators.required],
@@ -43,7 +45,6 @@ export class RegistroComponent {
     this.accesoServiceRest.registrarUsuario(registro).subscribe({
       
       next: (response) => {
-        // Si el registro es exitoso, redirigir al login
         alert('Usuario registrado exitosamente');
         this.router.navigate(['/login']);
       },

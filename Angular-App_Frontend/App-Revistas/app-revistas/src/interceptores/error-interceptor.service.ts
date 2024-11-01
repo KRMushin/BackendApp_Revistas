@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ModalComponentComponent } from '../app/modal-component/modal-component.component';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
@@ -21,9 +22,8 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       }else if(error.status === 409 && req.url.includes('/registrar')){
         errorMensaje = 'El nombre de usuario ya está en uso. Por favor, elija otro.';
 
-      }else if(error.status === 409 && req.url.includes('/anuncios')){
-        errorMensaje = ' DINERO INSUFICIENTE, recarga tu cartera para poder publicar un anuncio.';
-
+      }else if(error.status === 409 && (req.url.includes('/anuncios') || req.url.includes('/comprarBloqueo'))){
+          return throwError(() => error); // estos errores se manejan en el componente
       }else{
         switch (error.status) {
           case 400: // Bad Request

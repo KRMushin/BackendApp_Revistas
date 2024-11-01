@@ -1,0 +1,98 @@
+  <app-modal-component>
+    [titulo]="'Compra exitosa'"
+    [mensaje]="mensajeModal"
+    [botonCerrar]="'Cerrar'">
+  </app-modal-component>
+
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="text-end">
+          <button (click)="volver()" class="btn btn-primary btn-lg">
+            Volver
+          </button>
+        </div>
+        
+        @if (!configRevista?.anunciosBloqueados) {
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Compra de Bloqueo de Anuncios</h2>
+          
+          <!-- Muestra el dinero disponible de la cartera digital -->
+          <div *ngIf="carteraDigital" class="alert alert-info text-center">
+            <strong>Dinero disponible en cartera:</strong>
+            <span class="fw-bold">{{ carteraDigital.cantidadDinero | currency:'Q ':'symbol' }}</span>
+          </div>
+
+          <form [formGroup]="compraBloqueoForm" (ngSubmit)="subirCompra()">
+            <div class="mb-4">
+              <label class="form-label fw-bold">Datos de la revista</label>
+              <p class="mb-1">
+                <strong>Título:</strong> {{revistaDatos?.tituloRevista}} <br>
+                <strong>Autor:</strong> {{revistaDatos?.estadoRevista}}
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold">Precio por día de bloqueo de anuncios:</label>
+              <p class="mb-1">
+                <span class="badge bg-primary">{{ revistaDatos?.costoBloqueoAnuncios | currency:'Q ':'symbol' }}</span>
+              </p>
+            </div>
+
+            <div class="mb-4">
+              <label for="fechaCompra" class="form-label fw-bold">Fecha de Compra</label>
+              <input
+                type="date"
+                id="fechaCompra"
+                class="form-control"
+                formControlName="fechaCompra"
+              />
+              <div *ngIf="compraBloqueoForm.controls['fechaCompra'].invalid && compraBloqueoForm.controls['fechaCompra'].touched" class="text-danger mt-1">
+                Fecha de compra es requerida.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="diasCompra" class="form-label fw-bold">Dias de bloqueo anuncios</label>
+              <input
+                type="number"
+                id="diasCompra"
+                class="form-control"
+                formControlName="diasCompra"
+              />
+              <div *ngIf="compraBloqueoForm.controls['diasCompra'].invalid && compraBloqueoForm.controls['diasCompra'].touched" class="text-danger mt-1">
+                Duración debe ser un número mayor a 0.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold">Costo total de la compra:</label>
+              <p class="fs-5">
+                  @if (revistaDatos) {
+                <strong>{{compraBloqueoForm.value.diasCompra * revistaDatos.costoBloqueoAnuncios | currency:'Q ':'symbol'}}</strong>
+                  }
+              </p>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary w-100" [disabled]="compraBloqueoForm.invalid">
+                Realizar Compra
+              </button>
+            </div>
+          </form>
+        </div>
+      }@else{
+        <!-- cargar componente para recargar mas dias opcional jeje -->
+        <div class="alert alert-success text-center">
+          <h2 class="mb-4">Ya has adquido el bloqueador de anuncios</h2>
+          <p>Ya tienes el bloqueo de anuncios activado para esta revista.</p>
+          <p>Disfruta de la lectura sin interrupciones.</p>
+        </div>
+
+      }
+      </div>
+    </div>
+  </div>
+</div>

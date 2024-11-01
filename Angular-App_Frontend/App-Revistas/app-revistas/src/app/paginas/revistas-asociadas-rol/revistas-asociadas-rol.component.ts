@@ -5,11 +5,12 @@ import { utileriaToken } from '../../../service/utileria-token.service';
 import { Router } from '@angular/router';
 import { CargarPdfRevistaService } from '../../vistas-archivos/cargar-pdf-revista.service';
 import { ControladorAnunciosService } from '../../../service/Anuncios/controlador-anuncios.service';
+import { OpcionesEditorRevistaComponent } from "./opciones-editor-revista/opciones-editor-revista.component";
 
 @Component({
   selector: 'app-revistas-asociadas-rol',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OpcionesEditorRevistaComponent],
   templateUrl: './revistas-asociadas-rol.component.html',
   styleUrl: './revistas-asociadas-rol.component.css'
 })
@@ -35,17 +36,12 @@ export class RevistasAsociadasRolComponent implements OnInit{
     }
 
     verRevista(idRevista: number) : void {
-      this.cargarPdf.cargarPDFEnOtraVentana(idRevista);
+      this.controladorAnuncios.bloquearAnuncios(); // esto para que el bloqueo lo decida la logica de negocio
+      this.router.navigate(['/editor-control/misPublicaciones/verArchivoPDF', idRevista, 'revista_pdf']);
     }
-    //editor
-    detallesRevista(idRevista: number) : void {
-      this.controladorAnuncios.bloquearAnuncios();
-      this.router.navigate(['/editor-control/misPublicaciones/detallesRevista', idRevista]);
-    }
-    
-    comprarBloqueoAnuncios(idRevista: number) : void {
-    }
-    // suscriptor
+    // verRevista(idRevista: number) : void {
+    //   this.cargarPdf.cargarPDFEnOtraVentana(idRevista);
+    // }
     comentarRevista(idRevista: number) : void {
       
     }

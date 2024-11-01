@@ -29,7 +29,6 @@ public class AnunciosDespliegueResource {
         public Response anuncioAleatorio() {
             ServicioDespliegueAnuncios service = new ServicioDespliegueAnuncios();
             Optional<LlaveAnuncioDTO>  anuncioAleatorio = service.obtnerAnuncioAleatorio();
-            System.out.println(anuncioAleatorio.get().getIdAnuncio());
             if (anuncioAleatorio.isPresent()) {
                 return Response.ok(anuncioAleatorio.get()).build(); // anuncioAleatorio.get()
             }
@@ -41,13 +40,11 @@ public class AnunciosDespliegueResource {
          @Produces(MediaType.APPLICATION_OCTET_STREAM)  // Para archivos en general
         public Response obtnerArchivoAnuncio(@PathParam("idAnuncio") Long idAnuncio) {
             
-            System.out.println("si despliega");
-
             ServicioDespliegueAnuncios service = new ServicioDespliegueAnuncios();
             Optional<InputStream> anuncioArchivo = service.obtenerArchivoAnuncio(idAnuncio);
-            if (anuncioArchivo.isPresent()) {
-                return Response.ok(anuncioArchivo.get()).build();
-            }
+                    if (anuncioArchivo.isPresent()) {
+                        return Response.ok(anuncioArchivo.get()).build();
+                    }
             return Response.status(Response.Status.NO_CONTENT).build();  
         }
     

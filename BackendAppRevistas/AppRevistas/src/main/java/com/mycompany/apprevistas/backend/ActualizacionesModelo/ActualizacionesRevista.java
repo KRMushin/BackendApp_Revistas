@@ -6,7 +6,7 @@ package com.mycompany.apprevistas.backend.ActualizacionesModelo;
 
 import com.mycompany.apprevistas.backend.Excepciones.DatabaseException;
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas.RepositorioRevistas;
-import com.mycompany.apprevistas.backend.RevistasDTOs.NuevoCostoDTO;
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.NuevoCostoDTO;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.sql.Connection;
 import java.sql.SQLException;

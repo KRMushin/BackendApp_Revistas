@@ -1,5 +1,6 @@
 
 @if (cargarAnuncio) {
+  @if (LlaveAnuncio != null) {
     @if (LlaveAnuncio.tipoAnuncio === 'TEXTO') {
         <div class="container-fluid h-100">
             <div class="row h-100">
@@ -12,17 +13,20 @@
             </div>
           </div>
     } @else if (LlaveAnuncio.tipoAnuncio === 'VIDEO' && anuncioVideo) {
-        <video #videoRef [src]="anuncioVideo" muted autoplay playsinline class="img-fluid video-anuncio" (loadedmetadata)="onVideoLoaded($event)"
-          (ended)="onVideoEnded($event)">
-        </video>
+      <video #videoRef [src]="anuncioVideo" muted autoplay playsinline class="img-fluid video-anuncio" (loadedmetadata)="onVideoLoaded($event)"
+        (ended)="onVideoEnded($event)">
+      </video>
     }@else if (LlaveAnuncio.tipoAnuncio === 'IMAGEN_TEXTO') {
-        <div class="fondo-texto">
+      <div class="fondo-texto">
             <p class="texto-anuncio">{{ LlaveAnuncio.contenidoTexto }}</p>
         </div>
         <img [src]="anuncioImagen" alt="Imagen del anuncio" class="img-anuncio">
-    }
-}@else{
+    }@else{
         <p>free Ads</p>
+    }
+  }
+}@else{
+        <p>Anuncios Pagados</p>
 
 }
 
