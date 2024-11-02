@@ -1,0 +1,92 @@
+<div class="container mt-4">
+  <h2>Navegar por Revistas</h2>
+  
+  <!-- Selector de Tipo de Filtro -->
+  <div class="form-group">
+    <label for="tipoFiltro">Filtros:</label>
+    <select [(ngModel)]="tipoFiltro" class="form-control" id="tipoFiltro">
+      <option value="Categorias">Categorías</option>
+      <option value="Etiquetas">Etiquetas</option>
+      <option value="Categoria y Etiquetas">Categoría y Etiquetas</option>
+      <option value="Todas">Todas</option>
+    </select>
+  </div>
+  
+  <!-- Menú desplegable de categorías -->
+  <div *ngIf="tipoFiltro === 'Categorias' || tipoFiltro === 'Categoria y Etiquetas'" class="form-group">
+    <label>Categorías:</label>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" (click)="toggleCategoriasDropdown()">
+        Seleccionar Categorías
+      </button>
+      <div *ngIf="showCategoriasDropdown" class="dropdown-menu show p-2">
+        <div *ngFor="let categoria of categorias" class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            [id]="'categoria-' + categoria.idCategoria"
+            [checked]="selectedCategorias.includes(categoria.idCategoria)"
+            (change)="toggleCategoria(categoria.idCategoria)"
+          />
+          <label class="form-check-label" [for]="'categoria-' + categoria.idCategoria">
+            {{ categoria.nombreCategoria }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Menú desplegable de etiquetas -->
+  <div *ngIf="tipoFiltro === 'Etiquetas' || tipoFiltro === 'Categoria y Etiquetas'" class="form-group">
+    <label>Etiquetas:</label>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" (click)="toggleEtiquetasDropdown()">
+        Seleccionar Etiquetas
+      </button>
+      <div *ngIf="showEtiquetasDropdown" class="dropdown-menu show p-2">
+        <div style="max-height: 200px; overflow-y: auto;">
+          <div *ngFor="let etiqueta of etiquetas" class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [id]="'etiqueta-' + etiqueta.idEtiqueta"
+              [checked]="selectedEtiquetas.includes(etiqueta.idEtiqueta)"
+              (change)="toggleEtiqueta(etiqueta.idEtiqueta)"
+            />
+            <label class="form-check-label" [for]="'etiqueta-' + etiqueta.idEtiqueta">
+              {{ etiqueta.etiqueta }}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary btn-lg mt-3" (click)="filtrarRevistas()">Filtrar</button>
+  </div>
+  
+  <!-- Resultados de revistas en formato de cards de dos columnas -->
+  <div *ngIf="revistas.length > 0" class="mt-4">
+    <h3>Resultados</h3>
+    <div class="row">
+      <div *ngFor="let revista of revistas" class="col-md-6 mb-4">
+        <div class="card">
+          <img src="images/NUMEROREVISTA.webp" class="card-img-top" alt="Imagen de {{ revista.tituloRevista }}" style="height: 300px; object-fit: cover;">
+          <div class="card-body">
+            <h5 class="card-title">{{ revista.tituloRevista }}</h5>
+            <p class="card-text">{{ revista.descripcion }}</p>
+            <div class="d-flex justify-content-end">
+              <!-- Botón de Suscribirse -->
+              <button *ngIf="revista.aceptaSuscripciones" class="btn btn-primary me-2">Suscribirse</button>
+              <!-- Botón de Previsualizar -->
+              <button class="btn btn-secondary" (click)="previsualizar(revista.idRevista)">Previsualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <p *ngIf="revistas.length === 0" class="mt-4">No hay revistas para mostrar.</p>
+</div>

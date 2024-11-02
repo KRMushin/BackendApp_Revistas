@@ -4,10 +4,15 @@
  */
 package com.mycompany.apprevistas.restApi.resources.revistas;
 
+import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevistaDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
+import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioFiltrosRevistas;
 import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioLlavesRevistas;
+import com.mycompany.apprevistas.backend.modelos.Filtros.FiltroNavegacionRevistas;
 import com.mycompany.apprevistas.backend.util.AutenticadorJWT;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -26,6 +31,17 @@ import java.util.Optional;
 //sudo systemctl start mysql
 
 public class RevistasPorParametroResource {
+    
+    @POST
+    @Path("navegacion/revistas")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response filtrarPorNavegacion(FiltroNavegacionRevistas filtro){
+        ServicioFiltrosRevistas service = new ServicioFiltrosRevistas();
+        List<EstadoRevistaDTO> esR = service.navegarPorRevistas(filtro);
+        return Response.ok(esR).build();
+    
+    }
     
     @GET
     @Path("{estadoRevista}/listar")

@@ -1,37 +1,58 @@
-<p>suscriptor-control works!</p>
- <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Revistas</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio <span class="sr-only">(actual)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Suscripción</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Revistas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="nav-link text-warning" routerLink="/suscriptor-control/">Revistas</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-warning" routerLink="/suscriptor-control/navegacionRevistas">Navegar por Revistas</a>
 
-  <!-- Home Page Content -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Suscripción</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Revistas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contacto</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-2">
+      <app-barra-lateral-anuncio></app-barra-lateral-anuncio>
+    </div>
+
+    <div class="col-md-8">
+
+      
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="col-md-2">
+      <app-barra-lateral-anuncio></app-barra-lateral-anuncio>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div *ngIf="showWelcomeContent" class="row">
   <div class="container mt-5">
     <div class="jumbotron text-center">
       <h1 class="display-4">Bienvenido a nuestra plataforma de suscripción de revistas</h1>
-      <p class="lead">Explora una variedad de revistas en diferentes categorías, suscríbete y accede a contenido exclusivo.</p>
+      <p class="lead">Explora una variedad de revistas en diferentes categorías, suscríbete y accede a contenido
+        exclusivo.</p>
       <a class="btn btn-primary btn-lg" href="#" role="button">Ver Revistas Populares</a>
     </div>
 
-    <!-- Revistas Destacadas -->
     <div class="row">
       <div class="col-md-4">
         <div class="card">
@@ -65,10 +86,4 @@
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
-  <footer class="bg-light text-center text-lg-start mt-5">
-    <div class="text-center p-3">
-      © 2024 Suscriptor de Revistas | Todos los derechos reservados
-    </div>
-  </footer>
+</div> -->

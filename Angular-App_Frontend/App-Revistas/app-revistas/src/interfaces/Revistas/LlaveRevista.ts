@@ -9,4 +9,8 @@ export interface LlaveRevista{
     costoMantenimiento: number;
     costoBloqueoAnuncios: number;
 
+    revistaLikeable: boolean;
+    revistaComentable: boolean;
+
+
 }

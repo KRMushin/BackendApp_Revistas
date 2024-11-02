@@ -10,6 +10,7 @@ com/mycompany/apprevistas/backend/usuariosDTOs/ActualizarContraseñaDTO.class
 com/mycompany/apprevistas/backend/constantes/RolUsuario.class
 com/mycompany/apprevistas/backend/ConsultasModelos/Revistas/ConsultasRevistas.class
 com/mycompany/apprevistas/backend/Servicios/Anuncios/ServicioAnuncios.class
+com/mycompany/apprevistas/backend/modelos/Filtros/FiltroNavegacionRevistas.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioLlavesRevista.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioCategoriaConEtiquetas.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorAnuncio$1.class
@@ -42,10 +43,12 @@ com/mycompany/apprevistas/backend/Repositorios/Implementaciones/anuncios/Reposit
 com/mycompany/apprevistas/restApi/resources/revistas/RevistasPorParametroResource.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioFotosUsuarios.class
 com/mycompany/apprevistas/backend/util/ConexionBaseDatos.class
+com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioFiltrosRevistas.class
 com/mycompany/apprevistas/backend/usuariosDTOs/LoginDTO.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioComprasBloqueos.class
 com/mycompany/apprevistas/backend/Repositorios/RepositorioCrud.class
 com/mycompany/apprevistas/restApi/resources/UsuariosResource.class
+com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioNavegacionRevistas.class
 com/mycompany/apprevistas/backend/Excepciones/FalloActualizacionException.class
 com/mycompany/apprevistas/backend/util/ValidadorArchivos.class
 com/mycompany/apprevistas/backend/RevistasDTOs/Configs/EstadoRevista$2.class
@@ -69,6 +72,7 @@ com/mycompany/apprevistas/backend/modelos/Usuario.class
 com/mycompany/apprevistas/backend/usuariosDTOs/LlaveUsuarioDTO.class
 com/mycompany/apprevistas/backend/constantes/TipoCostoRevista.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasConfigAnuncios.class
+com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioFiltrosRevistas$1.class
 com/mycompany/apprevistas/MapperExcepciones/SinAutorizacionMapper.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioNumerosRevista.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/CategoriaEtiquetasRevista.class
@@ -98,6 +102,7 @@ com/mycompany/apprevistas/MapperExcepciones/NotFoundMapper.class
 com/mycompany/apprevistas/backend/Servicios/Anuncios/ServicioConfigAnuncios.class
 com/mycompany/apprevistas/backend/modelos/Revista.class
 com/mycompany/apprevistas/backend/util/EncriptadorDatos.class
+com/mycompany/apprevistas/backend/ConsultasModelos/Revistas/ConsultasPorFiltro.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasAnuncios.class
 com/mycompany/apprevistas/restApi/resources/RegistroResource.class
 com/mycompany/apprevistas/backend/RevistasDTOs/CompraBloqueoDTO.class
@@ -134,4 +139,5 @@ com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioPreci
 com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioCostosRevistas.class
 com/mycompany/apprevistas/MapperExcepciones/JsonExceptionMapper.class
 com/mycompany/apprevistas/backend/util/ServicioJWT.class
+com/mycompany/apprevistas/backend/constantes/Filtros/TipoDeFiltro.class
 com/mycompany/apprevistas/backend/Servicios/ServicioUsuario.class

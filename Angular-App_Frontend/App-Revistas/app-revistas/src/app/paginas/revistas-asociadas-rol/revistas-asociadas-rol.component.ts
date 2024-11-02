@@ -39,9 +39,6 @@ export class RevistasAsociadasRolComponent implements OnInit{
       this.controladorAnuncios.bloquearAnuncios(); // esto para que el bloqueo lo decida la logica de negocio
       this.router.navigate(['/editor-control/misPublicaciones/verArchivoPDF', idRevista, 'revista_pdf']);
     }
-    // verRevista(idRevista: number) : void {
-    //   this.cargarPdf.cargarPDFEnOtraVentana(idRevista);
-    // }
     comentarRevista(idRevista: number) : void {
       
     }

@@ -36,6 +36,11 @@ public class AutenticadorFiltro implements ContainerRequestFilter {
         this.excludedPaths = new HashSet<>();
         excludedPaths.add("login/usuario");
         excludedPaths.add("registrar");
+        
+//        excludedPaths.add("revistasPorParametro/navegacion/revistas");
+//        excludedPaths.add("categorias/obtnerTodas");
+//        excludedPaths.add("categorias/obtnerTodasEtiquetas");
+
     }
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {

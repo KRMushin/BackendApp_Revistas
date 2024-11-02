@@ -85,5 +85,43 @@ public class RepositorioCategoriaConEtiquetas {
             }
             return etiquetas;
     }
+
+    public List<Categoria> listarCategorias() throws SQLException {
+        List<Categoria> categorias = new ArrayList<>();
+
+            String queryEtiquetas = "SELECT *FROM categorias";
+
+            try (PreparedStatement stmt = conn.prepareStatement(queryEtiquetas)) {
+                    ResultSet rs = stmt.executeQuery();
+                
+                    while (rs.next()) {
+                        Long idCategoria = rs.getLong("id_categoria");
+                        String nombreCategoria = rs.getString("nombre_categoria");
+
+                        Categoria etiqueta = new Categoria(idCategoria,nombreCategoria,null);
+                        categorias.add(etiqueta);
+                    }
+            }
+            return categorias;
+    }
+
+    public List<Etiqueta> listarEtiquetas() throws SQLException {
+        List<Etiqueta> etiquetas = new ArrayList<>();
+
+            String queryEtiquetas = "SELECT *FROM etiquetas";
+
+            try (PreparedStatement stmt = conn.prepareStatement(queryEtiquetas)) {
+                    ResultSet rs = stmt.executeQuery();
+                
+                    while (rs.next()) {
+                        Long idEtiqueta = rs.getLong("id_etiqueta");
+                        String nombreEtiqueta = rs.getString("nombre_etiqueta");
+
+                        Etiqueta etiqueta = new Etiqueta(idEtiqueta, nombreEtiqueta);
+                        etiquetas.add(etiqueta);
+                    }
+            }
+            return etiquetas;
+    }
     
 }

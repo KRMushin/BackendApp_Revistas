@@ -7,6 +7,7 @@ package com.mycompany.apprevistas.restApi.resources.revistas;
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioCategoriaConEtiqueta;
 import com.mycompany.apprevistas.backend.modelos.Categoria;
+import com.mycompany.apprevistas.backend.modelos.Etiqueta;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -48,5 +49,26 @@ public class CategoriaEtiquetaResource {
             }
             
        return Response.ok().entity(categoriaEtiqueta.get()).build();
+    }
+    
+    @GET
+    @Path("/obtnerTodas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obtenerTodasLasCategorias(){
+        
+        ServicioCategoriaConEtiqueta service = new ServicioCategoriaConEtiqueta();
+        List<Categoria> cat = service.obterTodasCategorias();
+       return Response.ok().entity(cat).build();
+    }
+    
+    
+    @GET
+    @Path("/obtnerTodasEtiquetas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obtenerTodasLasEtiquetas(){
+        
+        ServicioCategoriaConEtiqueta service = new ServicioCategoriaConEtiqueta();
+        List<Etiqueta> et = service.obtenerEtiquetas();
+       return Response.ok().entity(et).build();
     }
 }

@@ -21,6 +21,7 @@ import { ComprarBloqueoAnunciosComponent } from './paginas-rol/editor-control/co
 import { NumerosRevistaRolComponent } from './paginas/numeros-revista-rol/numeros-revista-rol.component';
 import { SuscriptorControlComponent } from './paginas-rol/suscriptor-control/suscriptor-control.component';
 import { VerPdfComponent } from './vistas-archivos/ver-pdf/ver-pdf.component';
+import { NavegarEnRevistasComponent } from './paginas-rol/suscriptor-control/navegar-en-revistas/navegar-en-revistas.component';
 
 export const routes: Routes = [
 
@@ -66,7 +67,8 @@ export const routes: Routes = [
       canActivate: [autGuardGuard],
       data: {roles: ['SUSCRIPTOR']}, 
       children: [
-        
+        {path: 'navegacionRevistas', component: NavegarEnRevistasComponent},
+        {path: 'navegacionRevistas/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent}
       ]
 
     }

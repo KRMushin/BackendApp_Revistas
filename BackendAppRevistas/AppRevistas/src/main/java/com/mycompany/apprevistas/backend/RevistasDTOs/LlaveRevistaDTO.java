@@ -14,8 +14,12 @@ public class LlaveRevistaDTO {
     private String tituloRevista;
     private String descripcion;
     private String estadoRevista;
+    
     private Double costoMantenimiento;
     private Double costoBloqueoAnuncios;
+    
+    private boolean revistaComentable;
+    private boolean revistaLikeable;
 
     public LlaveRevistaDTO() {
     }
@@ -66,6 +70,22 @@ public class LlaveRevistaDTO {
 
     public void setCostoBloqueoAnuncios(Double costoBloqueoAnuncios) {
         this.costoBloqueoAnuncios = costoBloqueoAnuncios;
+    }
+
+    public boolean isRevistaComentable() {
+        return revistaComentable;
+    }
+
+    public void setRevistaComentable(boolean revistaComentable) {
+        this.revistaComentable = revistaComentable;
+    }
+
+    public boolean isRevistaLikeable() {
+        return revistaLikeable;
+    }
+
+    public void setRevistaLikeable(boolean revistaLikeable) {
+        this.revistaLikeable = revistaLikeable;
     }
 
     

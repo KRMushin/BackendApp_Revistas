@@ -16,6 +16,9 @@ public class EstadoRevistaDTO {
     private boolean aceptaSuscripciones;
     private boolean anunciosBloqueados;
 
+    private String tituloRevista;
+    private String descripcion;
+    
     public EstadoRevistaDTO() {
     }
 
@@ -58,6 +61,24 @@ public class EstadoRevistaDTO {
     public void setIdRevista(Long idRevista) {
         this.idRevista = idRevista;
     }
+
+    public String getTituloRevista() {
+        return tituloRevista;
+    }
+
+    public void setTituloRevista(String tituloRevista) {
+        this.tituloRevista = tituloRevista;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
 
     @Override
     public String toString() {

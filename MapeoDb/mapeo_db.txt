@@ -182,3 +182,23 @@ VALUES
 ('imagen_texto', '7', 140.00),
 
 
+---------------------------------------------suscripciones--------------
+CREATE TABLE suscripciones (
+    id_suscripcion BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(15),
+    id_revista BIGINT,
+    fecha_suscripcion DATE NOT NULL,
+    califico_suscripcion TINYINT(1) DEFAULT 0,
+    FOREIGN KEY (nombre_usuario) REFERENCES usuarios(nombre_usuario),
+    FOREIGN KEY (id_revista) REFERENCES revistas(id_revista)
+);
+
+CREATE TABLE likes_revistas (
+    id_like BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(20),
+    id_revista BIGINT,
+    fecha_like TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (nombre_usuario) REFERENCES usuarios(nombre_usuario),
+    FOREIGN KEY (id_revista) REFERENCES revistas(id_revista)
+);
+

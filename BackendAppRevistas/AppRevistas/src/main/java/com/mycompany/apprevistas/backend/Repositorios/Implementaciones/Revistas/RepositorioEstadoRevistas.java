@@ -8,11 +8,12 @@ import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioExcept
 import com.mycompany.apprevistas.backend.Excepciones.NotFoundException;
 import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoConfigRevistaDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevistaDTO;
-import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.NuevoCostoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,6 +26,8 @@ public class RepositorioEstadoRevistas {
     public void setConn(Connection conn) {
         this.conn = conn;
     }
+    
+    
     
     public void guardarEstadosRevista(Long idRevista) throws SQLException {
         String insertQuery = " INSERT INTO configuracion_revistas(id_revista) VALUES(?)";
@@ -74,4 +77,6 @@ public class RepositorioEstadoRevistas {
         return s;
 
     }
+
+    
 }
