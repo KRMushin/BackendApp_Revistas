@@ -101,9 +101,8 @@ public class ConsultasUsuarios {
                 String ruta = fotoUsuario.getFotoUrl();
                 File archFoto = new File(ruta);
                 
-                // Verificar si el archivo realmente existe
                 if (archFoto.exists()) {
-                    return Optional.of(archFoto);  // Devolver el archivo si existe
+                    return Optional.of(archFoto);  
                 }else{
                         throw new NotFoundException();
                 }

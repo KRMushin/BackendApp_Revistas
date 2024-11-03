@@ -1,0 +1,38 @@
+.custom-checkbox-input {
+    display: none;
+  }
+  
+  .custom-checkbox-label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .custom-checkbox-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #007bff;
+    border-radius: 3px;
+    background-color: white;
+    transition: background-color 0.3s;
+  }
+  
+  /* Agrega el símbolo de check cuando está seleccionado */
+  .custom-checkbox-input:checked + .custom-checkbox-label::before {
+    background-color: #007bff;
+  }
+  
+  .custom-checkbox-input:checked + .custom-checkbox-label::after {
+    content: '✔';
+    position: absolute;
+    left: 4px;
+    top: 2px;
+    font-size: 12px;
+    color: white;
+  }
+  

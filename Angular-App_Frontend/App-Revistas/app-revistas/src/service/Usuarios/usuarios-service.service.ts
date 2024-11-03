@@ -18,6 +18,9 @@ export class UsuariosService {
     return this.http.get<Usuario>(`${this.baseUrl}datos/usuario/${nombreUsuario}`);
   }
   
+  public obtnerFotoPerfil(nombreUsuario: string): Observable<Blob> {
+    return this.http.get<Blob>(`${this.baseUrl}foto/usuario/${nombreUsuario}`);
+  }
   
 
 

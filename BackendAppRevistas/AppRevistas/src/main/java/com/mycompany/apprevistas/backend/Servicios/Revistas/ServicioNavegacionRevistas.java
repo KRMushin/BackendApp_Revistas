@@ -9,16 +9,17 @@ import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevistaDTO;
 import com.mycompany.apprevistas.backend.constantes.Filtros.TipoDeFiltro;
 import com.mycompany.apprevistas.backend.modelos.Filtros.FiltroNavegacionRevistas;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
  * @author kevin-mushin
  */
-public class ServicioFiltrosRevistas {
+public class ServicioNavegacionRevistas {
     
     private ConsultasPorFiltro consultas;
 
-    public ServicioFiltrosRevistas() {
+    public ServicioNavegacionRevistas() {
         this.consultas = new ConsultasPorFiltro();
     }
     
@@ -27,7 +28,7 @@ public class ServicioFiltrosRevistas {
          TipoDeFiltro tipo = filtro.getTipoFiltro();
         switch (tipo) {
             case REVISTAS_ACTIVAS:
-                return consultas.obtnerTodasActivas();
+                return consultas.obtnerTodasActivas(filtro.getNombreUsuario());
             case REVISTAS_POR_CATEGORIA:
                 return consultas.obtnerPorCategorias(filtro);
             case REVISTAS_POR_ETIQUETAS:

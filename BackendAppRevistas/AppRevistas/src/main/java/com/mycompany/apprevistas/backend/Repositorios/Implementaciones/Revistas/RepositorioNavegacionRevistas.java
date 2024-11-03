@@ -32,11 +32,15 @@ public class RepositorioNavegacionRevistas {
     public RepositorioNavegacionRevistas() {
     }
     
-    public List<EstadoRevistaDTO> ListarEstadosRevistaActiva() throws SQLException{
+    public List<EstadoRevistaDTO> ListarEstadosRevistaActiva(String nombreUsuario) throws SQLException{
         List<EstadoRevistaDTO> revistasActivas = new ArrayList<>();
-        String selectQuery = "SELECT c.*, r.titulo_revista, r.descripcion FROM configuracion_revistas c JOIN revistas r ON c.id_revista = r.id_revista WHERE r.estado_revista = 'ACTIVA' ";
+        String selectQuery = "SELECT c.*, r.titulo_revista, r.descripcion FROM configuracion_revistas c JOIN revistas r ON c.id_revista = r.id_revista "
+                                        + "LEFT JOIN suscripciones s ON r.id_revista = s.id_revista AND s.nombre_usuario = ? "
+                                        + "WHERE r.estado_revista = 'ACTIVA' AND s.id_revista IS NULL; ";
+//        String selectQuery = "SELECT c.*, r.titulo_revista, r.descripcion FROM configuracion_revistas c JOIN revistas r ON c.id_revista = r.id_revista WHERE r.estado_revista = 'ACTIVA' ";
 
         try (PreparedStatement stmt = conn.prepareStatement(selectQuery)) {
+               stmt.setString(1, nombreUsuario);
                ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -44,7 +48,6 @@ public class RepositorioNavegacionRevistas {
             }
         }
         return revistasActivas;
-    
     }
     
     private EstadoRevistaDTO crearEstadosActivos(ResultSet rs) throws SQLException {
@@ -54,19 +57,24 @@ public class RepositorioNavegacionRevistas {
         s.setEsLikeable(rs.getBoolean("revista_likeable"));
         s.setEsComentable(rs.getBoolean("revista_comentable"));
         s.setIdRevista(rs.getLong("id_revista"));
-        s.setTituloRevista("titulo_revista");
+        s.setTituloRevista(rs.getString("titulo_revista"));
         s.setDescripcion(rs.getString("descripcion"));
         return s;
         
     }
 
 
-    public EstadoRevistaDTO listarPorCategorias(Long id) throws SQLException {
+    public EstadoRevistaDTO listarPorCategorias(Long id, String nombreUsuario) throws SQLException {
         
-        String insertQuery = "SELECT c.*, r.titulo_revista, r.descripcion FROM configuracion_revistas c JOIN revistas r ON "
-                + "                        c.id_revista = r.id_revista WHERE r.estado_revista = 'ACTIVA' AND r.id_categoria = ?";
+          String insertQuery = "SELECT c.*, r.titulo_revista, r.descripcion FROM configuracion_revistas c JOIN revistas r ON c.id_revista = r.id_revista "
+                                          + "LEFT JOIN suscripciones s ON r.id_revista = s.id_revista AND s.nombre_usuario = ? "
+                                          + "WHERE r.estado_revista = 'ACTIVA' AND r.id_categoria = ? AND s.id_revista IS NULL;";
+          
+//        String insertQuery = "SELECT c.*, r.titulo_revista, r.descripcion FROM configuracion_revistas c JOIN revistas r ON "
+//                + "                        c.id_revista = r.id_revista WHERE r.estado_revista = 'ACTIVA' AND r.id_categoria = ?";
         try (PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
-                stmt.setLong(1, id);
+                stmt.setString(1, nombreUsuario);
+                stmt.setLong(2, id);
                ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -76,7 +84,7 @@ public class RepositorioNavegacionRevistas {
         return null;
     }
 
-    public List<EstadoRevistaDTO> listarPorEtiquetas(List<Long> etiquetas) throws SQLException {
+    public List<EstadoRevistaDTO> listarPorEtiquetas(List<Long> etiquetas, String nombreUsuario) throws SQLException {
     List<EstadoRevistaDTO> revistas = new ArrayList<>();
 
     // Construye la consulta con la cantidad correcta de placeholders "?" para cada ID
@@ -85,12 +93,18 @@ public class RepositorioNavegacionRevistas {
                          "FROM configuracion_revistas c " +
                          "JOIN revistas r ON c.id_revista = r.id_revista " +
                          "JOIN revista_etiqueta re ON r.id_revista = re.id_revista " +
+                         "LEFT JOIN suscripciones s ON r.id_revista = s.id_revista AND s.nombre_usuario = ? " +
                          "WHERE r.estado_revista = 'ACTIVA' " +
+                         "AND s.id_revista IS NULL " +
                          "AND re.id_etiqueta IN (" + consultaConstruida + ");";
-    
+
     try (PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
+        // Asigna el nombre de usuario como el primer parámetro
+        stmt.setString(1, nombreUsuario);
+        
+        // Asigna cada uno de los valores de las etiquetas
         for (int i = 0; i < etiquetas.size(); i++) {
-            stmt.setLong(i + 1, etiquetas.get(i));
+            stmt.setLong(i + 2, etiquetas.get(i)); // Comienza en el índice 2 después del usuario
         }
         
         ResultSet rs = stmt.executeQuery();
@@ -101,37 +115,39 @@ public class RepositorioNavegacionRevistas {
     return revistas;
 }
 
+
     
-    public List<EstadoRevistaDTO> listarPorEtiquetasYCategoria(List<Long> etiquetas, Long idCategoria) throws SQLException {
-    List<EstadoRevistaDTO> revistas = new ArrayList<>();
-    
-    // Construimos placeholders para cada ID en la lista de etiquetas
-    String consultaPlaceholders = construirConsultaEtiquetas(etiquetas);
-    String insertQuery = "SELECT c.*, r.titulo_revista, r.descripcion " +
-                         "FROM configuracion_revistas c " +
-                         "JOIN revistas r ON c.id_revista = r.id_revista " +
-                         "JOIN revista_etiqueta re ON r.id_revista = re.id_revista " +
-                         "WHERE r.estado_revista = 'ACTIVA' " +
-                         "AND re.id_etiqueta IN (" + consultaPlaceholders + ") " +
-                         "AND r.id_categoria = ?;";  // filtro adicional por id_categoria
-    
-    try (PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
-        // Asignamos los IDs de las etiquetas a los parámetros del PreparedStatement
-        for (int i = 0; i < etiquetas.size(); i++) {
-            stmt.setLong(i + 1, etiquetas.get(i));
-        }
-        // Asignamos el id_categoria como último parámetro
-        stmt.setLong(etiquetas.size() + 1, idCategoria);
-        
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            revistas.add(crearEstadosActivos(rs));
-        }
-    } catch (SQLException e) {
-        System.err.println("Error al ejecutar la consulta SQL: " + e.getMessage());
-        System.err.println("Consulta generada: " + insertQuery);
-        throw e;
-    }
+    public List<EstadoRevistaDTO> listarPorEtiquetasYCategoria(List<Long> etiquetas, Long idCategoria, String nombreUsuario) throws SQLException {
+            List<EstadoRevistaDTO> revistas = new ArrayList<>();
+          
+            String consultaConstruida = construirConsultaEtiquetas(etiquetas);
+            String insertQuery = "SELECT c.*, r.titulo_revista, r.descripcion " +
+                                 "FROM configuracion_revistas c " +
+                                 "JOIN revistas r ON c.id_revista = r.id_revista " +
+                                 "JOIN revista_etiqueta re ON r.id_revista = re.id_revista " +
+                                 "LEFT JOIN suscripciones s ON r.id_revista = s.id_revista AND s.nombre_usuario = ? " +
+                                 "WHERE r.estado_revista = 'ACTIVA' " +
+                                 "AND re.id_etiqueta IN (" + consultaConstruida + ") " +
+                                 "AND s.id_revista IS NULL " +
+                                 "AND r.id_categoria = ?;"; 
+
+            try (PreparedStatement stmt = conn.prepareStatement(insertQuery)) {
+                   stmt.setString(1, nombreUsuario);
+
+                    for (int i = 0; i < etiquetas.size(); i++) {
+                        stmt.setLong(i + 2, etiquetas.get(i));
+                    }
+                    stmt.setLong(etiquetas.size() + 2, idCategoria);
+
+                    ResultSet rs = stmt.executeQuery();
+                    while (rs.next()) {
+                        revistas.add(crearEstadosActivos(rs));
+                    }
+            } catch (SQLException e) {
+                System.err.println("Error al ejecutar la consulta SQL: " + e.getMessage());
+                System.err.println("Consulta generada: " + insertQuery);
+                throw e;
+            }
     
     return revistas;
 }

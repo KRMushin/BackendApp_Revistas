@@ -1,0 +1,46 @@
+<app-modal-component>
+  [titulo]="'Publicacion exitosa'"
+  [mensaje]="mensajeModal"
+  [botonCerrar]="'Cerrar'">
+</app-modal-component>
+
+<div class="container mt-4">
+  <h2 class="mb-3">Suscripción a Revista</h2>
+  
+  <div class="mb-3 text-center">
+    <button type="button" class="btn btn-secondary btn-lg" (click)="regresar()">Volver</button>
+  </div>
+   
+  <div class="mb-3 text-center">
+    <img [src]="'images/PORTADAREVISTA2.webp'" alt="Imagen de la Revista" class="img-fluid" style="max-width: 200px;">
+  </div>
+
+  <!-- Información de la revista -->
+   @if (tituloRevista) {
+     <div class="mb-3">
+       <label for="tituloRevista" class="form-label">Título de la Revista</label>
+       <input type="text" id="tituloRevista" class="form-control" [value]="tituloRevista" readonly>
+      </div>
+    }
+    
+    @if (descripcion) {
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input type="text" id="descripcion" class="form-control" [value]="descripcion" readonly>
+    </div>
+  }
+
+  <form [formGroup]="formData" (ngSubmit)="realizarSuscripcion()">
+    <div class="mb-3">
+      <label for="fechaSuscripcion" class="form-label">Fecha de Suscripción</label>
+      <input type="date" id="fechaSuscripcion" class="form-control" formControlName="fechaSuscripcion">
+      <div *ngIf="formData.get('fechaSuscripcion')?.invalid && formData.get('fechaSuscripcion')?.touched" class="text-danger">
+        La fecha de suscripción es obligatoria.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="formData.invalid"> Confirmar fechaSuscripcion</button>
+  </form>
+</div>
+
+  

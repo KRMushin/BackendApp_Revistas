@@ -17,6 +17,8 @@ public class FiltroNavegacionRevistas {
     private TipoDeFiltro tipoFiltro;
     private List<Long> valoresFiltros;
     private Long idCategoria;  // para cuando se filtre por categoria etiqueta
+    private String nombreUsuario;
+    
 
     public FiltroNavegacionRevistas() {
     }
@@ -53,4 +55,13 @@ public class FiltroNavegacionRevistas {
         this.idCategoria = idCategoria;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    
 }

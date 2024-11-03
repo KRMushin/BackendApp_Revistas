@@ -49,12 +49,12 @@ public class UsuariosResource {
     @Path("{nombreUsuario}/foto")
     @Produces({"image/jpeg", "image/png"})
     public Response obtenerFotoPerfil(@PathParam("nombreUsuario") String nombreUsuario){
-        
         ServicioUsuario userService = new ServicioUsuario();
+        
         Optional<File> foto = userService.obtenerFotoPerfil(nombreUsuario); 
         if (foto.isPresent()) {
             try {
-                return Response.ok(Files.newInputStream(foto.get().toPath())).header("Content-Disposition", "inline; filename=\"" + foto.get().getName() + "\"").build(); // devuelve un imputstream
+                return Response.ok(Files.newInputStream(foto.get().toPath())).header("Content-Disposition", "inline; filename=\"" + foto.get().getName() + "\"").build(); 
             } catch (IOException ex) {
                     return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
             }

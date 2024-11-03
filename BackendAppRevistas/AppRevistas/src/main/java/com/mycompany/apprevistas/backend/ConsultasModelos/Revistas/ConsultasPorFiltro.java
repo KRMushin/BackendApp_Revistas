@@ -26,10 +26,10 @@ public class ConsultasPorFiltro {
         this.r = new RepositorioNavegacionRevistas();
     }
 
-    public List<EstadoRevistaDTO> obtnerTodasActivas() {
+    public List<EstadoRevistaDTO> obtnerTodasActivas(String nombreUsuario) {
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
             r.setConn(conn);
-            return r.ListarEstadosRevistaActiva();
+            return r.ListarEstadosRevistaActiva(nombreUsuario);
         } catch (SQLException e) {
             throw new DatosInvalidosUsuarioException();
         }
@@ -46,7 +46,7 @@ public class ConsultasPorFiltro {
             r.setConn(conn);
             
             for (Long id: ids) {
-                      estados.add(r.listarPorCategorias(id));
+                      estados.add(r.listarPorCategorias(id,filtro.getNombreUsuario()));
             }
             return estados;
         } catch (SQLException e) {
@@ -63,8 +63,7 @@ public class ConsultasPorFiltro {
         
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
             r.setConn(conn);
-            System.out.println(" CONSTRUCCION " + construirConsultaEtiquetas(ids));
-            return r.listarPorEtiquetas(filtro.getValoresFiltros());
+            return r.listarPorEtiquetas(filtro.getValoresFiltros(), filtro.getNombreUsuario());
         } catch (SQLException e) {
             throw new DatosInvalidosUsuarioException();
         }
@@ -77,7 +76,7 @@ public class ConsultasPorFiltro {
         }
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
             r.setConn(conn);
-            return r.listarPorEtiquetasYCategoria(filtro.getValoresFiltros(), filtro.getIdCategoria());
+            return r.listarPorEtiquetasYCategoria(filtro.getValoresFiltros(), filtro.getIdCategoria(), filtro.getNombreUsuario());
         } catch (SQLException e) {
             throw new DatosInvalidosUsuarioException();
         }

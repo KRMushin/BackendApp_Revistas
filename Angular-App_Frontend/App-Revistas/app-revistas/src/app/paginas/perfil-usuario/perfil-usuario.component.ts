@@ -24,14 +24,13 @@ export class PerfilUsuarioComponent implements OnInit{
     const nombreUsuario = this.obtenerNombreUsuario(token);
   
     if (nombreUsuario !== null) {
-      // Hacer la petición para obtener los datos del usuario
       
       this.usuarioService.obtenerDatosUsuario(nombreUsuario).subscribe({
         next: (usuario: Usuario) => {
-          this.perfilUsuario = usuario;  // Asignar los datos recibidos al perfil del usuario
+          this.perfilUsuario = usuario;  
         },
         error: (error) => {
-          console.error('Error al obtener los datos del usuario:', error);  // Manejo del error
+          console.error('Error al obtener los datos del usuario:', error); 
         },
         complete: () => {
           console.log('Petición finalizada con éxito');

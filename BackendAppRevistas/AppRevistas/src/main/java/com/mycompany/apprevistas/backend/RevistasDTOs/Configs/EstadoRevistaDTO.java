@@ -15,6 +15,8 @@ public class EstadoRevistaDTO {
     private boolean esLikeable;
     private boolean aceptaSuscripciones;
     private boolean anunciosBloqueados;
+    
+    private boolean usuarioSuscrito;
 
     private String tituloRevista;
     private String descripcion;
@@ -76,6 +78,14 @@ public class EstadoRevistaDTO {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public boolean isUsuarioSuscrito() {
+        return usuarioSuscrito;
+    }
+
+    public void setUsuarioSuscrito(boolean usuarioSuscrito) {
+        this.usuarioSuscrito = usuarioSuscrito;
     }
     
     

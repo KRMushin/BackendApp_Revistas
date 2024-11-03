@@ -11,6 +11,7 @@ import { revistasNavegacion } from '../../../../service/RevistaNavegacion/Revist
 import { RevistaNavegacion } from '../../../../interfaces/NavegacionRevistas/RevistaNavegacion';
 import { Router } from '@angular/router';
 import { ControladorAnunciosService } from '../../../../service/Anuncios/controlador-anuncios.service';
+import { utileriaToken } from '../../../../service/utileria-token.service';
 
 @Component({
   selector: 'app-navegar-en-revistas',
@@ -20,10 +21,10 @@ import { ControladorAnunciosService } from '../../../../service/Anuncios/control
   styleUrl: './navegar-en-revistas.component.css'
 })
 export class NavegarEnRevistasComponent implements OnInit{
-  
   public categorias: Categoria[] = [];
   public etiquetas: Etiqueta[] = [];
   public revistas: RevistaNavegacion[] = [];
+  private nombreUsuario!: string;
 
   public selectedCategorias: number[] = [];
   public selectedEtiquetas: number[] = [];
@@ -36,11 +37,16 @@ export class NavegarEnRevistasComponent implements OnInit{
     private catService: CategoriasService,
     private navService: revistasNavegacion,
     private router: Router,
-    private anunciosService: ControladorAnunciosService 
+    private anunciosService: ControladorAnunciosService,
+    private utileriaToken: utileriaToken
   ) {}
 
   ngOnInit(): void {
     this.cargarEtiquetasCategorias();
+    const nombreUsuario = this.utileriaToken.obtenerNombreUsuario();
+    if(nombreUsuario){
+      this.nombreUsuario = nombreUsuario
+    }
   }
 
   cargarEtiquetasCategorias(): void {
@@ -71,13 +77,20 @@ export class NavegarEnRevistasComponent implements OnInit{
   toggleCategoriasDropdown(): void {
     this.showCategoriasDropdown = !this.showCategoriasDropdown;
   }
+  onCategoryChange(): void {
+    this.selectedCategorias = [this.selectedCategorias[0]];
+  }
+  
 
   toggleEtiquetasDropdown(): void {
     this.showEtiquetasDropdown = !this.showEtiquetasDropdown;
   }
 
   filtrarRevistas(): void {
+    this.revistas = [];
+  
     const filtro: FiltroNavegacion = {
+      nombreUsuario: this.nombreUsuario,
       idRevista: null,
       tipoFiltro: 'REVISTAS_ACTIVAS',
       valoresFiltros: [],
@@ -112,18 +125,34 @@ export class NavegarEnRevistasComponent implements OnInit{
         break;
     }
     console.log(filtro);
-    this.navService.obtenerRevistasNavegacionPorFiltro(filtro).subscribe((revistas: RevistaNavegacion[]) => {
-      this.revistas = revistas;
-      //limpiar despues de la busqueda
-      console.log(this.revistas);
-      this.selectedCategorias = [];
-      this.selectedEtiquetas = [];
-    });
+    if(this.nombreUsuario){
+      this.navService.obtenerRevistasNavegacionPorFiltro(filtro).subscribe((revistas: RevistaNavegacion[]) => {
+      const allValid = revistas && revistas.every(revista => revista !== null);
+  
+        if (allValid) {
+            this.revistas = revistas as RevistaNavegacion[]; // Convierte el tipo porque estamos seguros de que no hay `null`
+        } else {
+            console.error("El backend envió un array con valores `null`.");
+            this.revistas = [];
+        }
+  
+        console.log(this.revistas);
+        this.selectedCategorias = [];
+        this.selectedEtiquetas = [];
+      });
+    }
+    else{
+      alert('Favor de iniciar sesión');
+    }  
 
   }
 
   previsualizar(idRevista: number): void {
     this.anunciosService.bloquearAnuncios();
       this.router.navigate(['/suscriptor-control/navegacionRevistas/detallesRevista', idRevista]);
+    }
+    
+    suscribirseRevista(idRevista: number, tituloRevista: string, descripcion: string, anunciosBloqueados:boolean): void {
+      this.router.navigate(['/suscriptor-control/suscribirseARevista', idRevista, tituloRevista, descripcion, anunciosBloqueados]);
   }
 }

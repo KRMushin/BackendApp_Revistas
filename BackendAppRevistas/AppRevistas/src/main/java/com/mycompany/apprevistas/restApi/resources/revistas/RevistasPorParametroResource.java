@@ -6,20 +6,18 @@ package com.mycompany.apprevistas.restApi.resources.revistas;
 
 import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevistaDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
-import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioFiltrosRevistas;
+import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioNavegacionRevistas;
 import com.mycompany.apprevistas.backend.Servicios.Revistas.ServicioLlavesRevistas;
 import com.mycompany.apprevistas.backend.modelos.Filtros.FiltroNavegacionRevistas;
-import com.mycompany.apprevistas.backend.util.AutenticadorJWT;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,10 +35,10 @@ public class RevistasPorParametroResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response filtrarPorNavegacion(FiltroNavegacionRevistas filtro){
-        ServicioFiltrosRevistas service = new ServicioFiltrosRevistas();
-        List<EstadoRevistaDTO> esR = service.navegarPorRevistas(filtro);
+        
+        ServicioNavegacionRevistas service = new ServicioNavegacionRevistas();
+        List<EstadoRevistaDTO> esR = Optional.ofNullable(service.navegarPorRevistas(filtro)).orElse(new ArrayList<>());
         return Response.ok(esR).build();
-    
     }
     
     @GET

@@ -1,0 +1,13 @@
+<button type="button" class="btn btn-sm btn-outline-secondary me-2"
+  (click)="verNumerosRevista(revista.idRevista)">Ver Numeros de Revista</button>
+
+@if (revista.revistaComentable) {
+  <button type="button" class="btn btn-sm btn-outline-danger"
+    (click)="comentarRevista(revista.idRevista, revista.tituloRevista)">Comentar Revista</button>
+  }@else {
+  <button type="button" class="btn btn-sm btn-outline-danger"
+    [disabled]="true" (click)="alertComentario()">Comentarios Deshabilitados </button>
+}  
+  
+<button type="button" class="btn btn-sm btn-outline-danger"
+  (click)="calificarRevista(revista.idRevista, revista.tituloRevista)">Califica Revista</button>

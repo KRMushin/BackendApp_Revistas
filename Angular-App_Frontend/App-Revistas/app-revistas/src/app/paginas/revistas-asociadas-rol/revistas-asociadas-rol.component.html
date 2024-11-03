@@ -1,4 +1,8 @@
-<h2 class="text-center mt-4 fw-bold">¡Estas son tus publicaciones hechas!</h2>
+@if (editorAutorizado) {
+  <h2 class="text-center mt-4 fw-bold">¡Estas son tus publicaciones hechas!</h2>
+}@else if (suscriptorAutorizado) {
+  <h2 class="text-center mt-4 fw-bold">¡Estas son tus Suscripciones!</h2>
+}
 
 <div class="container mt-4" *ngIf="revistas && revistas.length > 0">
   <div id="revistaCarrusel" class="carousel slide" data-bs-ride="carousel">
@@ -22,6 +26,9 @@
               (click)="verRevista(revista.idRevista)">Ver Revista</button>
             @if(editorAutorizado){
               <app-opciones-editor-revista [revista]="revista"></app-opciones-editor-revista>
+            }
+            @if (suscriptorAutorizado) {
+              <app-opciones-suscriptor [revista]="revista" ></app-opciones-suscriptor>
             }  
           </div>
           <small class="text-muted mt-2 d-block">ID: {{ revista.idRevista }}</small>

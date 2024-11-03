@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './paginas/login/login.component';
 import { RegistroComponent } from './paginas/registro/registro.component';
-import { InicioComponent } from './paginas/inicio/inicio.component';
 import { autGuardGuard } from '../guard/aut-guard.guard';
 import { AdminControlComponent } from './paginas-rol/admin-control/admin-control.component';
 import { CompradorControlComponent } from './paginas-rol/comprador-control/comprador-control.component';
@@ -22,6 +21,10 @@ import { NumerosRevistaRolComponent } from './paginas/numeros-revista-rol/numero
 import { SuscriptorControlComponent } from './paginas-rol/suscriptor-control/suscriptor-control.component';
 import { VerPdfComponent } from './vistas-archivos/ver-pdf/ver-pdf.component';
 import { NavegarEnRevistasComponent } from './paginas-rol/suscriptor-control/navegar-en-revistas/navegar-en-revistas.component';
+import { InicioComponent } from './paginas/inicio/inicio.component';
+import { SuscripcionesRevistasComponent } from './paginas-rol/suscriptor-control/suscripciones-revistas/suscripciones-revistas.component';
+import { RevistaSuscripcionComponent } from './paginas-rol/suscriptor-control/revista-suscripcion/revista-suscripcion.component';
+import { ComentarRevistaComponent } from './paginas-rol/suscriptor-control/comentar-revista/comentar-revista.component';
 
 export const routes: Routes = [
 
@@ -59,17 +62,20 @@ export const routes: Routes = [
         {path: 'misPublicaciones/comprarBloqueoAnuncios/:idRevista', component:ComprarBloqueoAnunciosComponent},
         {path: 'misPublicaciones/publicarNumero/:idRevista/:tituloRevista', component: NumerosRevistaRolComponent},
         {path: 'misPublicaciones/verArchivoPDF/:idRevista/:tipoArchivo', component: VerPdfComponent}
-    ]},
-    {
-
-      path: 'suscriptor-control', 
-      component: SuscriptorControlComponent, 
-      canActivate: [autGuardGuard],
-      data: {roles: ['SUSCRIPTOR']}, 
-      children: [
-        {path: 'navegacionRevistas', component: NavegarEnRevistasComponent},
-        {path: 'navegacionRevistas/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent}
-      ]
-
+      ]},
+      {
+        
+        path: 'suscriptor-control', 
+        component: SuscriptorControlComponent, 
+        canActivate: [autGuardGuard],
+        data: {roles: ['SUSCRIPTOR']}, 
+        children: [
+          {path: 'navegacionRevistas', component: NavegarEnRevistasComponent},
+          {path: 'navegacionRevistas/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent},
+          {path: 'misSuscripciones', component: SuscripcionesRevistasComponent},
+          {path: 'misSuscripciones/verArchivoPDF/:idRevista/:tipoArchivo', component: VerPdfComponent},
+          {path: 'suscribirseARevista/:idRevista/:tituloRevista/:descripcion/:anunciosBloqueados', component: RevistaSuscripcionComponent},
+          {path: 'misSuscripciones/comentarRevista/:idRevista/:tituloRevista', component: ComentarRevistaComponent}
+        ]
     }
 ];

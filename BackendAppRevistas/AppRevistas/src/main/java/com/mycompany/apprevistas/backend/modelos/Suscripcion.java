@@ -61,4 +61,10 @@ public class Suscripcion {
         this.calificoRevista = calificoRevista;
     }
     
+    public boolean esSuscripcionValida() {
+    return   nombreUsuario != null && !nombreUsuario.isEmpty() 
+           && idRevista != null && fechaSuscripcion != null;
+}
+
+    
 }
