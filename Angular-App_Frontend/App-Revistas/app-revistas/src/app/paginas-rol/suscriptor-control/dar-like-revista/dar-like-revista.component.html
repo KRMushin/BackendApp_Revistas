@@ -1,0 +1,10 @@
+@if (like) {
+    @if (!like.likeHecho) {
+        <button type="button" class="btn btn-sm btn-outline-danger me-2"
+        (click)="calificarRevista(idRevista)"> Dar Like</button>
+    }
+      
+}@else {
+    <button type="button" class="btn btn-sm btn-outline-danger me-2"
+      [disabled]="true" (click)="alertCalificacion()">Ya le diste like</button>
+}

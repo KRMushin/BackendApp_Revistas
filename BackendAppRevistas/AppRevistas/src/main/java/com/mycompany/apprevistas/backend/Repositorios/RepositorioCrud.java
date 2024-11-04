@@ -13,6 +13,7 @@ import java.util.List;
  * parametro id identifica a nombre de user o long
  * @param <T>
  * @param <ID>
+ * @param <Parametro>
  */
 public interface RepositorioCrud<T, ID, Parametro> {
     

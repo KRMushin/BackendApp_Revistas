@@ -26,7 +26,7 @@ export class PublicacionesHechasComponent implements OnInit{
     if (nombreUsuario) {
       this.serviceRevistas.obtenerLlavesRevistasEditor(nombreUsuario).subscribe({
         next: (llavesRevistas: LlaveRevista[]) => this.llavesRevistas = llavesRevistas,
-        error: (error) => console.error('Error fetching anuncios:', error)
+        error: (error) => console.error('Error  anuncios:', error)
       });
     } else {
       console.error('Nombre de usuario es null');

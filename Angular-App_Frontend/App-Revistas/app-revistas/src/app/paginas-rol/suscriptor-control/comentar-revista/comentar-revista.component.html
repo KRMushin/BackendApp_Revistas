@@ -1,1 +1,63 @@
-<p>comentar-revista works!</p>
+<app-modal-component>
+  [titulo]="'Publicacion exitosa'"
+  [mensaje]="mensajeModal"
+  [botonCerrar]="'Cerrar'">
+</app-modal-component>
+
+<div class="container mt-4">
+    <form [formGroup]="comentarioForm" (ngSubmit)="subirComentario()" class="p-4 border rounded shadow">
+      
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="text-center mb-4">Deja tu Comentario</h3>
+        <button class="btn btn-secondary" (click)="volver()">Volver</button>
+      </div>
+      <br>
+
+
+      <div class="mb-3">
+        <label for="tituloRevista" class="form-label">Título de la Revista:</label>
+        <p class="form-control-plaintext">{{ tituloRevista }}</p>
+      </div>
+  
+      <div class="mb-3">
+        <label for="comentario" class="form-label">Comentario:</label>
+        <textarea
+          id="comentario"
+          formControlName="comentario"
+          class="form-control"
+          rows="4"
+          placeholder="Escribe tu comentario aquí..."
+        ></textarea>
+        <div *ngIf="comentarioForm.get('comentario')?.invalid && comentarioForm.get('comentario')?.touched" class="text-danger mt-1">
+          <small>El comentario es obligatorio.</small>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="fechaComentario" class="form-label">Fecha de Comentario:</label>
+        <input
+          id="fechaComentario"
+          formControlName="fechaComentario"
+          type="date"
+          class="form-control"
+        />
+        <div *ngIf="comentarioForm.get('fechaComentario')?.invalid && comentarioForm.get('fechaComentario')?.touched" class="text-danger mt-1">
+          <small>La fecha de comentario es obligatoria.</small>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary w-100" [disabled]="comentarioForm.invalid">
+        Enviar Comentario
+      </button>
+    </form>
+  </div>
+
+  <!-- conetenedero del listador de comentarios -->
+  <div class="container mt-4">
+    <h3 class="text-center mb-4">Tus Comentarios sobre esta Revista</h3>
+    <app-comentarios-list [comentarios]="comentariosUsuario" [autorizarEliminacion]="true"></app-comentarios-list>
+    
+  </div>
+  
+  
+  

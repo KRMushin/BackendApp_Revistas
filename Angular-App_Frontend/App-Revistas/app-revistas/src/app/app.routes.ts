@@ -32,7 +32,11 @@ export const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"registro", component:RegistroComponent}, 
   {path: "inicio", component:InicioComponent, canActivate: [autGuardGuard]},
-  {path: "admin-control", component : AdminControlComponent, canActivate: [autGuardGuard], data: {roles: ['ADMINISTRADOR']}, children:[
+  {path: "admin-control", component : AdminControlComponent, 
+
+    canActivate: [autGuardGuard], 
+    data: {roles: ['ADMINISTRADOR']}, 
+    children:[
     {path: "anuncios-configuracion", component: AnunciosConfiguracionComponent},
     {path: "perfil-usuario", component: PerfilUsuarioComponent},
     {path: 'anunciosEnSistema', component: AnunciosSistemaComponent},
@@ -42,17 +46,23 @@ export const routes: Routes = [
   ]},
   {
     
-    path: 'comprador-control', component: CompradorControlComponent, canActivate: [autGuardGuard], data: {roles: ['COMPRADOR']}, children: [
+    path: 'comprador-control', component: CompradorControlComponent, 
+    canActivate: [autGuardGuard], 
+    data: {roles: ['COMPRADOR']}, 
+    children: [
+
       {path: 'perfil-usuario', component: PerfilUsuarioComponent},
       {path: 'cartera-digital', component: CarteraDigitalComponent},
       {path: 'comprar-anuncio', component: ComprarAnuncioComponent},
       {path: 'MisCompras', component: AnunciosSistemaComponent}
+
     ]},
     {
       
       path: 'editor-control', 
       component: EditorControlComponent, 
-      canActivate: [autGuardGuard], data: {roles: ['EDITOR']}, 
+      canActivate: [autGuardGuard],
+      data: {roles: ['EDITOR']}, 
       children: [
         {path: 'perfil-usuario', component: PerfilUsuarioComponent},
         {path: 'cartera-digital', component: CarteraDigitalComponent},
@@ -70,12 +80,14 @@ export const routes: Routes = [
         canActivate: [autGuardGuard],
         data: {roles: ['SUSCRIPTOR']}, 
         children: [
+          {path: 'perfil-usuario', component: PerfilUsuarioComponent},
           {path: 'navegacionRevistas', component: NavegarEnRevistasComponent},
           {path: 'navegacionRevistas/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent},
           {path: 'misSuscripciones', component: SuscripcionesRevistasComponent},
           {path: 'misSuscripciones/verArchivoPDF/:idRevista/:tipoArchivo', component: VerPdfComponent},
           {path: 'suscribirseARevista/:idRevista/:tituloRevista/:descripcion/:anunciosBloqueados', component: RevistaSuscripcionComponent},
-          {path: 'misSuscripciones/comentarRevista/:idRevista/:tituloRevista', component: ComentarRevistaComponent}
+          {path: 'misSuscripciones/comentarRevista/:idRevista/:tituloRevista', component: ComentarRevistaComponent},
+          {path: 'misSuscripciones/verNumerosRevista/:idRevista', component: NumerosRevistaRolComponent}
         ]
     }
 ];

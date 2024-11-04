@@ -1,39 +1,52 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="nav-link text-warning" routerLink="/suscriptor-control/">Revistas</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link text-warning" routerLink="/suscriptor-control/navegacionRevistas">Navegar por Revistas</a>
-        
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-warning" routerLink="/suscriptor-control/misSuscripciones">Mis Suscripciones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Revistas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contacto</a>
-      </li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm p-3 mb-5 rounded">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-light" routerLink="/suscriptor-control/">
+      <i class="bi bi-book"></i> Revistas
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-light fw-semibold" routerLink="/suscriptor-control/navegacionRevistas">
+            <i class="bi bi-search"></i> Navegar por Revistas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light fw-semibold" routerLink="/suscriptor-control/misSuscripciones">
+            <i class="bi bi-bookmark-heart"></i> Mis Suscripciones
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/suscriptor-control/perfil-usuario">
+            <i class="bi bi-journal"></i>  Ver Perfil
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/suscriptor-control/">
+            <i class="bi bi-envelope"></i> Revistas Populares
+          </a>
+        </li>
+        <div class="d-flex align-items-center text-white text-decoration-none">
+          <app-cerrar-sesion></app-cerrar-sesion>
+        </div>
+      </ul>
+    </div>
   </div>
 </nav>
 
+ <!-- AREA DE BARRAS LATERALES -->
 
 <div class="container-fluid mt-3">
+
   <div class="row">
     <div class="col-md-2">
       <app-barra-lateral-anuncio></app-barra-lateral-anuncio>
     </div>
 
     <div class="col-md-8">
-
-      
       <router-outlet></router-outlet>
     </div>
 
@@ -41,49 +54,5 @@
       <app-barra-lateral-anuncio></app-barra-lateral-anuncio>
     </div>
   </div>
+  
 </div>
-
-<!-- 
-<div *ngIf="showWelcomeContent" class="row">
-  <div class="container mt-5">
-    <div class="jumbotron text-center">
-      <h1 class="display-4">Bienvenido a nuestra plataforma de suscripción de revistas</h1>
-      <p class="lead">Explora una variedad de revistas en diferentes categorías, suscríbete y accede a contenido
-        exclusivo.</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Ver Revistas Populares</a>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Revista 1">
-          <div class="card-body">
-            <h5 class="card-title">Revista 1</h5>
-            <p class="card-text">Descripción breve de la revista 1.</p>
-            <a href="#" class="btn btn-primary">Leer más</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Revista 2">
-          <div class="card-body">
-            <h5 class="card-title">Revista 2</h5>
-            <p class="card-text">Descripción breve de la revista 2.</p>
-            <a href="#" class="btn btn-primary">Leer más</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Revista 3">
-          <div class="card-body">
-            <h5 class="card-title">Revista 3</h5>
-            <p class="card-text">Descripción breve de la revista 3.</p>
-            <a href="#" class="btn btn-primary">Leer más</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

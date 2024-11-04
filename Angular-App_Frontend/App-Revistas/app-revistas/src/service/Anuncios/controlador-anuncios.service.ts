@@ -15,7 +15,6 @@ export class ControladorAnunciosService {
   private recargarAnuncio = new BehaviorSubject<boolean>(false);
   recargarAnuncios$ = this.recargarAnuncio.asObservable();
 
-  constructor() {}
 
   permitirAnuncios(): void {
     this.estadoAnunciosSubject.next(true);  //actualizar estado
@@ -29,11 +28,6 @@ export class ControladorAnunciosService {
     this.recargarAnuncio.next(true);
     setTimeout(() => this.recargarAnuncio.next(false), 0); // reiniciar el estado
   }
-
-  // recargarAnuncios(): void {
-  //   this.recargarAnuncio.next(true);
-  //   setTimeout(() => this.recargarAnuncio.next(false), 0); // reiniciar el estado
-  // }
 
   suscribirseRecargaAnuncios(callback: () => void): void {
     this.recargarAnuncios$.subscribe((recargar: boolean) => {

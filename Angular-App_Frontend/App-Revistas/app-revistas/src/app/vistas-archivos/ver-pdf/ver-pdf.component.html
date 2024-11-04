@@ -1,13 +1,29 @@
-
 <div class="container my-4">
-    <div class="card shadow-lg">
-      <button class="btn btn-primary mb-3" (click)="regresar()">Regresar</button>
+  <div class="card shadow-lg">
+    <button class="btn btn-primary mb-3 px-4 py-3 fw-bold" style="font-size: 1.2rem;" (click)="regresar()">
+      Regresar
+    </button>
 
-      <div class="card-body p-0">
-        @if (urlSource) {
-            <iframe [src]="urlSource" width="100%" height="600px" allowfullscreen></iframe>
-        }
-    </div>
+    <div class="card-body p-0">
+      @if (urlSource) {
+      <iframe [src]="urlSource" width="100%" height="600px" allowfullscreen></iframe>
+      }
+
+      @if (comentarios && tipoArchivo === 'revista_pdf') {
+
+      <button class="btn btn-secondary w-100 py-3 fw-bold text-uppercase shadow-lg" type="button"
+        data-bs-toggle="collapse" data-bs-target="#comentariosCollapse" aria-expanded="false"
+        aria-controls="comentariosCollapse"
+        style="font-size: 1.2rem; background-color: #1e28dc; color: white; border: none;">
+        👁️ Ver Comentarios de la Revista
+      </button>
+
+      <div class="collapse mt-3" id="comentariosCollapse">
+        <h3 class="text-center mb-4">Comentarios de la revista</h3>
+        <app-comentarios-list [comentarios]="comentarios" [autorizarEliminacion]="false"></app-comentarios-list>
+      </div>
+
+
+      }
     </div>
   </div>
-  

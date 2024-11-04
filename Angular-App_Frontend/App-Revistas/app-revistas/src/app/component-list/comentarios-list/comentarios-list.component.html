@@ -1,0 +1,25 @@
+<app-modal-component>
+    [titulo]="'Publicacion exitosa'"
+    [mensaje]="mensajeModal"
+    [botonCerrar]="'Cerrar'">
+  </app-modal-component>
+  
+<div class="container mt-4">
+  @if (comentarios && comentarios.length > 0) {
+    <div *ngFor="let comentario of comentarios" class="card mb-3 shadow-sm border-0">
+      <div class="card-body">
+        <h3 class="card-title fw-bold text-dark" style="font-size: 1.5rem;">Autor: {{ comentario.nombreUsuario }}</h3>
+        <h4 class="card-subtitle mb-2 text-muted" style="font-size: 1.1rem;">Fecha de publicación: {{ comentario.fechaComentario | date: 'mediumDate' }}</h4>
+        <p class="card-text text-dark" style="font-size: 1.1rem;">{{ comentario.comentario }}</p>
+        <button 
+          *ngIf="autorizarEliminacion" 
+          class="btn btn-danger btn-lg position-absolute top-0 end-0 m-2" 
+          (click)="eliminarComentario(comentario.idComentario)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  } @else {
+    <p class="text-muted text-center">No has hecho comentarios</p>
+  }
+</div>

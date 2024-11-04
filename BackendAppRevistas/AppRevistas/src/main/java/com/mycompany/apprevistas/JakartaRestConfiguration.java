@@ -18,7 +18,9 @@ public class JakartaRestConfiguration extends ResourceConfig {
         packages("com.mycompany.apprevistas.restApi.resources", 
                         "com.mycompany.apprevistas.restApi.resources.Anuncios",
                         "com.mycompany.apprevistas.restApi.resources.Revistas",
+                        "com.mycompany.apprevistas.restApi.resources.revistas",
                         "com.mycompany.apprevistas.restApi.resources.Suscripciones",
+                        "com.mycompany.apprevistas.restApi.resources.ComentariosYLikes",
                         "com.mycompany.apprevistas.MapperExcepciones");
 //                        register(AutenticadorFiltro.class);
                         register(MultiPartFeature.class);

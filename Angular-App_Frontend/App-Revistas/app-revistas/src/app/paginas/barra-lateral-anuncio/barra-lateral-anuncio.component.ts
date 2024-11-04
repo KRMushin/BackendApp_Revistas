@@ -49,8 +49,7 @@ export class BarraLateralAnuncioComponent implements OnInit{
     });
     
   }
-
-    cargarAnuncioAleatorio(){
+  cargarAnuncioAleatorio(){
       
       this.despliegueService.obtnerAnuncioAleatorio().subscribe({
         next: (response: LlaveAnuncioDTO) => {
@@ -95,3 +94,28 @@ export class BarraLateralAnuncioComponent implements OnInit{
   }
 
 
+/*
+ngOnInit(): void {
+      // obteniendo el estado global
+      this.controladorAnuncios.estadoAnuncios$.subscribe((permitirAnuncios: boolean) => {
+        this.mostrarAnuncios = permitirAnuncios;
+        
+        if (permitirAnuncios) {
+            this.cargarAnuncioAleatorio(); 
+        } else {
+          console.log('Anuncios bloqueados.');
+          this.cargarAnuncio = false;
+        }
+          this.cdr.detectChanges();
+    });
+
+    this.controladorAnuncios.suscribirseRecargaAnuncios(() => {
+      if (this.mostrarAnuncios) {
+        this.cargarAnuncioAleatorio();  
+        this.cargarAnuncio = true;
+      }
+    });
+    
+  }
+
+*/ 

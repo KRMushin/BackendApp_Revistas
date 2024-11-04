@@ -193,6 +193,16 @@ CREATE TABLE suscripciones (
     FOREIGN KEY (id_revista) REFERENCES revistas(id_revista)
 );
 
+---------------------------------------comentarios
+CREATE TABLE revistas_comentarios (
+    id_comentario BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    comentario TEXT,
+    nombre_usuario VARCHAR(15),
+    id_revista BIGINT,
+    fecha_comentario DATE,
+    FOREIGN KEY (id_revista) REFERENCES revistas(id_revista) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE likes_revistas (
     id_like BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(20),

@@ -2,12 +2,26 @@
   (click)="verNumerosRevista(revista.idRevista)">Ver Numeros de Revista</button>
 
 @if (revista.revistaComentable) {
-  <button type="button" class="btn btn-sm btn-outline-danger"
+  <button type="button" class="btn btn-sm btn-outline-danger me-2"
     (click)="comentarRevista(revista.idRevista, revista.tituloRevista)">Comentar Revista</button>
   }@else {
-  <button type="button" class="btn btn-sm btn-outline-danger"
+  <button type="button" class="btn btn-sm btn-outline-danger me-2"
     [disabled]="true" (click)="alertComentario()">Comentarios Deshabilitados </button>
 }  
-  
-<button type="button" class="btn btn-sm btn-outline-danger"
-  (click)="calificarRevista(revista.idRevista, revista.tituloRevista)">Califica Revista</button>
+      <!-- area de likes -->
+@if (revista.revistaLikeable ){
+  <button *ngIf="!likeHecho" 
+          class="btn btn-sm btn-outline-danger me-2"
+          (click)="darLike(revista.idRevista)">
+    Dar Like
+  </button>
+  @if (likeHecho) {
+    <button type="button" class="btn btn-sm btn-outline-danger me-2" disabled>
+      Ya has dado like
+    </button>
+  }
+}@else {
+  <button type="button" class="btn btn-sm btn-outline-danger me-2" disabled>
+    Likes desactivados
+  </button>
+}       

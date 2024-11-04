@@ -39,6 +39,7 @@ export class DetallesRevistaEditorSuscriptorComponent implements OnInit{
     this.idRevista = Number(this.ruta.snapshot.paramMap.get('idRevista'));
 
     this.revistasService.obtenerDatosRevista(this.idRevista).subscribe({
+      
       next: (revista: RevistaDatosDTO) => {
         if(revista.bloquearAnuncios){
           this.controladorAnuncios.bloquearAnuncios();

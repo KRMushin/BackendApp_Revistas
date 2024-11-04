@@ -71,7 +71,6 @@ public class RevistasResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response publicarRevista(RevistaDTO revistaDTO){
         
-
          ServicioRevistas revistaService = new ServicioRevistas();
          Revista revista = revistaService.publicarDatosRevista(revistaDTO);
         return Response.ok().entity(revista.getIdRevista()).build();

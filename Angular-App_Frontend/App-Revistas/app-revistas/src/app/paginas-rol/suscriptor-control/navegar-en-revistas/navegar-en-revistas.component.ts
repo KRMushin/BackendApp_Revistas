@@ -152,7 +152,11 @@ export class NavegarEnRevistasComponent implements OnInit{
       this.router.navigate(['/suscriptor-control/navegacionRevistas/detallesRevista', idRevista]);
     }
     
-    suscribirseRevista(idRevista: number, tituloRevista: string, descripcion: string, anunciosBloqueados:boolean): void {
+  suscribirseRevista(idRevista: number, tituloRevista: string, descripcion: string, anunciosBloqueados:boolean): void {
       this.router.navigate(['/suscriptor-control/suscribirseARevista', idRevista, tituloRevista, descripcion, anunciosBloqueados]);
+  }
+
+  ngOnDestroy(): void {
+    this.anunciosService.recargarAnuncios();
   }
 }

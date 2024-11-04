@@ -60,7 +60,12 @@ export class NumerosRevistaRolComponent implements OnInit{
 
   verNumeroRevista(idnumero: number) : void {
     this.controladorAnuncios.bloquearAnuncios(); // esto para que el bloqueo lo decida la logica de negocio
-    this.router.navigate(['/editor-control/misPublicaciones/verArchivoPDF', idnumero, 'numeroRevista_pdf']);
+    if(this.editorAutorizado){
+      this.router.navigate(['/editor-control/misPublicaciones/verArchivoPDF', idnumero, 'numeroRevista_pdf']);
+    }else{
+      this.router.navigate(['/suscriptor-control/misSuscripciones/verArchivoPDF', idnumero, 'numeroRevista_pdf']);
+    }
+
   }
 
   

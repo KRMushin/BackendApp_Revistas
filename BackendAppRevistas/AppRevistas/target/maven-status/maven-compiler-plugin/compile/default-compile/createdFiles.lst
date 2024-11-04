@@ -14,6 +14,7 @@ com/mycompany/apprevistas/backend/modelos/Filtros/FiltroNavegacionRevistas.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioLlavesRevista.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioCategoriaConEtiquetas.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorAnuncio$1.class
+com/mycompany/apprevistas/restApi/resources/ComentariosYLikes/LikesResource.class
 com/mycompany/apprevistas/backend/Repositorios/RepositorioLlaveEntidad.class
 com/mycompany/apprevistas/backend/ActualizacionesModelo/ActualizacionesUsuario.class
 com/mycompany/apprevistas/restApi/resources/Anuncios/AnunciosDespliegueResource.class
@@ -29,6 +30,7 @@ com/mycompany/apprevistas/restApi/resources/revistas/EstadosRevistaResource.clas
 com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioLlavesRevistas.class
 com/mycompany/apprevistas/backend/AnunciosDTOs/AnuncioDTO.class
 com/mycompany/apprevistas/backend/Servicios/ServicioCarteraDigital.class
+com/mycompany/apprevistas/restApi/resources/ComentariosYLikes/ComentariosResource.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioEstadoRevistas.class
 com/mycompany/apprevistas/backend/constantes/TipoCostoRevista$1.class
 com/mycompany/apprevistas/backend/usuariosDTOs/CredencialUsuario.class
@@ -68,6 +70,7 @@ com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioNumerosRevista.clas
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasUsuarios.class
 com/mycompany/apprevistas/MapperExcepciones/CredencialInvalidaMapper.class
 com/mycompany/apprevistas/AutenticadorFiltro/AutenticadorFiltro.class
+com/mycompany/apprevistas/backend/modelos/LikeRevista.class
 com/mycompany/apprevistas/backend/Servicios/Suscripciones/ServicioSuscripciones.class
 com/mycompany/apprevistas/backend/modelos/Usuario.class
 com/mycompany/apprevistas/backend/usuariosDTOs/LlaveUsuarioDTO.class
@@ -81,6 +84,7 @@ com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasCarteraDigital.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorAnuncio.class
 com/mycompany/apprevistas/backend/modelos/PreferenciaUsuario.class
 com/mycompany/apprevistas/backend/ConsultasModelos/Revistas/ConsultasNumerosRevistas.class
+com/mycompany/apprevistas/backend/Repositorios/Implementaciones/ComentariosYLikes/RepositorioComentarios.class
 com/mycompany/apprevistas/backend/RevistasDTOs/Configs/EstadoConfigRevistaDTO.class
 com/mycompany/apprevistas/backend/RevistasDTOs/NumeroRevistaDTO.class
 com/mycompany/apprevistas/backend/modelos/Etiqueta.class
@@ -96,18 +100,22 @@ com/mycompany/apprevistas/backend/constantes/TipoPreferencia.class
 com/mycompany/apprevistas/restApi/resources/CarteraDigitalResource.class
 com/mycompany/apprevistas/restApi/resources/PreciosGlobalesResource.class
 com/mycompany/apprevistas/backend/modelos/CarteraDigital.class
+com/mycompany/apprevistas/backend/ConsultasModelos/ComentariosYLikes/ConsultasComentarios.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorPreferenciaUsuario.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasPreciosGlobales.class
 com/mycompany/apprevistas/backend/usuariosDTOs/RegistroUsuarioDTO.class
+com/mycompany/apprevistas/backend/Servicios/ComentariosYLikes/ServicioLikes.class
 com/mycompany/apprevistas/MapperExcepciones/NotFoundMapper.class
 com/mycompany/apprevistas/backend/Servicios/Anuncios/ServicioConfigAnuncios.class
 com/mycompany/apprevistas/backend/modelos/Revista.class
+com/mycompany/apprevistas/backend/modelos/Comentario.class
 com/mycompany/apprevistas/backend/util/EncriptadorDatos.class
 com/mycompany/apprevistas/backend/ConsultasModelos/Revistas/ConsultasPorFiltro.class
 com/mycompany/apprevistas/backend/ConsultasModelos/ConsultasAnuncios.class
 com/mycompany/apprevistas/restApi/resources/RegistroResource.class
 com/mycompany/apprevistas/backend/RevistasDTOs/CompraBloqueoDTO.class
 com/mycompany/apprevistas/backend/RevistasDTOs/RevistaDTO.class
+com/mycompany/apprevistas/backend/Servicios/ComentariosYLikes/ServicioComentarios.class
 com/mycompany/apprevistas/restApi/resources/revistas/BloqueosRevistaResource.class
 com/mycompany/apprevistas/backend/modelos/Suscripcion.class
 com/mycompany/apprevistas/backend/constantes/TipoAnuncio.class
@@ -122,6 +130,7 @@ com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioNavegacionRevistas$
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioRevistasPDF.class
 com/mycompany/apprevistas/backend/Excepciones/DatosInvalidosUsuarioException.class
 com/mycompany/apprevistas/backend/util/AutenticadorJWT.class
+com/mycompany/apprevistas/backend/ConsultasModelos/ComentariosYLikes/ConsultasLikes.class
 com/mycompany/apprevistas/backend/RevistasDTOs/Configs/EstadoRevista.class
 com/mycompany/apprevistas/backend/Excepciones/ConflictoUsuarioException.class
 com/mycompany/apprevistas/backend/CreadoresModelo/CreadorRevista.class
@@ -135,6 +144,7 @@ com/mycompany/apprevistas/resources/JakartaEE10Resource.class
 com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioRevistas.class
 com/mycompany/apprevistas/backend/constantes/TipoCostoRevista$2.class
 com/mycompany/apprevistas/restApi/resources/Anuncios/AnunciosResource.class
+com/mycompany/apprevistas/backend/Repositorios/Implementaciones/ComentariosYLikes/RespositorioLikes.class
 com/mycompany/apprevistas/backend/modelos/Categoria.class
 com/mycompany/apprevistas/backend/Servicios/ServicioContraseñas.class
 com/mycompany/apprevistas/backend/ConsultasModelos/Revistas/ConsultasComprasBloqueos.class
