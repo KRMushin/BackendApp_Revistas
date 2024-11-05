@@ -8,8 +8,13 @@ import com.mycompany.apprevistas.backend.AnunciosDTOs.LlaveAnuncioDTO;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.Excepciones.ErrorInternoException;
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioCrud;
+import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
+import com.mycompany.apprevistas.backend.modelos.Reportes.FiltrosAdminDTO;
+import com.mycompany.apprevistas.backend.modelos.Reportes.ReporteCostosRevista;
+import com.mycompany.apprevistas.backend.modelos.Reportes.ReporteIngresosAnuncios;
+import com.mycompany.apprevistas.backend.modelos.Revista;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -166,5 +171,49 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
             anuncio.setRutaVideo(rs.getString("ruta_video"));
             anuncio.setContenidoTexto(rs.getString("ruta_texto"));
             return anuncio;
+    }
+
+    public ReporteIngresosAnuncios obtenerRerporteAnuncios(FiltrosAdminDTO filtro) throws SQLException {
+        ReporteIngresosAnuncios repIngresos = new ReporteIngresosAnuncios();
+        String consultaG = "SELECT nombre_usuario, fecha_compra, precio_total, tipo_anuncio, SUM(precio_total) OVER () AS total_ingreso FROM anuncios WHERE 1=1";
+        
+        StringBuilder consulta = new StringBuilder();
+        consulta.append(consultaG);
+        
+             if (filtro.getFechaInicio() != null) {
+                consulta.append(" AND fecha_compra >= ?");
+             }
+             if (filtro.getFechaFin() != null) {
+                consulta.append(" AND fecha_compra <= ?");
+             }
+
+        try (PreparedStatement stmt = conn.prepareStatement(consulta.toString())) {
+            int indice = 1;
+
+                if (filtro.getFechaInicio() != null) {
+                    stmt.setDate(indice++, Date.valueOf(filtro.getFechaInicio()));
+                }
+                if (filtro.getFechaFin() != null) {
+                    stmt.setDate(indice++, Date.valueOf(filtro.getFechaFin()));
+                }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Anuncio> anuncios = new ArrayList<>();
+
+                while (rs.next()) {
+                    Anuncio r = new Anuncio();
+                    r.setNombreUsuario(rs.getString("nombre_usuario"));
+                    r.setFechaCompra(rs.getDate("fecha_compra").toLocalDate());
+                    r.setPrecioTotal(rs.getDouble("precio_total"));
+                    r.setTipoAnuncio(TipoAnuncio.valueOf(rs.getString("tipo_anuncio")));
+                    anuncios.add(r);
+
+                    repIngresos.setTotalIngresos(rs.getDouble("total_ingreso"));
+                }
+                repIngresos.setAnuncios(anuncios);
+            }
+    }
+    return repIngresos;
+
     }
 }

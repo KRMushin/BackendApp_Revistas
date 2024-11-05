@@ -11,9 +11,12 @@ import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas.
 import com.mycompany.apprevistas.backend.RevistasDTOs.CompraBloqueoDTO;
 import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoConfigRevistaDTO;
 import com.mycompany.apprevistas.backend.modelos.CarteraDigital;
+import com.mycompany.apprevistas.backend.modelos.Reportes.FiltrosAdminDTO;
+import com.mycompany.apprevistas.backend.modelos.Reportes.ReporteIngresosEditores;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -49,6 +52,24 @@ public class ConsultasComprasBloqueos {
                         conn.rollback();
                         throw new DatabaseException(e);
                     }
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    public List<CompraBloqueoDTO> listarCompras() {
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+              repositorio.setConn(conn);
+              return repositorio.listarCompras();
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    public ReporteIngresosEditores obtnerReporteEditor(FiltrosAdminDTO filtro) {
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+              repositorio.setConn(conn);
+              return repositorio.reporteIngresos(filtro);
         } catch (SQLException e) {
             throw new DatabaseException(e);
         }

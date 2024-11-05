@@ -9,6 +9,8 @@ import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas.
 import com.mycompany.apprevistas.backend.RevistasDTOs.Configs.EstadoRevista;
 import com.mycompany.apprevistas.backend.RevistasDTOs.LlaveRevistaDTO;
 import com.mycompany.apprevistas.backend.constantes.RevistaEstadoVisibilidad;
+import com.mycompany.apprevistas.backend.modelos.Reportes.FiltrosAdminDTO;
+import com.mycompany.apprevistas.backend.modelos.Reportes.ReporteCostosRevista;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -41,6 +43,15 @@ public class ConsultasLlavesRevistas {
         try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
                 repositorioLlavesRevista.setConn(conn);
                 return repositorioLlavesRevista.obtenerLlavePorId(idRevista);
+        } catch (SQLException ex) {
+                throw new DatabaseException(ex);
+        }
+    }
+
+    public ReporteCostosRevista obtnerReporteCostoRevista(FiltrosAdminDTO filtro) {
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+                repositorioLlavesRevista.setConn(conn);
+                return repositorioLlavesRevista.obtenerReporte(filtro);
         } catch (SQLException ex) {
                 throw new DatabaseException(ex);
         }

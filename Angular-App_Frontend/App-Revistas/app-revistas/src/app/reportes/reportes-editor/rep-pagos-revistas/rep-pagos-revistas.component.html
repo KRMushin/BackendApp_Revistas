@@ -1,0 +1,21 @@
+<p>rep-pagos-revistas works!</p>
+<div *ngIf="cargando">
+    <p>Cargando reporte de pagos...</p>
+  </div>
+  
+  <div *ngIf="!cargando && sinDatos">
+    <p>No hay pagos para mostrar.</p>
+  </div>
+  
+  <div *ngIf="!cargando && datosReporte.length">
+    <h3>Reporte de Pagos en Revistas</h3>
+    <ul *ngFor="let pago of datosReporte">
+      <li>
+        <h4>{{ pago.tituloRevista }} - {{ pago.nombreAutor }}</h4>
+        <p><strong>Fecha de Compra:</strong> {{ pago.fechaCompra | date:'yyyy-MM-dd' }}</p>
+        <p><strong>Días de Compra:</strong> {{ pago.diasCompra }}</p>
+        <p><strong>Costo Total:</strong> {{ pago.costoTotal | currency: 'Q' }}</p>
+      </li>
+    </ul>
+  </div>
+  

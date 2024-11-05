@@ -1,0 +1,19 @@
+<div *ngIf="cargando">
+    <p>Cargando suscripciones...</p>
+  </div>
+  
+  <div *ngIf="!cargando && sinDatos">
+    <p>No hay suscripciones para mostrar.</p>
+  </div>
+  
+  <div *ngIf="!cargando && datosReporte.length">
+    <h3>Reporte de Suscripciones en Revistas</h3>
+    <ul *ngFor="let suscripcion of datosReporte">
+      <li>
+        <h4>{{ suscripcion.tituloRevista }} - {{ suscripcion.nombreAutor }}</h4>
+        <p><strong>Usuario Suscriptor:</strong> {{ suscripcion.nombreUsuario }}</p>
+        <p><strong>Fecha de Suscripción:</strong> {{ suscripcion.fechaSuscripcion | date:'yyyy-MM-dd' }}</p>
+      </li>
+    </ul>
+  </div>
+  

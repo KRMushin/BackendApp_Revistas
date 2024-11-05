@@ -28,7 +28,7 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
     public void setConn(Connection conn) {
         this.conn = conn;
     }
-
+    
     @Override // listar por nombre de usuario
     public List<Revista> listar(String nombreUsuario) throws SQLException {
         List<Revista> revistas = new ArrayList<>();
@@ -45,7 +45,6 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
             }
         return revistas;
     }
-
     @Override
     public Revista guardar(Revista modelo) throws SQLException {
         String insertModel = "INSERT INTO revistas (id_categoria, titulo_revista, nombre_autor, descripcion, fecha_publicacion, "
@@ -75,7 +74,6 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
                   return modelo;
         }
     }
-
     @Override
     public Revista actualizar(Revista modelo) throws SQLException {
         /*          METODO PARA ACTUALIZAR LOS ESTADOS DE LA REVISTA */
@@ -91,7 +89,6 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
             return modelo;
         } 
     }
-
     @Override
     public Revista obtenerPorId(Long identificador) throws SQLException {
 
@@ -107,7 +104,6 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
              }
         } 
     }
-    
     public void activarRevista(Long idRevista) throws SQLException {
         
         String insertUpdate = " UPDATE revistas SET estado_revista = ? WHERE id_revista = ? ";
@@ -119,7 +115,6 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
         }
     
     }
-   
     private Revista crearRevista(ResultSet rs) throws SQLException {
         Revista revista = new Revista();
         revista.setIdRevista(rs.getLong("id_revista"));
@@ -132,7 +127,6 @@ public class RepositorioRevistas implements RepositorioCrud<Revista,Long,String>
         revista.setEstadoRevista(rs.getString("estado_revista"));
         return revista;
     }
-
     public void actualizarCostoRevista(NuevoCostoDTO nuevoCosto) throws SQLException {
         String insertUpdate = "UPDATE revistas SET " + nuevoCosto.getTipoCosto().obtenerConsulta() + "= ? WHERE id_revista = ?";
         try(PreparedStatement stmt = conn.prepareStatement(insertUpdate)){

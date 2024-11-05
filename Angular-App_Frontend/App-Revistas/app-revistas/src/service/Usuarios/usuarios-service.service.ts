@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuariosService {
-
+  
   private http = inject(HttpClient);
   private baseUrl: String = appSettings.apiUrl; // api url de la clase appSettings raiz del proyecto
-
+  
   constructor() { }
 
   public obtenerDatosUsuario(nombreUsuario: string): Observable<Usuario> {
@@ -22,6 +22,9 @@ export class UsuariosService {
     return this.http.get<Blob>(`${this.baseUrl}foto/usuario/${nombreUsuario}`);
   }
   
+  obtenerUsuarios(): Observable<String[]> {
+    return this.http.get<String[]>(`${this.baseUrl}datos/usuario/listarCompradores`);
+  }
 
 
 }

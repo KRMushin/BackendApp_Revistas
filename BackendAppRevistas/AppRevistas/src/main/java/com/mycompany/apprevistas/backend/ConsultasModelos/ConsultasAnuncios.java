@@ -11,6 +11,9 @@ import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.anuncios.
 import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.RepositorioCarterasDigitales;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import com.mycompany.apprevistas.backend.modelos.CarteraDigital;
+import com.mycompany.apprevistas.backend.modelos.Reportes.FiltrosAdminDTO;
+import com.mycompany.apprevistas.backend.modelos.Reportes.ReporteIngresosAnuncios;
+import com.mycompany.apprevistas.backend.modelos.Reportes.ReporteIngresosEditores;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -101,6 +104,15 @@ public class ConsultasAnuncios {
             throw new DatabaseException(e);
         }
     }
-    
-     
+
+    public ReporteIngresosAnuncios obtnerReporteAnuncios(FiltrosAdminDTO filtro) {
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+             repositorioAnuncios.setConn(conn);
+             return repositorioAnuncios.obtenerRerporteAnuncios(filtro);
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+
 }

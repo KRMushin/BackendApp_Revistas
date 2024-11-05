@@ -22,6 +22,7 @@ import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -151,6 +152,15 @@ public class ConsultasUsuarios {
 
         } catch (SQLException ex) {
             throw new DatabaseException(ex);
+        }
+    }
+
+    public List<String> obtnerCompradores() {
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+                repositorioUsuarios.setConn(conn);
+                return repositorioUsuarios.listarCompradores();
+        } catch(SQLException e){
+            throw new DatabaseException("error en capa de consultas");
         }
     }
 }

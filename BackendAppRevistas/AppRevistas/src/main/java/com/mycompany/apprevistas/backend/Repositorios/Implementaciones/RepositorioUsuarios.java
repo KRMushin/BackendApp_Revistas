@@ -18,6 +18,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -120,5 +122,20 @@ public class RepositorioUsuarios implements RepositorioEscrituraLectura<Usuario,
                  throw new DatosInvalidosUsuarioException();
              }
         }
+    }
+
+    public List<String> listarCompradores() throws SQLException {
+        List<String> compradores = new ArrayList<>();
+        String query = "SELECT nombre_usuario FROM usuarios WHERE rol_usuario = 'COMPRADOR'";
+
+        try (PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                compradores.add(rs.getString("nombre_usuario"));
+            }
+
+        } 
+        return compradores;
     }
 }

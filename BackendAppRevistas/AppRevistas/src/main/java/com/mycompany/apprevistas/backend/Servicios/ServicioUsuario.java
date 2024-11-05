@@ -11,6 +11,7 @@ import com.mycompany.apprevistas.backend.CreadoresModelo.CreadorUsuario;
 import com.mycompany.apprevistas.backend.usuariosDTOs.UsuarioDTO;
 import com.mycompany.apprevistas.backend.modelos.Usuario;
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,6 +44,10 @@ public class ServicioUsuario {
          Usuario usuario = creadorUsuario.validarDatosUsuario(usuarioDTO);
          usuario.setPreferenciasUsuario(creadorPreferencias.validarPreferencias(usuarioDTO));
         actualizacionUsuario.actualizarUsuarioConPreferencias(usuario);
+    }
+
+    public List<String> listarCompradores() {
+        return consultaUsuario.obtnerCompradores();
     }
 
 

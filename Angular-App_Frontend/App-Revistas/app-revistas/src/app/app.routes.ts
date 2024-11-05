@@ -25,6 +25,8 @@ import { InicioComponent } from './paginas/inicio/inicio.component';
 import { SuscripcionesRevistasComponent } from './paginas-rol/suscriptor-control/suscripciones-revistas/suscripciones-revistas.component';
 import { RevistaSuscripcionComponent } from './paginas-rol/suscriptor-control/revista-suscripcion/revista-suscripcion.component';
 import { ComentarRevistaComponent } from './paginas-rol/suscriptor-control/comentar-revista/comentar-revista.component';
+import { ReportesEditorComponent } from './reportes/reportes-editor/reportes-editor.component';
+import { ReportesAdministradorComponent } from './reportes/reportes-administrador/reportes-administrador.component';
 
 export const routes: Routes = [
 
@@ -42,7 +44,9 @@ export const routes: Routes = [
     {path: 'anunciosEnSistema', component: AnunciosSistemaComponent},
     {path: 'preciosGlobales' , component: GestionPreciosGlobalesComponent},
     {path: 'gestionRevistas', component: CostosRevistasComponent},
-    {path: 'activacionRevistas', component: GestionRevistasComponent}
+    {path: 'activacionRevistas', component: GestionRevistasComponent},
+    {path: 'reportesAdministrador', component: ReportesAdministradorComponent}
+
   ]},
   {
     
@@ -71,7 +75,8 @@ export const routes: Routes = [
         {path: 'misPublicaciones/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent } ,
         {path: 'misPublicaciones/comprarBloqueoAnuncios/:idRevista', component:ComprarBloqueoAnunciosComponent},
         {path: 'misPublicaciones/publicarNumero/:idRevista/:tituloRevista', component: NumerosRevistaRolComponent},
-        {path: 'misPublicaciones/verArchivoPDF/:idRevista/:tipoArchivo', component: VerPdfComponent}
+        {path: 'misPublicaciones/verArchivoPDF/:idRevista/:tipoArchivo', component: VerPdfComponent},
+        {path: 'reportesEditor', component: ReportesEditorComponent}
       ]},
       {
         

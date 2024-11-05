@@ -1,0 +1,25 @@
+<p>rep-anuncios-comprados works!</p>
+<div *ngIf="cargando" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando reporte de anuncios...</span>
+    </div>
+    <p>Cargando reporte de anuncios...</p>
+  </div>
+  
+  <div *ngIf="!cargando && sinDatos" class="alert alert-warning text-center my-4">
+    No hay datos para mostrar.
+  </div>
+  
+  <div *ngIf="!cargando && !sinDatos" class="container my-4">
+    <h3 class="text-primary text-center mb-4">Reporte de Anuncios Vendidos</h3>
+    <ul class="list-group">
+      <li *ngFor="let anuncio of datosReporte" class="list-group-item">
+        <p><strong>Usuario:</strong> {{ anuncio.nombreUsuario }}</p>
+        <p><strong>Fecha de Compra:</strong> {{ anuncio.fechaCompra ? (anuncio.fechaCompra | date: 'yyyy-MM-dd') : 'Sin fecha' }}</p>
+        <p><strong>Tipo de Anuncio:</strong> {{ anuncio.tipoAnuncio }}</p>
+        <p><strong>Precio Total:</strong> {{ anuncio.precioTotal | currency: 'Q' }}</p>
+        <p><strong>Días de Duración:</strong> {{ anuncio.diasDuracion }}</p>
+      </li>
+    </ul>
+  </div>
+  

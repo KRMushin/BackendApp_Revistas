@@ -1,0 +1,20 @@
+
+<div *ngIf="sinDatos">
+  <p>No hay comentarios para mostrar.</p>
+</div>
+
+<div *ngIf="datosReporte.length">
+  <h3>Reporte de Comentarios en Revistas</h3>
+  <ul *ngFor="let revista of datosReporte">
+    <li>
+      <h4>{{ revista.tituloRevista }}</h4>
+      <ul>
+        <li *ngFor="let comentario of revista.comentarios">
+          <p><strong>Comentario:</strong> {{ comentario.comentario }}</p>
+          <p><strong>Usuario:</strong> {{ comentario.nombreUsuario }}</p>
+          <p><strong>Fecha:</strong> {{ comentario.fechaComentario | date:'yyyy-MM-dd' }}</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

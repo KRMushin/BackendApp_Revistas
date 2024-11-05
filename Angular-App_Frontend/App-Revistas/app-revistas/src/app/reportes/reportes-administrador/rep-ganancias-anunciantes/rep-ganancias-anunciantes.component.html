@@ -1,0 +1,25 @@
+  <div *ngIf="!cargando && sinDatos" class="alert alert-warning text-center my-4">
+    No hay datos para mostrar.
+  </div>
+  
+  <div *ngIf="!cargando && !sinDatos" class="container my-4">
+    <h3 class="text-primary text-center mb-4">Reporte de Ganancias de Anunciantes</h3>
+    <ul class="list-group">
+      <li *ngFor="let anuncio of datosReporte" class="list-group-item">
+        <p><strong>Usuario:</strong> {{ anuncio.nombreUsuario }}</p>
+        <p><strong>Fecha de Compra:</strong> {{ anuncio.fechaCompra ? (anuncio.fechaCompra | date: 'yyyy-MM-dd') : 'Sin fecha' }}</p>
+        <p><strong>Tipo de Anuncio:</strong> {{ anuncio.tipoAnuncio }}</p>
+        <p><strong>Precio Total:</strong> {{ anuncio.precioTotal | currency: 'Q' }}</p>
+        <ng-container *ngIf="anuncio.tipoAnuncio === 'IMAGEN_TEXTO' && anuncio.rutaImagenTexto">
+          <p><strong>Ruta Imagen y Texto:</strong> {{ anuncio.rutaImagenTexto }}</p>
+        </ng-container>
+        <ng-container *ngIf="anuncio.tipoAnuncio === 'VIDEO' && anuncio.rutaVideo">
+          <p><strong>Ruta Video:</strong> {{ anuncio.rutaVideo }}</p>
+        </ng-container>
+        <ng-container *ngIf="anuncio.tipoAnuncio === 'TEXTO' && anuncio.rutaTexto">
+          <p><strong>Ruta Texto:</strong> {{ anuncio.rutaTexto }}</p>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+  

@@ -1,0 +1,95 @@
+<div *ngIf="cargando" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando reporte de ganancias...</span>
+    </div>
+    <p>Cargando reporte de ganancias...</p>
+  </div>
+  
+  <div *ngIf="!cargando && !reporteGanancias" class="alert alert-warning text-center my-4">
+    No hay datos para mostrar.
+  </div>
+  
+  <div *ngIf="!cargando && reporteGanancias" class="container my-5">
+    <h3 class="text-primary text-center mb-4">Reporte de Ganancias del Sistema</h3>
+  
+    <!-- Total de Ingresos, Costos y Ganancia -->
+    <div class="row text-center mb-4">
+      <div class="col-md-4">
+        <div class="card border-success">
+          <div class="card-body">
+            <h5 class="card-title text-success">Total Ingresos</h5>
+            <p class="card-text">{{ reporteGanancias.totalIngresos | currency: 'Q' }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-danger">
+          <div class="card-body">
+            <h5 class="card-title text-danger">Total Costos</h5>
+            <p class="card-text">{{ reporteGanancias.totalCostos | currency: 'Q' }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" [ngClass]="reporteGanancias.totalGanancia >= 0 ? 'border-primary' : 'border-danger'">
+          <div class="card-body">
+            <h5 class="card-title" [ngClass]="reporteGanancias.totalGanancia >= 0 ? 'text-primary' : 'text-danger'">
+              {{ reporteGanancias.totalGanancia >= 0 ? 'Total Ganancia' : 'Total de Ingreso' }}
+            </h5>
+            <p class="card-text">
+              {{ reporteGanancias.totalGanancia >= 0 ? (reporteGanancias.totalGanancia | currency: 'Q') : 'Q 0.00' }}
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+  
+    <!-- Ingresos de Editores -->
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white">
+        Ingresos de Editores (Total: {{ reporteGanancias.ingresosEditores.totalIngresos | currency: 'Q' }})
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let compra of reporteGanancias.ingresosEditores.compras">
+          <p><strong>Usuario:</strong> {{ compra.nombreUsuario }}</p>
+          <p><strong>Fecha de Compra:</strong> {{ compra.fechaCompra | date:'yyyy-MM-dd' }}</p>
+          <p><strong>Días de Compra:</strong> {{ compra.diasCompra }}</p>
+          <p><strong>Costo Total:</strong> {{ compra.costoTotal | currency: 'Q' }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Ingresos de Anuncios -->
+    <div class="card mb-4">
+      <div class="card-header bg-info text-white">
+        Ingresos de Anuncios (Total: {{ reporteGanancias.ingresosAnuncios.totalIngresos | currency: 'Q' }})
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let anuncio of reporteGanancias.ingresosAnuncios.anuncios">
+          <p><strong>Usuario:</strong> {{ anuncio.nombreUsuario }}</p>
+          <p><strong>Fecha de Compra:</strong> {{ anuncio.fechaCompra | date:'yyyy-MM-dd' }}</p>
+          <p><strong>Tipo de Anuncio:</strong> {{ anuncio.tipoAnuncio }}</p>
+          <p><strong>Precio Total:</strong> {{ anuncio.precioTotal | currency: 'Q' }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Costos de Mantenimiento de Revistas -->
+    <div class="card mb-4">
+      <div class="card-header bg-warning text-dark">
+        Costos de Mantenimiento de Revistas (Total: {{ reporteGanancias.costosRevista.totalCostosMantenimiento | currency: 'Q' }})
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let revista of reporteGanancias.costosRevista.revistas">
+          <p><strong>Título de la Revista:</strong> {{ revista.tituloRevista }}</p>
+          <p><strong>Autor:</strong> {{ revista.nombreAutor }}</p>
+          <p><strong>Costo Mantenimiento:</strong> {{ revista.costoMantenimiento | currency: 'Q' }}</p>
+          <p><strong>Fecha de Creación:</strong> {{ revista.fechaCreacion | date:'yyyy-MM-dd' }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

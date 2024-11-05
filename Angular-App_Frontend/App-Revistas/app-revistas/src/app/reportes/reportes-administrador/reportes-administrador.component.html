@@ -1,0 +1,70 @@
+<p>reportes-administrador works!</p>
+<div class="container my-4 p-4 border rounded bg-light shadow">
+    <h2 class="text-center mb-4">Seleccionar Reporte</h2>
+    
+    <div class="mb-3">
+      <label for="reporteSeleccionado" class="form-label fw-bold">Tipo de Reporte</label>
+      <select id="reporteSeleccionado" class="form-select" [(ngModel)]="reporteSeleccionado">
+        <option value="REPORTE_GANANCIAS">Reporte de Ganancias</option>
+        <option value="ANUNCIOS_COMPRADOS">Anuncios Comprados</option>
+        <option value="GANANCIAS_ANUNCIANTES">Ganancias de anuncios</option>
+        <option value="REVISTAS_MAS_POPULARES">Revistas mas Populares</option>
+
+        <!-- <option value="REVISTAS_MAS_COMENTADAS">Revistas mas Comentadas</option> -->
+      </select>
+    </div>
+    
+    <!-- Formulario de Filtros GENERALES -->
+    <form [formGroup]="filtroForm">
+      <!-- Intervalo de Fechas -->
+      <div class="row">
+        <div class="col-md-6 mb-3" *ngIf="mostrarFiltro('fechaInicio')">
+          <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+          <input id="fechaInicio" type="date" class="form-control" formControlName="fechaInicio">
+        </div>
+        
+        <div class="col-md-6 mb-3" *ngIf="mostrarFiltro('fechaFin')">
+          <label for="fechaFin" class="form-label">Fecha Fin</label>
+          <input id="fechaFin" type="date" class="form-control" formControlName="fechaFin">
+        </div>
+      </div>
+  
+      <!-- Filtro por Nombre de Anunciante -->
+      <div class="mb-3" *ngIf="mostrarFiltro('nombreAnunciante')">
+        <label for="nombreAnunciante" class="form-label">Seleccionar Usuario (Anunciante)</label>
+        <select id="nombreAnunciante" class="form-select" formControlName="nombreAnunciante">
+          <option *ngFor="let usuario of usuarios" [value]="usuario">
+            {{ usuario }}
+          </option>
+        </select>
+      </div>
+
+          <!-- Filtro Tipo de Anuncio -->
+    <div class="mb-3" *ngIf="mostrarFiltro('tipoAnuncio')">
+      <label for="tipoAnuncio" class="form-label">Tipo de Anuncio</label>
+      <select id="tipoAnuncio" class="form-select" formControlName="tipoAnuncio">
+        <option value="VIDEO">Video</option>
+        <option value="IMAGEN_TEXTO">Imagen y Texto</option>
+        <option value="TEXTO">Texto</option>
+      </select>
+    </div>
+
+    <!-- Filtro Días de Periodo -->
+    <div class="mb-3" *ngIf="mostrarFiltro('diasPeriodo')">
+      <label for="diasPeriodo" class="form-label">Días de Periodo</label>
+      <input id="diasPeriodo" type="number" class="form-control" formControlName="diasPeriodo" min="1">
+    </div>
+      
+    <div class="text-center mt-4">
+        <button class="btn btn-primary btn-lg me-2" (click)="aplicarFiltros()">Aplicar Filtros</button>
+        <button class="btn btn-secondary btn-lg" (click)="limpiarFiltros()">Limpiar Filtros</button>
+      </div>
+  
+    <!-- Subcomponentes de Reportes -->
+    <div class="mt-4">
+      <app-rep-ganancias-sistema *ngIf="reporteSeleccionado === 'REPORTE_GANANCIAS'" [filtro]="filtroAplicado"></app-rep-ganancias-sistema>
+      <app-rep-anuncios-comprados *ngIf="reporteSeleccionado === 'ANUNCIOS_COMPRADOS'" [filtro]="filtroAplicado"></app-rep-anuncios-comprados>
+      <app-rep-ganancias-anunciantes *ngIf="reporteSeleccionado === 'GANANCIAS_ANUNCIANTES'" [filtro]="filtroAplicado"></app-rep-ganancias-anunciantes>
+      <app-rep-revistas-mas-populares *ngIf="reporteSeleccionado === 'REVISTAS_MAS_POPULARES'" [filtro]="filtroAplicado"></app-rep-revistas-mas-populares>
+    </div>
+  

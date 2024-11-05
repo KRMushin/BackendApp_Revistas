@@ -1,0 +1,51 @@
+<div class="container my-4 p-4 border rounded bg-light shadow">
+    <h2 class="text-center mb-4">Seleccionar Reporte</h2>
+    
+    <div class="mb-3">
+      <label for="reporteSeleccionado" class="form-label fw-bold">Tipo de Reporte</label>
+      <select id="reporteSeleccionado" class="form-select" [(ngModel)]="reporteSeleccionado">
+        <option value="REVISTA_COMENTARIOS">Comentarios en Revistas</option>
+        <option value="REVISTA_SUSCRIPCIONES">Suscripciones en Revistas</option>
+        <option value="REVISTAS_MAS_GUSTADAS">Revistas con más Likes</option>
+        <option value="REVISTAS_COSTOS">Tus Pagos</option>
+      </select>
+    </div>
+    
+    <!-- Formulario de Filtros GENERALES -->
+    <form [formGroup]="filtroForm">
+      <!-- Intervalo de Fechas -->
+      <div class="row">
+        <div class="col-md-6 mb-3" *ngIf="mostrarFiltro('fechaInicio')">
+          <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+          <input id="fechaInicio" type="date" class="form-control" formControlName="fechaInicio">
+        </div>
+        
+        <div class="col-md-6 mb-3" *ngIf="mostrarFiltro('fechaFin')">
+          <label for="fechaFin" class="form-label">Fecha Fin</label>
+          <input id="fechaFin" type="date" class="form-control" formControlName="fechaFin">
+        </div>
+      </div>
+  
+         <!-- Filtro ID Revista -->
+    <div class="mb-3" *ngIf="mostrarFiltro('idRevista')">
+        <label for="idRevista" class="form-label">Seleccionar Revista</label>
+        <select id="idRevista" class="form-select" formControlName="idRevista">
+          <option *ngFor="let revista of llavesRevistas" [value]="revista.idRevista">
+            {{ revista.tituloRevista }}
+          </option>
+        </select>
+      </div>
+  
+    <div class="text-center mt-4">
+        <button class="btn btn-primary btn-lg me-2" (click)="aplicarFiltros()">Aplicar Filtros</button>
+        <button class="btn btn-secondary btn-lg" (click)="limpiarFiltros()">Limpiar Filtros</button>
+      </div>
+  
+    <!-- Subcomponentes de Reportes -->
+    <div class="mt-4">
+      <app-rep-comentarios-revistas *ngIf="reporteSeleccionado === 'REVISTA_COMENTARIOS'" [filtro]="filtroAplicado"></app-rep-comentarios-revistas>
+      <app-rep-suscripcion-revistas *ngIf="reporteSeleccionado === 'REVISTA_SUSCRIPCIONES'" [filtro]="filtroAplicado"></app-rep-suscripcion-revistas>
+      <app-rep-masgustadas-revistas *ngIf="reporteSeleccionado === 'REVISTAS_MAS_GUSTADAS'" [filtro]="filtroAplicado"></app-rep-masgustadas-revistas>
+      <app-rep-pagos-revistas *ngIf="reporteSeleccionado === 'REVISTAS_COSTOS'" [filtro]="filtroAplicado"></app-rep-pagos-revistas> 
+    </div>
+  

@@ -18,6 +18,7 @@ import jakarta.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -45,6 +46,7 @@ public class UsuariosResource {
             userService.actualizarUsuario(usuarioDTO);
             return Response.ok().build();
     }
+    
     @GET
     @Path("{nombreUsuario}/foto")
     @Produces({"image/jpeg", "image/png"})
@@ -62,4 +64,19 @@ public class UsuariosResource {
                     return Response.status(Response.Status.NOT_FOUND).build();
         }
     } 
+    
+    
+    @GET
+    @Path("/listarCompradores")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obtnerCompradores(){
+            ServicioUsuario userService = new ServicioUsuario();
+            List<String> nombres = userService.listarCompradores();
+            
+            if (nombres.isEmpty()) {
+            return Response.status(Response.Status.NO_CONTENT).build();
+            }
+            return Response.ok(nombres).build();
+    }
+    
 }

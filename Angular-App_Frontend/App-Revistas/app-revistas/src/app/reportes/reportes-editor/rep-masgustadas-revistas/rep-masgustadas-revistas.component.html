@@ -1,0 +1,22 @@
+<p>rep-masgustadas-revistas works!</p>
+<div *ngIf="cargando">
+    <p>Cargando reporte de likes...</p>
+  </div>
+  
+  <div *ngIf="!cargando && sinDatos">
+    <p>No hay likes para mostrar.</p>
+  </div>
+  
+  <div *ngIf="!cargando && datosReporte.length">
+    <h3>Reporte de Revistas Más Gustadas</h3>
+    <ul *ngFor="let revista of datosReporte">
+      <li>
+        <h4>{{ revista.tituloRevista }} - {{ revista.nombreAutor }}</h4>
+        <p><strong>Total de Likes:</strong> {{ revista.totalLikes }}</p>
+        <p><strong>Usuario que dio Like:</strong> {{ revista.nombreUsuario }}</p>
+        <p><strong>Fecha del Like:</strong> {{ revista.fechaLike | date:'yyyy-MM-dd' }}</p>
+        <p><strong>Like Hecho:</strong> {{ revista.likeHecho ? 'Sí' : 'No' }}</p>
+      </li>
+    </ul>
+  </div>
+  

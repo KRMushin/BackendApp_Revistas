@@ -5,11 +5,15 @@
 package com.mycompany.apprevistas.backend.Repositorios.Implementaciones.Revistas;
 
 import com.mycompany.apprevistas.backend.RevistasDTOs.CompraBloqueoDTO;
+import com.mycompany.apprevistas.backend.modelos.Reportes.FiltrosAdminDTO;
+import com.mycompany.apprevistas.backend.modelos.Reportes.ReporteIngresosEditores;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -38,5 +42,71 @@ public class RepositorioComprasBloqueos {
                 throw new SQLException("No se pudo guardar la compra de bloqueo");
             }
         }
+    }
+    
+     public List<CompraBloqueoDTO> listarCompras() throws SQLException {
+        List<CompraBloqueoDTO> listaCompras = new ArrayList<>();
+        String selectQuery = "SELECT id_revista, fecha_compra, dias_compra, costo_total FROM bloqueos_anuncios_compras";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(selectQuery);
+             ResultSet rs = stmt.executeQuery()) {
+            
+            while (rs.next()) {
+                CompraBloqueoDTO compra = new CompraBloqueoDTO();
+                compra.setIdRevista(rs.getLong("id_revista"));
+                compra.setFechaCompra(rs.getDate("fecha_compra").toLocalDate());
+                compra.setDiasCompra(rs.getInt("dias_compra"));
+                compra.setCostoTotal(rs.getDouble("costo_total"));
+                
+                listaCompras.add(compra);
+            }
+        }
+        
+        return listaCompras;
+    }
+
+    public ReporteIngresosEditores reporteIngresos(FiltrosAdminDTO filtro) throws SQLException{
+        ReporteIngresosEditores repIngresos = new ReporteIngresosEditores();
+        String consultaG = "        SELECT b.fecha_compra, b.dias_compra, r.nombre_autor, b.costo_total,SUM(b.costo_total) OVER () AS total_ingreso FROM bloqueos_anuncios_compras b JOIN revistas r ON b.id_revista = r.id_revista WHERE 1=1";
+        StringBuilder consulta = new StringBuilder();
+
+        consulta.append(consultaG);
+
+        if (filtro.getFechaInicio() != null) {
+            consulta.append(" AND b.fecha_compra >= ?");
+        }
+        if (filtro.getFechaFin() != null) {
+            consulta.append(" AND b.fecha_compra <= ?");
+        }
+
+    try (PreparedStatement stmt = conn.prepareStatement(consulta.toString())) {
+        int indice = 1;
+
+        if (filtro.getFechaInicio() != null) {
+            stmt.setDate(indice++, Date.valueOf(filtro.getFechaInicio()));
+        }
+        if (filtro.getFechaFin() != null) {
+            stmt.setDate(indice++, Date.valueOf(filtro.getFechaFin()));
+        }
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            List<CompraBloqueoDTO> compras = new ArrayList<>();
+
+            while (rs.next()) {
+                CompraBloqueoDTO compra = new CompraBloqueoDTO();
+                compra.setFechaCompra(rs.getDate("fecha_compra").toLocalDate());
+                compra.setDiasCompra(rs.getInt("dias_compra"));
+                compra.setNombreUsuario(rs.getString("nombre_autor"));
+                compra.setCostoTotal(rs.getDouble("costo_total"));
+                compras.add(compra);
+
+                repIngresos.setTotalIngresos(rs.getDouble("total_ingreso"));
+            }
+
+            repIngresos.setCompras(compras);
+        }
+    }
+
+    return repIngresos;
     }
 }
