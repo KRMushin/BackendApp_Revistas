@@ -1,0 +1,64 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0">Agregar Administrador</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Aquí puedes agregar nuevos administradores al sistema. Completa los campos a
+                continuación.</p>
+
+            <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="nombreUsuario" class="form-label">Nombre de Usuario:</label>
+                    <input id="nombreUsuario" formControlName="nombreUsuario" class="form-control"
+                        [ngClass]="{ 'is-invalid': adminForm.get('nombreUsuario')?.invalid && adminForm.get('nombreUsuario')?.touched }" />
+                    <div *ngIf="adminForm.get('nombreUsuario')?.invalid && adminForm.get('nombreUsuario')?.touched"
+                        class="invalid-feedback">
+                        <small *ngIf="adminForm.get('nombreUsuario')?.errors?.['required']">Este campo es
+                            obligatorio.</small>
+                        <small *ngIf="adminForm.get('nombreUsuario')?.errors?.['maxlength']">Debe tener menos de 15
+                            caracteres.</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nombreCompleto" class="form-label">Nombre Completo:</label>
+                    <input id="nombreCompleto" formControlName="nombreCompleto" class="form-control"
+                        [ngClass]="{ 'is-invalid': adminForm.get('nombreCompleto')?.invalid && adminForm.get('nombreCompleto')?.touched }" />
+                    <div *ngIf="adminForm.get('nombreCompleto')?.invalid && adminForm.get('nombreCompleto')?.touched"
+                        class="invalid-feedback">
+                        <small *ngIf="adminForm.get('nombreCompleto')?.errors?.['required']">Este campo es
+                            obligatorio.</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="rol" class="form-label">Rol:</label>
+                    <input id="rol" formControlName="rol" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3 position-relative">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': adminForm.get('password')?.invalid && adminForm.get('password')?.touched }" />
+                    <button type="button"
+                        class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2"
+                        (click)="togglePasswordVisibility()">
+                        {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+                    </button>
+                    <div *ngIf="adminForm.get('password')?.invalid && adminForm.get('password')?.touched"
+                        class="invalid-feedback">
+                        <small *ngIf="adminForm.get('password')?.errors?.['required']">Este campo es
+                            obligatorio.</small>
+                        <small *ngIf="adminForm.get('password')?.errors?.['pattern']">La contraseña no debe contener
+                            espacios.</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" [disabled]="adminForm.invalid">Agregar
+                    Administrador</button>
+            </form>
+        </div>
+    </div>
+</div>

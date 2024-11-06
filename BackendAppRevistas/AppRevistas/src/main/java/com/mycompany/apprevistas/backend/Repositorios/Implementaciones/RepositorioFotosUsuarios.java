@@ -22,21 +22,24 @@ public class RepositorioFotosUsuarios implements RepositorioEscrituraLectura<Fot
         this.conn = conn;
     }
 
-    @Override
+        @Override
     public FotoUsuario guardar(FotoUsuario modelo) throws SQLException {
-         
-         String inserUpdate = " INSERT INTO fotos_usuarios(nombre_usuario) values(?)";
-         
-         try(PreparedStatement stmt = conn.prepareStatement(inserUpdate)){
-              stmt.setString(1, modelo.getNombreUsuario());
-              int rowsAffected = stmt.executeUpdate();
-              
-              if (rowsAffected <= 0) {
-                  throw new SQLException("La foto de usuario no se registro en la base de datos");
-             }
-              return modelo;
-         }
+            String inserUpdate = "INSERT INTO fotos_usuarios (nombre_usuario, foto_url) VALUES (?, ?) " +
+                                                "ON DUPLICATE KEY UPDATE foto_url = VALUES(foto_url)";
+
+            try (PreparedStatement stmt = conn.prepareStatement(inserUpdate)) {
+                stmt.setString(1, modelo.getNombreUsuario()); // Nombre de usuario para inserción
+                stmt.setString(2, modelo.getFotoUrl());       // URL de la foto para inserción y actualización
+
+                int rowsAffected = stmt.executeUpdate();
+
+                if (rowsAffected <= 0) {
+                    throw new SQLException("La foto de usuario no se registró en la base de datos");
+                }
+                return modelo;
+            }
     }
+
     
     @Override
     public FotoUsuario actualizar(FotoUsuario modelo) throws SQLException {

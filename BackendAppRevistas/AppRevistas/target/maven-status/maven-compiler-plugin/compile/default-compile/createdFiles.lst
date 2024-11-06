@@ -35,6 +35,7 @@ com/mycompany/apprevistas/backend/AnunciosDTOs/AnuncioDTO.class
 com/mycompany/apprevistas/backend/Servicios/ServicioCarteraDigital.class
 com/mycompany/apprevistas/restApi/resources/ComentariosYLikes/ComentariosResource.class
 com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioEstadoRevistas.class
+com/mycompany/apprevistas/backend/util/AlmacenFotos.class
 com/mycompany/apprevistas/backend/constantes/TipoCostoRevista$1.class
 com/mycompany/apprevistas/backend/modelos/Reportes/RevistaConLikes.class
 com/mycompany/apprevistas/backend/usuariosDTOs/CredencialUsuario.class

@@ -27,6 +27,7 @@ import { RevistaSuscripcionComponent } from './paginas-rol/suscriptor-control/re
 import { ComentarRevistaComponent } from './paginas-rol/suscriptor-control/comentar-revista/comentar-revista.component';
 import { ReportesEditorComponent } from './reportes/reportes-editor/reportes-editor.component';
 import { ReportesAdministradorComponent } from './reportes/reportes-administrador/reportes-administrador.component';
+import { AgregarAdministradorComponent } from './paginas-rol/admin-control/agregar-administrador/agregar-administrador.component';
 
 export const routes: Routes = [
 
@@ -45,7 +46,8 @@ export const routes: Routes = [
     {path: 'preciosGlobales' , component: GestionPreciosGlobalesComponent},
     {path: 'gestionRevistas', component: CostosRevistasComponent},
     {path: 'activacionRevistas', component: GestionRevistasComponent},
-    {path: 'reportesAdministrador', component: ReportesAdministradorComponent}
+    {path: 'reportesAdministrador', component: ReportesAdministradorComponent},
+    {path: 'registrarAdministrador', component: AgregarAdministradorComponent}
 
   ]},
   {

@@ -22,7 +22,14 @@ export class AnunciosSistemaComponent implements OnInit{
 
 
   ngOnInit(): void {
-    const nombreUsuario = this.utileriaToken.obtenerNombreUsuario();
+    
+    let nombreUsuario: string;
+    if(this.utileriaToken.obtenerRol !== null && this.utileriaToken.obtenerRol() === 'ADMINISTRADOR'){
+      nombreUsuario = 'Admin1';
+    }else{
+      nombreUsuario = this.utileriaToken.obtenerNombreUsuario() ?? 'defaultUser';
+    }
+
     if (nombreUsuario) {
       this.serviceAnuncios.obtenerAnunciosEnSistema(nombreUsuario).subscribe({
         next: (anuncios: Anuncio[]) => this.anuncios = anuncios,

@@ -28,4 +28,15 @@ public class RegistroResource {
         return Response.status(Response.Status.CREATED).build();
                 
     }
+    
+    @POST
+    @Path("/administrador")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response registrarUsuarioAdministrador(RegistroUsuarioDTO registroDTO) {
+        
+        ServicioRegistro servicioRegistro = new ServicioRegistro();
+        servicioRegistro.registrarAdministrador(registroDTO);
+        return Response.status(Response.Status.CREATED).build();
+                
+    }
 }

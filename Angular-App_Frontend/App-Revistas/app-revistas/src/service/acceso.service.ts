@@ -10,6 +10,7 @@ import { Registro } from '../interfaces/Registro';
 })
 export class AccesoService {
   
+  
   private http = inject(HttpClient);
   private baseUrl: String = appSettings.apiUrl; // api url de la clase appSettings raiz del proyecto
 
@@ -21,6 +22,10 @@ export class AccesoService {
   
   login(objeto: Login): Observable<ResponseAcceso> {// metodo para login de usuario
     return this.http.post<ResponseAcceso>(`${this.baseUrl}login/usuario`, objeto);
+  }
+
+  registrarAdministrador(formData: Registro): Observable<ResponseAcceso> {
+    return this.http.post<ResponseAcceso>(`${this.baseUrl}registrar/administrador`, formData);
   }
 
 }

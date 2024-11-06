@@ -26,8 +26,6 @@ public class ServicioRegistro {
     }
     
     public void registrarUsuario(RegistroUsuarioDTO registroDTO) {
-            
-        
               if (consultaUsuario.esUsuarioExistente(registroDTO.getNombreUsuario())) {
                   throw new ConflictoUsuarioException();
              }
@@ -38,6 +36,15 @@ public class ServicioRegistro {
                }
               Usuario usuario = creadorUsuario.validarRegistroUsuario(registroDTO);
               consultaUsuario.guardarUsuario(usuario);
+    }
+
+    public void registrarAdministrador(RegistroUsuarioDTO registroDTO) {
+        if (consultaUsuario.esUsuarioExistente(registroDTO.getNombreUsuario())) {
+                  throw new ConflictoUsuarioException();
+         }
+          registroDTO.convertirStringAEnum(); // convertir el valor del json a enum 
+          Usuario usuario = creadorUsuario.validarRegistroUsuario(registroDTO);
+          consultaUsuario.guardarUsuario(usuario);
     }
     
     

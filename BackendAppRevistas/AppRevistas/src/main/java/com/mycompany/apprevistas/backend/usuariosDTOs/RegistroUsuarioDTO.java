@@ -18,6 +18,7 @@ public class RegistroUsuarioDTO {
     private String nombreCompleto;
     private String rol;
     private RolUsuario rolUsuario;
+    
     public RegistroUsuarioDTO() {
     }
 

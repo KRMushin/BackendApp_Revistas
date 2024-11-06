@@ -64,6 +64,7 @@ public class ConsultasUsuarios {
             throw new DatabaseException(e.getMessage());
         }
     }
+    
     public Optional<LlaveUsuarioDTO> obtenerCredencialUsuario(String nombreUsuario) {
         try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
               repositorioUsuarios.setConn(conn);
@@ -98,7 +99,7 @@ public class ConsultasUsuarios {
             repositorioFotos.setConn(conn);
             FotoUsuario fotoUsuario = repositorioFotos.obtenerPorId(nombreUsuario);
             
-            if (fotoUsuario.getFotoUrl() != null) {
+            if (fotoUsuario != null && fotoUsuario.getFotoUrl() != null) {
                 String ruta = fotoUsuario.getFotoUrl();
                 File archFoto = new File(ruta);
                 
@@ -107,10 +108,8 @@ public class ConsultasUsuarios {
                 }else{
                         throw new NotFoundException();
                 }
-            }else{
-                    throw new NotFoundException();
             }
-            
+                return Optional.empty();
         } catch (SQLException ex) {
                 throw new DatabaseException(ex);
         }
@@ -159,6 +158,15 @@ public class ConsultasUsuarios {
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()){
                 repositorioUsuarios.setConn(conn);
                 return repositorioUsuarios.listarCompradores();
+        } catch(SQLException e){
+            throw new DatabaseException("error en capa de consultas");
+        }
+    }
+
+    public void almacenarRutaFoto(FotoUsuario modelo) {
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+                repositorioFotos.setConn(conn);
+                repositorioFotos.guardar(modelo);
         } catch(SQLException e){
             throw new DatabaseException("error en capa de consultas");
         }
