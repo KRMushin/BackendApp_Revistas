@@ -23,6 +23,7 @@ public class CompraBloqueoDTO {
     private int diasCompra;
     private String nombreUsuario;
     private Double costoTotal;
+    private Long idCompra;
 
     public CompraBloqueoDTO() {
     }
@@ -65,6 +66,14 @@ public class CompraBloqueoDTO {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public Long getIdCompra() {
+        return idCompra;
+    }
+
+    public void setIdCompra(Long idCompra) {
+        this.idCompra = idCompra;
     }
 
     

@@ -12,6 +12,9 @@ interface PagoProcesado {
   diasCompra: number;
   nombreUsuario: string;
   costoTotal: number;
+  estadoCompraDescripcion: string;
+  
+
 }
 @Component({
   selector: 'app-rep-pagos-revistas',
@@ -61,6 +64,8 @@ export class RepPagosRevistasComponent {
   procesarPagos(data: any[]): PagoProcesado[] {
     return data.map(item => {
       const compra = item.compra || {};
+      
+      // Accede directamente a `item.estadoCompra`
       return {
         idRevista: compra.idRevista ?? 0,
         nombreAutor: item.nombreAutor || 'Desconocido',
@@ -75,9 +80,12 @@ export class RepPagosRevistasComponent {
           : new Date(),
         diasCompra: compra.diasCompra ?? 0,
         nombreUsuario: compra.nombreUsuario || 'Anónimo',
-        costoTotal: compra.costoTotal ?? 0
+        costoTotal: compra.costoTotal ?? 0,
+        estadoCompraDescripcion: item.estadoCompra === false ? 'BLOQUEO VENCIDO' : 'BLOQUEO ACTIVO'
       };
     });
   }
+  
+  
 
 }

@@ -15,6 +15,10 @@
         <p><strong>Fecha de Compra:</strong> {{ pago.fechaCompra | date:'yyyy-MM-dd' }}</p>
         <p><strong>Días de Compra:</strong> {{ pago.diasCompra }}</p>
         <p><strong>Costo Total:</strong> {{ pago.costoTotal | currency: 'Q' }}</p>
+        <p><strong>Estado:</strong></p>
+        <span [ngClass]="{'text-success': pago.estadoCompraDescripcion === 'activo', 'text-danger': pago.estadoCompraDescripcion === 'bloqueo vencido'}">
+          {{ pago.estadoCompraDescripcion }}
+        </span>
       </li>
     </ul>
   </div>

@@ -98,4 +98,12 @@ public class ServicioAnuncios {
             throw new ErrorInternoException(e);
         }
     }
+
+    public List<Anuncio> obtenerAnunciosSinVigencia(String nombreUsuario) {
+            if (nombreUsuario.equals("Admin1")) {
+                return consultasConfigAnuncios.obtenerTodos();
+            }
+            return consultasConfigAnuncios.obtenerAnunciosUsuario(nombreUsuario);
+        
+    }
 }

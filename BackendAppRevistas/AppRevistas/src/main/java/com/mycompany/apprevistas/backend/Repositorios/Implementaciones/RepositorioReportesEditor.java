@@ -143,7 +143,8 @@ public class RepositorioReportesEditor {
         rc.setTotalPagos(rs.getDouble("total_pagos_general"));
         rc.setTituloRevista(rs.getString("titulo_revista"));
         rc.setNombreAutor(rs.getString("nombre_autor"));
-
+        rc.setEstadoCompra(rs.getBoolean("vigencia"));
+        
         CompraBloqueoDTO compra = new CompraBloqueoDTO();
         compra.setIdRevista(rs.getLong("id_revista"));
         compra.setFechaCompra(rs.getDate("fecha_compra").toLocalDate());

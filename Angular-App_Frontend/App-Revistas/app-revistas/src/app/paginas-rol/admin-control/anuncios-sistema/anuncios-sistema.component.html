@@ -4,4 +4,37 @@
         <app-anuncios-list [anuncios]="anuncios"></app-anuncios-list>
       </div>
     </div>
+
+  <!-- Sección para mostrar los anuncios sin vigencia -->
+  <div class="mt-5">
+    <h3>Anuncios sin Vigencia</h3>
+    <div *ngIf="anunciosSinVigencia.length > 0; else noAnunciosSinVigencia">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Fecha Compra</th>
+            <th>Fecha de hoy</th>
+
+            <th>Duración (Días)</th>
+            <th>Comprador</th>
+            <th>Tipo<th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let anuncio of anunciosSinVigencia">
+            <td>{{ anuncio.fechaCompra | date:'dd/MM/yyyy' }}</td>
+            <td>{{ today | date:'dd/MM/yyyy' }}</td>
+            <td>{{ anuncio.diasDuracion }}</td>
+            <td>{{ anuncio.nombreUsuario }}</td>
+            <td>{{ anuncio.tipoAnuncio }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Mensaje si no hay anuncios sin vigencia -->
+    <ng-template #noAnunciosSinVigencia>
+      <p>No hay anuncios sin vigencia en este momento.</p>
+    </ng-template>
   </div>
+  </div>
+

@@ -109,4 +109,43 @@ public class RepositorioComprasBloqueos {
 
     return repIngresos;
     }
+
+    public CompraBloqueoDTO obtnerPorId(Long idCompra) throws SQLException {
+    String selectQuery = "SELECT * FROM bloqueos_anuncios_compras WHERE id_revista = ? AND vigencia = TRUE";
+    
+    try (PreparedStatement stmt = conn.prepareStatement(selectQuery)) {
+        stmt.setLong(1, idCompra); // Asigna el id de compra al PreparedStatement
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                // Si el registro existe, crea y devuelve un objeto CompraBloqueoDTO con los datos obtenidos
+                CompraBloqueoDTO compra = new CompraBloqueoDTO();
+                compra.setIdRevista(rs.getLong("id_revista"));
+                compra.setFechaCompra(rs.getDate("fecha_compra").toLocalDate());
+                compra.setDiasCompra(rs.getInt("dias_compra"));
+                compra.setCostoTotal(rs.getDouble("costo_total"));
+                compra.setIdCompra(rs.getLong("id_compra"));
+                return compra;
+            } 
+        }
+    }
+        return null;
+}
+
+    public void invalidarId(Long idCompra) throws SQLException {
+    String updateQuery = "UPDATE bloqueos_anuncios_compras SET vigencia = 0 WHERE id_compra = ?";
+
+    try (PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
+        stmt.setLong(1, idCompra); // Asigna el id_compra al parámetro de la consulta
+
+        int filasAfectadas = stmt.executeUpdate();
+        if (filasAfectadas > 0) {
+            System.out.println("La vigencia de la compra con id " + idCompra + " ha sido invalidada.");
+        } else {
+            System.out.println("No se encontró una compra con id " + idCompra);
+        }
+    } 
+}
+
+
 }

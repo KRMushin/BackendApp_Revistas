@@ -8,6 +8,7 @@ import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioExcept
 import com.mycompany.apprevistas.backend.Repositorios.RepositorioConfigAnuncios;
 import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
 import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
+import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -84,7 +85,43 @@ public class RepositorioConfigAnuncio implements RepositorioConfigAnuncios<Confi
          config.setTiempoDuracion(rs.getDouble("precio_dia"));
         return config;
     }
-    
-    
 
+    public List<Anuncio> listarSinVigencia(String parametro) throws SQLException {
+    List<Anuncio> anuncios = new ArrayList<>();
+            String selectQuery = "";
+
+        if (parametro.equals("OBTNER_TODAS")) {
+                selectQuery = "SELECT * FROM anuncios WHERE DATE_ADD(fecha_compra, INTERVAL dias_duracion DAY) <= CURRENT_DATE";
+        } else {
+                selectQuery = "SELECT * FROM anuncios WHERE nombre_usuario = ? AND DATE_ADD(fecha_compra, INTERVAL dias_duracion DAY) <= CURRENT_DATE";
+        }
+        try (PreparedStatement stmt = conn.prepareStatement(selectQuery)) {
+                if (!parametro.equals("OBTNER_TODAS")) {
+                    stmt.setString(1, parametro); // Solo si no es "obtenertodas" seteamos el parámetro
+                }
+
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    anuncios.add(crearAnuncio(rs));
+                }
+        } catch (SQLException e) {
+                throw new SQLException("Error al listar los anuncios: " + e.getMessage(), e);
+            }
+        return anuncios;
+    }
+    
+        private Anuncio crearAnuncio(ResultSet rs) throws SQLException{
+            Anuncio anuncio = new Anuncio();
+            anuncio.setIdAnuncio(rs.getLong("id_anuncio"));
+            anuncio.setNombreUsuario(rs.getString("nombre_usuario"));
+            anuncio.setFechaCompra(rs.getDate("fecha_compra").toLocalDate());
+            anuncio.setTipoAnuncio(TipoAnuncio.valueOf(rs.getString("tipo_anuncio")));
+            anuncio.setRutaImagenTexto(rs.getString("ruta_imagen_texto"));
+            anuncio.setRutaVideo(rs.getString("ruta_video"));
+            anuncio.setRutaTexto(rs.getString("ruta_texto"));
+            anuncio.setPrecioTotal(rs.getDouble("precio_total"));
+            anuncio.setAnuncioHabilitado(rs.getBoolean("habilitado"));
+            anuncio.setDiasDuracion(rs.getInt("dias_duracion"));
+            return anuncio;
+    }
 }

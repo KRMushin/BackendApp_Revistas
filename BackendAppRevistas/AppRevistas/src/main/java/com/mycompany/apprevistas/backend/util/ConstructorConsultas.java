@@ -19,7 +19,7 @@ public class ConstructorConsultas {
    private final String consultaCostos = "SELECT r.id_revista, r.titulo_revista, r.nombre_autor, "
              + "COUNT(l.id_like) AS total_likes, l.nombre_usuario, l.fecha_like FROM likes_revistas l JOIN revistas r ON l.id_revista = r.id_revista WHERE";
 
-    public final String consultaCompras= "SELECT r.id_revista, r.titulo_revista, r.nombre_autor, b.id_compra, b.fecha_compra, b.dias_compra, b.costo_total, SUM(b.costo_total) OVER () AS total_pagos_general "
+    public final String consultaCompras= "SELECT r.id_revista, r.titulo_revista, r.nombre_autor, b.id_compra, b.fecha_compra, b.vigencia, b.dias_compra, b.costo_total, SUM(b.costo_total) OVER () AS total_pagos_general "
             + "                                                 FROM bloqueos_anuncios_compras b JOIN revistas r ON b.id_revista = r.id_revista"
             + "                                                  WHERE 1=1";
 

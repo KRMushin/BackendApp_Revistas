@@ -74,4 +74,22 @@ public class ConsultasComprasBloqueos {
             throw new DatabaseException(e);
         }
     }
+    
+    public CompraBloqueoDTO obtnerPorIdRevista(Long idRevista){
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+                 repositorio.setConn(conn);
+                 return repositorio.obtnerPorId(idRevista);
+           } catch (SQLException e) {
+               throw new DatabaseException(e);
+           }
+    }
+
+    public void invalidarCompra(Long idCompra) {
+        try (Connection conn = ConexionBaseDatos.getInstance().getConnection()){
+                 repositorio.setConn(conn);
+                 repositorio.invalidarId(idCompra);
+           } catch (SQLException e) {
+               throw new DatabaseException(e);
+           }
+    }
 }

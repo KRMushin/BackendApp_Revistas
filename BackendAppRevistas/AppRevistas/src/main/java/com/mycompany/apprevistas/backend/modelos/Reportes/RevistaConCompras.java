@@ -18,6 +18,7 @@ public class RevistaConCompras {
     private String nombreAutor;
     private String tituloRevista;
     private CompraBloqueoDTO compra;
+    private boolean estadoCompra;
 
     public RevistaConCompras() {
     }
@@ -54,6 +55,14 @@ public class RevistaConCompras {
 
     public void setTituloRevista(String tituloRevista) {
         this.tituloRevista = tituloRevista;
+    }
+
+    public boolean isEstadoCompra() {
+        return estadoCompra;
+    }
+
+    public void setEstadoCompra(boolean estadoCompra) {
+        this.estadoCompra = estadoCompra;
     }
     
     

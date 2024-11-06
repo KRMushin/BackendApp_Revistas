@@ -36,7 +36,6 @@ public class AnunciosResource {
         @Produces(MediaType.APPLICATION_JSON)
      public Response obtenerAnunciosUsuariol(@PathParam("nombreUsuario") String nombreUsuario){
 
-
             ServicioAnuncios service = new ServicioAnuncios();
              List<Anuncio> anuncios = service.obtenerAnunciosUsuario(nombreUsuario);
              return Response.ok().entity(anuncios).build();
@@ -67,4 +66,12 @@ public class AnunciosResource {
         return Response.ok().build();
     }
     
+        @GET
+        @Path("{nombreUsuario}/sinVigencia")
+        @Produces(MediaType.APPLICATION_JSON)
+     public Response obtenerAnunciosSinVigencia(@PathParam("nombreUsuario") String nombreUsuario){
+            ServicioAnuncios service = new ServicioAnuncios();
+                     List<Anuncio> anuncios = service.obtenerAnunciosSinVigencia(nombreUsuario);
+                 return Response.ok().entity(anuncios).build();
+     }
 }

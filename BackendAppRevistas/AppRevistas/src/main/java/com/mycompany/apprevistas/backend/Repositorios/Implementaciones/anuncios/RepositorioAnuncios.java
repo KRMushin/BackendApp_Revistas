@@ -41,9 +41,9 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
             String selectQuery = "";
 
         if (parametro.equals("obtenertodas")) {
-                selectQuery = "SELECT * FROM anuncios";
+                selectQuery = "SELECT * FROM anuncios WHERE DATE_ADD(fecha_compra, INTERVAL dias_duracion DAY) > CURRENT_DATE";
         } else {
-                selectQuery = "SELECT * FROM anuncios WHERE nombre_usuario = ?";
+                selectQuery = "SELECT * FROM anuncios WHERE nombre_usuario = ? AND DATE_ADD(fecha_compra, INTERVAL dias_duracion DAY) > CURRENT_DATE";
         }
 
         try (PreparedStatement stmt = conn.prepareStatement(selectQuery)) {
@@ -135,7 +135,7 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
     public List<LlaveAnuncioDTO> obtnerLlavesAnuncios() throws SQLException{
         List<LlaveAnuncioDTO> llaves = new ArrayList<>();
         
-        String selectQuery = "SELECT id_anuncio, ruta_imagen_texto, ruta_video, ruta_texto , tipo_anuncio FROM anuncios WHERE habilitado = TRUE ";
+        String selectQuery = "SELECT id_anuncio, ruta_imagen_texto, ruta_video, ruta_texto , tipo_anuncio FROM anuncios WHERE habilitado = TRUE AND DATE_ADD(fecha_compra, INTERVAL dias_duracion DAY) > CURRENT_DATE";
         
         try (PreparedStatement stmt = conn.prepareStatement(selectQuery)) {
             ResultSet rs = stmt.executeQuery();
@@ -216,4 +216,6 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
     return repIngresos;
 
     }
+    
+    
 }

@@ -10,6 +10,7 @@ import { Anuncio } from '../../interfaces/Anuncios/Anuncio';
 })
 export class ConfiguracionAnuncioService {
 
+
   private http = inject(HttpClient);
   private baseUrl: String = appSettings.apiUrl; // api url de la clase appSettings raiz del proyecto
 
@@ -33,6 +34,10 @@ export class ConfiguracionAnuncioService {
 
   public actualizarEstadAnuncio(idAnuncio: number, estado: boolean): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}anuncios/${idAnuncio}/actualizar`, estado);
+  }
+
+  obtenerAnunciosSinVigencia(nombreUsuario: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}anuncios/${nombreUsuario}/sinVigencia`);
   }
 
 }

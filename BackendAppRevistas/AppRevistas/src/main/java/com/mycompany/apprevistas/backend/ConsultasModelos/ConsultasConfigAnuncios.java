@@ -10,6 +10,7 @@ import com.mycompany.apprevistas.backend.Repositorios.Implementaciones.anuncios.
 import com.mycompany.apprevistas.backend.modelos.ConfiguracionAnuncio;
 import com.mycompany.apprevistas.backend.util.ConexionBaseDatos;
 import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
+import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -49,6 +50,25 @@ public class ConsultasConfigAnuncios {
         try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
              repositorioConfiguracion.setConn(conn);
              return repositorioConfiguracion.obtenerPorId(tipoAnuncio);
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    public List<Anuncio> obtenerTodos() {
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+             repositorioConfiguracion.setConn(conn);
+             return repositorioConfiguracion.listarSinVigencia("OBTNER_TODAS");
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+        
+    }
+
+    public List<Anuncio> obtenerAnunciosUsuario(String nombreUsuario) {
+        try(Connection conn = ConexionBaseDatos.getInstance().getConnection()) {
+             repositorioConfiguracion.setConn(conn);
+             return repositorioConfiguracion.listarSinVigencia(nombreUsuario);
         } catch (SQLException e) {
             throw new DatabaseException(e);
         }

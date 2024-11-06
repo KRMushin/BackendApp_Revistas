@@ -62,6 +62,7 @@ public class ServicioReportesEditor {
         List<Object> parametros = new ArrayList<>();
         if (filtro.getTipoReporte() == TipoReporteRevista.REVISTAS_COSTOS) {
             String consulta = constructorConsultas.construirRevistaCostos(filtro,parametros);
+            System.out.println("c" + consulta);
             return consultasEditor.obtnerRevistasCostos(parametros,consulta);
         }
         throw new DatosInvalidosUsuarioException();
