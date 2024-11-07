@@ -4,15 +4,16 @@
  */
 package com.mycompany.apprevistas.restApi.resources.Reportes;
 
+import com.mycompany.apprevistas.backend.AnunciosDTOs.AnuncioVisualizacionDTO;
 import com.mycompany.apprevistas.backend.Servicios.Reportes.GananciasReporte;
 import com.mycompany.apprevistas.backend.Servicios.Reportes.ServicioGanancias;
 import com.mycompany.apprevistas.backend.Servicios.Reportes.ServicioReportesAdmin;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
+import com.mycompany.apprevistas.backend.modelos.Reportes.AnuncioConVisualizaciones;
 import com.mycompany.apprevistas.backend.modelos.Reportes.FiltrosAdminDTO;
 import com.mycompany.apprevistas.backend.modelos.Reportes.RevistaConComentarios;
 import com.mycompany.apprevistas.backend.modelos.Reportes.RevistaConSuscripciones;
 import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 @Path("reportesAdmin")
 public class AdminReportesResource {
+
     
     @POST
     @Path("/ganaciasSistema")
@@ -87,13 +89,26 @@ public class AdminReportesResource {
         }
         return Response.ok(reporte).build();
     }
-//    @GET
-//    @Path("")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response reporteAnunciosPorAnunciante(){
-//                        ServicioReportesAdmin serviceAdmin = new ServicioReportesAdmin();
-//        
-//    return null;
-//    }
+@POST
+    @Path("/efectividadAnuncios")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response reporteEfectividaAnuncios(FiltrosAdminDTO filtro){
+         ServicioReportesAdmin serviceAdmin = new ServicioReportesAdmin();
+        List<AnuncioConVisualizaciones> reporte = serviceAdmin.efectividadAnuncioss(filtro);
+        if (reporte.isEmpty()) {
+            return Response.status(Response.Status.NO_CONTENT).build(); // 204 
+        }
+        return Response.ok(reporte).build();
+    }
+    
+    
+     ServicioReportesAdmin serviceV = new ServicioReportesAdmin();
+
+    @POST
+    @Path("/guardarVisualizacion")
+    public Response guardarVisualizacion(AnuncioVisualizacionDTO visualizacion){
+            serviceV.alamcenarVisualizacion(visualizacion);
+            return Response.ok().build();
+    }
 }

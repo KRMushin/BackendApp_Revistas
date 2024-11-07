@@ -19,6 +19,10 @@ public class ConstructorConsultasAdmin {
     
     private final String consultaComentarios = "SELECT r.id_revista, r.titulo_revista, r.nombre_autor, rc.id_comentario, rc.nombre_usuario AS usuario_comentario, rc.fecha_comentario, rc.comentario, COUNT(rc.id_comentario) AS total_comentarios FROM revistas r INNER JOIN revistas_comentarios rc ON r.id_revista = rc.id_revista WHERE 1=1";
         
+    private final String consultaEfectividad = "SELECT v.id_anuncio, v.fecha_visualizacion, v.url, a.nombre_usuario, a.tipo_anuncio, "
+                                                                     + "COUNT(v.id_visualizacion) AS total_visualizaciones FROM visualizaciones_anuncios v JOIN anuncios a "
+                                                                     + "ON v.id_anuncio = a.id_anuncio WHERE 1=1";
+    
     public String construirConsultaAnuncios(List<Object> parametros, FiltrosAdminDTO filtro) {
          StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(consultaComprados);
@@ -85,7 +89,28 @@ public class ConstructorConsultasAdmin {
         return stringBuilder.toString(); // Devuelve la consulta completa
 }
 
-    
+    public String consultEfectividad(List<Object> parametros, FiltrosAdminDTO filtro) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(consultaEfectividad);
+
+        if (filtro.getFechaInicio() != null) {
+            stringBuilder.append(" AND v.fecha_visualizacion >= ?");
+            parametros.add(filtro.getFechaInicio());
+        }
+        if (filtro.getFechaFin() != null) {
+            stringBuilder.append(" AND v.fecha_visualizacion <= ?");
+            parametros.add(filtro.getFechaFin());
+        }
+        if (filtro.getNombreAnunciante() != null) {
+            stringBuilder.append(" AND a.nombre_usuario = ?");
+            parametros.add(filtro.getNombreAnunciante());
+        }
+        
+        stringBuilder.append(" GROUP BY v.id_anuncio, a.nombre_usuario, a.tipo_anuncio, v.fecha_visualizacion, v.url");
+        
+        return stringBuilder.toString(); // Devuelve la consulta completa
+    }
+
 
 
     

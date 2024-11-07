@@ -11,11 +11,12 @@ import { RepGananciasSistemaComponent } from "./rep-ganancias-sistema/rep-gananc
 import { RepAnunciosCompradosComponent } from "./rep-anuncios-comprados/rep-anuncios-comprados.component";
 import { RepGananciasAnunciantesComponent } from "./rep-ganancias-anunciantes/rep-ganancias-anunciantes.component";
 import { RepRevistasMasPopularesComponent } from "./rep-revistas-mas-populares/rep-revistas-mas-populares.component";
+import { RepEfectividadAnunciantesComponent } from "./rep-efectividad-anunciantes/rep-efectividad-anunciantes.component";
 
 @Component({
   selector: 'app-reportes-administrador',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, RepGananciasSistemaComponent, RepAnunciosCompradosComponent, RepGananciasAnunciantesComponent, RepRevistasMasPopularesComponent],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RepGananciasSistemaComponent, RepAnunciosCompradosComponent, RepGananciasAnunciantesComponent, RepRevistasMasPopularesComponent, RepEfectividadAnunciantesComponent],
   templateUrl: './reportes-administrador.component.html',
   styleUrl: './reportes-administrador.component.css'
 })
@@ -75,6 +76,8 @@ export class ReportesAdministradorComponent implements OnInit {
         
       case 'GANANCIAS_ANUNCIANTES':
         return campo === 'nombreAnunciante';
+      case 'EFECTIVIDAD_ANUNCIOS':
+        return campo === 'nombreAnunciante' ||campo === 'fechaInicio' || campo === 'fechaFin';
         
       default:
         return false;

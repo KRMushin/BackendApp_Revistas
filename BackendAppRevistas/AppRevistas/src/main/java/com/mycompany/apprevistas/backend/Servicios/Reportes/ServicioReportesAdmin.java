@@ -4,9 +4,11 @@
  */
 package com.mycompany.apprevistas.backend.Servicios.Reportes;
 
+import com.mycompany.apprevistas.backend.AnunciosDTOs.AnuncioVisualizacionDTO;
 import com.mycompany.apprevistas.backend.Excepciones.DatosInvalidosUsuarioException;
 import com.mycompany.apprevistas.backend.constantes.Filtros.TipoReporteAnuncio;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
+import com.mycompany.apprevistas.backend.modelos.Reportes.AnuncioConVisualizaciones;
 import com.mycompany.apprevistas.backend.modelos.Reportes.FiltrosAdminDTO;
 import com.mycompany.apprevistas.backend.modelos.Reportes.RevistaConComentarios;
 import com.mycompany.apprevistas.backend.modelos.Reportes.RevistaConSuscripciones;
@@ -20,20 +22,20 @@ import java.util.List;
  */
 public class ServicioReportesAdmin {
     
-    private AdminConsultas aC;
-    private ConstructorConsultasAdmin co;
+    private AdminConsultas adminConsultas;
+    private ConstructorConsultasAdmin constructorConsultas;
 
     public ServicioReportesAdmin() {
-        this.aC = new AdminConsultas();
-        this.co = new ConstructorConsultasAdmin();
+        this.adminConsultas = new AdminConsultas();
+        this.constructorConsultas = new ConstructorConsultasAdmin();
     }
 
     public List<Anuncio> obtenerAnunciosComprados(FiltrosAdminDTO filtro) {
         List<Object> parametros = new ArrayList<>();
         
         if (filtro.getTipoReporte() == TipoReporteAnuncio.ANUNCIOS_COMPRADOS) {
-            String consulta = co.construirConsultaAnuncios(parametros, filtro);
-            return aC.obtnerReporteComprados(parametros,consulta);
+            String consulta = constructorConsultas.construirConsultaAnuncios(parametros, filtro);
+            return adminConsultas.obtnerReporteComprados(parametros,consulta);
         }
         throw new DatosInvalidosUsuarioException();
     }
@@ -42,8 +44,8 @@ public class ServicioReportesAdmin {
         List<Object> parametros = new ArrayList<>();
         
         if (filtro.getTipoReporte() == TipoReporteAnuncio.GANANCIAS_ANUNCIANTES) {
-            String consulta = co.construirConsultaAnuncios(parametros, filtro);
-            return aC.obtnerReporteAnunciantes(parametros,consulta);
+            String consulta = constructorConsultas.construirConsultaAnuncios(parametros, filtro);
+            return adminConsultas.obtnerReporteAnunciantes(parametros,consulta);
         }
         throw new DatosInvalidosUsuarioException();
     }
@@ -52,9 +54,8 @@ public class ServicioReportesAdmin {
         List<Object> parametros = new ArrayList<>();
         
         if (filtro.getTipoReporte() == TipoReporteAnuncio.REVISTAS_MAS_POPULARES) {
-            String consulta = co.construirRevistasPopulares(parametros, filtro);
-            System.out.println(consulta);
-            return aC.obtnerRevistasMasPopulares(parametros,consulta);
+            String consulta = constructorConsultas.construirRevistasPopulares(parametros, filtro);
+            return adminConsultas.obtnerRevistasMasPopulares(parametros,consulta);
         }
         throw new DatosInvalidosUsuarioException();
     }
@@ -63,11 +64,28 @@ public class ServicioReportesAdmin {
         List<Object> parametros = new ArrayList<>();
         
         if (filtro.getTipoReporte() == TipoReporteAnuncio.REVISTAS_MAS_COMENTADAS) {
-            String consulta = co.construirConsultaComentarios(parametros, filtro);
-            System.out.println(consulta);
-            return aC.obtnerRevistasMasComentadas(parametros,consulta);
+            String consulta = constructorConsultas.construirConsultaComentarios(parametros, filtro);
+            return adminConsultas.obtnerRevistasMasComentadas(parametros,consulta);
         }
         throw new DatosInvalidosUsuarioException();
+    }
+
+    public void alamcenarVisualizacion(AnuncioVisualizacionDTO dto) {
+        if (dto.getRuta() == null || dto.getIdAnuncio() == null) {
+            return;
+        }
+         adminConsultas.registrarVisualizacion(dto.getRuta(), dto.getIdAnuncio());
+    }
+
+    public List<AnuncioConVisualizaciones> efectividadAnuncioss(FiltrosAdminDTO filtro) {
+        List<Object> parametros = new ArrayList<>();
+        
+        if (filtro.getTipoReporte() == TipoReporteAnuncio.EFECTIVIDAD_ANUNCIOS) {
+            String consulta = constructorConsultas.consultEfectividad(parametros, filtro);
+            return adminConsultas.obtnerEfectividadAnuncios(parametros, consulta);
+        }
+        throw new DatosInvalidosUsuarioException();
+
     }
 
     

@@ -3,6 +3,7 @@ com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioCategoriaConEtiquet
 com/mycompany/apprevistas/backend/Excepciones/CredencialInvalidaException.class
 com/mycompany/apprevistas/backend/Servicios/ServicioAutenticarUsuario.class
 com/mycompany/apprevistas/backend/util/AlmacenAnuncios.class
+com/mycompany/apprevistas/backend/modelos/Reportes/AnuncioConVisualizaciones.class
 com/mycompany/apprevistas/backend/usuariosDTOs/InicioSesionDTO.class
 com/mycompany/apprevistas/backend/modelos/Anuncio.class
 com/mycompany/apprevistas/MapperExcepciones/ErrorInternoMapper.class
@@ -101,6 +102,7 @@ com/mycompany/apprevistas/backend/Repositorios/Implementaciones/ComentariosYLike
 com/mycompany/apprevistas/backend/RevistasDTOs/Configs/EstadoConfigRevistaDTO.class
 com/mycompany/apprevistas/backend/RevistasDTOs/NumeroRevistaDTO.class
 com/mycompany/apprevistas/backend/modelos/Etiqueta.class
+com/mycompany/apprevistas/backend/AnunciosDTOs/AnuncioVisualizacionDTO.class
 com/mycompany/apprevistas/backend/modelos/FotoUsuario.class
 com/mycompany/apprevistas/backend/constantes/Filtros/TipoReporteAnuncio.class
 com/mycompany/apprevistas/backend/RevistasDTOs/Configs/EstadoRevista$1.class
@@ -178,5 +180,6 @@ com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioPreci
 com/mycompany/apprevistas/backend/Servicios/Revistas/ServicioCostosRevistas.class
 com/mycompany/apprevistas/MapperExcepciones/JsonExceptionMapper.class
 com/mycompany/apprevistas/backend/util/ServicioJWT.class
+com/mycompany/apprevistas/backend/Repositorios/Implementaciones/anuncios/RepositorioVisualizacionAnuncio.class
 com/mycompany/apprevistas/backend/constantes/Filtros/TipoDeFiltro.class
 com/mycompany/apprevistas/backend/Servicios/ServicioUsuario.class

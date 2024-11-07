@@ -3,11 +3,13 @@ import { inject, Injectable } from '@angular/core';
 import { appSettings } from '../../settings/appSettings';
 import { Observable } from 'rxjs';
 import { LlaveAnuncioDTO } from '../../interfaces/Anuncios/LlaveAnuncioDTO';
+import { AnuncioVisualizacion } from './AnuncioVisualizacion';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DespliegueAnunciosService {
+
 
   private http = inject(HttpClient);
   private baseUrl: String = appSettings.apiUrl;
@@ -18,5 +20,9 @@ export class DespliegueAnunciosService {
 
   public obtenerArchivoPorId(idAnuncio: number): Observable<Blob> {
     return this.http.get(`${this.baseUrl}anunciosDespliegue/${idAnuncio}/archivo`, { responseType: 'blob' });
+  }
+
+  public guardarVisualizacion(visualización: AnuncioVisualizacion): Observable<any> {
+    return this.http.post(`${this.baseUrl}reportesAdmin/guardarVisualizacion`, visualización);
   }
 }

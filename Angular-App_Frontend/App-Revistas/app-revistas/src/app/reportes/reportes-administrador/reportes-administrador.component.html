@@ -6,11 +6,12 @@
       <label for="reporteSeleccionado" class="form-label fw-bold">Tipo de Reporte</label>
       <select id="reporteSeleccionado" class="form-select" [(ngModel)]="reporteSeleccionado">
         <option value="REPORTE_GANANCIAS">Reporte de Ganancias</option>
+        <option value="EFECTIVIDAD_ANUNCIOS">Efectividad de Anuncios</option>
         <option value="ANUNCIOS_COMPRADOS">Anuncios Comprados</option>
         <option value="GANANCIAS_ANUNCIANTES">Ganancias de anuncios</option>
         <option value="REVISTAS_MAS_POPULARES">Revistas mas Populares</option>
+   <!-- <option value="REVISTAS_MAS_COMENTADAS">Revistas mas Comentadas</option> -->
 
-        <!-- <option value="REVISTAS_MAS_COMENTADAS">Revistas mas Comentadas</option> -->
       </select>
     </div>
     
@@ -66,5 +67,6 @@
       <app-rep-anuncios-comprados *ngIf="reporteSeleccionado === 'ANUNCIOS_COMPRADOS'" [filtro]="filtroAplicado"></app-rep-anuncios-comprados>
       <app-rep-ganancias-anunciantes *ngIf="reporteSeleccionado === 'GANANCIAS_ANUNCIANTES'" [filtro]="filtroAplicado"></app-rep-ganancias-anunciantes>
       <app-rep-revistas-mas-populares *ngIf="reporteSeleccionado === 'REVISTAS_MAS_POPULARES'" [filtro]="filtroAplicado"></app-rep-revistas-mas-populares>
+      <app-rep-efectividad-anunciantes *ngIf="reporteSeleccionado === 'EFECTIVIDAD_ANUNCIOS'" [filtro]="filtroAplicado"></app-rep-efectividad-anunciantes>
     </div>
   

@@ -3,11 +3,13 @@ import { inject, Injectable } from "@angular/core";
 import { FiltroAdminDTO } from "../../app/reportes/reportes-administrador/FiltroAdminDTO";
 import { Observable } from "rxjs";
 import { appSettings } from "../../settings/appSettings";
+import { EfectividadAnuncioReporte } from "../../app/reportes/reportes-administrador/rep-efectividad-anunciantes/rep-efectividad-anunciantes.component";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ReportesAdminService {
+
     
     
     private http = inject(HttpClient);
@@ -26,6 +28,10 @@ export class ReportesAdminService {
 
     obtenerReporteSuscripciones(filtro: FiltroAdminDTO): Observable<any> {
         return this.http.post(`${this.baseUrl}reportesAdmin/revistasPopulares`, filtro);
+    }
+
+    obtenerReporteEfectividad(filtro: FiltroAdminDTO): Observable<EfectividadAnuncioReporte[]> {
+        return this.http.post<EfectividadAnuncioReporte[]>(`${this.baseUrl}reportesAdmin/efectividadAnuncios`, filtro);
     }
 }
    

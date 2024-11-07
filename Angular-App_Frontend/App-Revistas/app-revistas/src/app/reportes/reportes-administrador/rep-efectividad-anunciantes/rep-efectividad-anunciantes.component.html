@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Reporte de Efectividad de Anunciantes</h2>
+        </div>
+        <div class="card-body">
+            <div *ngIf="datosReporte.length === 0" class="alert alert-warning">
+                No hay datos disponibles.
+            </div>
+
+            <div *ngFor="let usuario of datosReporte" class="mb-4">
+                <!-- Nombre del Anunciante Resaltado -->
+                <h4 class="bg-info text-white p-2 rounded">
+                    <strong>{{ usuario.nombreUsuario }}</strong>
+                </h4>
+
+                <div class="list-group mt-2">
+                    <div *ngFor="let anuncio of usuario.anuncios" class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ anuncio.tipoAnuncio }} - ID: {{ anuncio.idAnuncio }}</h5>
+                            <small>Fecha: {{ anuncio.fechaVisualizacion }}</small>
+                        </div>
+                        <p class="mb-1">Visualizaciones: {{ anuncio.totalVisualizaciones }}</p>
+                        <a [href]="anuncio.rutaUrl" target="_blank" class="btn btn-link p-0 text-primary">
+                            <p class="mb-1">
+                                URL: <span class="text-muted" style="pointer-events: none; cursor: default;">
+                                  {{ anuncio.rutaUrl }}
+                                </span>
+                              </p>
+                              
+                              
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

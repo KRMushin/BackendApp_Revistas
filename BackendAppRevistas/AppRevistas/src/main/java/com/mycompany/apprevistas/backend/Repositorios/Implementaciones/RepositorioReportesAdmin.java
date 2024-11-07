@@ -7,6 +7,7 @@ package com.mycompany.apprevistas.backend.Repositorios.Implementaciones;
 import com.mycompany.apprevistas.backend.constantes.TipoAnuncio;
 import com.mycompany.apprevistas.backend.modelos.Anuncio;
 import com.mycompany.apprevistas.backend.modelos.Comentario;
+import com.mycompany.apprevistas.backend.modelos.Reportes.AnuncioConVisualizaciones;
 import com.mycompany.apprevistas.backend.modelos.Reportes.RevistaConComentarios;
 import com.mycompany.apprevistas.backend.modelos.Reportes.RevistaConSuscripciones;
 import com.mycompany.apprevistas.backend.modelos.Suscripcion;
@@ -90,6 +91,22 @@ public class RepositorioReportesAdmin {
         return revistasComentarios;
     }
     
+    public List<AnuncioConVisualizaciones> generarReporteEfectividad(List<Object> parametros, String consulta) throws SQLException {
+        List<AnuncioConVisualizaciones> visualizaciones = new ArrayList<>();
+        
+        try(PreparedStatement stmt = conn.prepareStatement(consulta)){
+                 for (int i = 0; i < parametros.size(); i++) {
+                      stmt.setObject(i + 1, parametros.get(i)); // `i + 1 por la cuestion de prepared Statement
+                 }
+                 ResultSet rs = stmt.executeQuery();
+                 while (rs.next()) {
+                     visualizaciones.add(crearAnuncioConVisualizaciones(rs));
+                  }
+        }
+        return visualizaciones;
+    
+    }
+    
     private RevistaConComentarios crearRevistaConComentarios(ResultSet rs) throws SQLException {
         RevistaConComentarios rc = new RevistaConComentarios();
         rc.setIdRevista(rs.getLong("id_revista"));
@@ -116,7 +133,7 @@ public class RepositorioReportesAdmin {
         return revS;
         
     }
-
+    
     private Anuncio anunciosReportes(ResultSet rs) throws SQLException {
         Anuncio anuncio = new Anuncio();
             anuncio.setNombreUsuario(rs.getString("nombre_usuario"));
@@ -133,6 +150,17 @@ public class RepositorioReportesAdmin {
             anuncio.setPrecioTotal(rs.getDouble("precio_total"));
             anuncio.setFechaCompra(rs.getDate("fecha_compra").toLocalDate());
         return anuncio;
+    }
+
+    private AnuncioConVisualizaciones crearAnuncioConVisualizaciones(ResultSet rs) throws SQLException {
+        AnuncioConVisualizaciones a = new AnuncioConVisualizaciones();
+            a.setFechaVisualizacion(rs.getDate("fecha_visualizacion").toLocalDate());
+            a.setIdAnuncio(rs.getLong("id_anuncio"));
+            a.setNombreUsuario(rs.getString("nombre_usuario"));
+            a.setRutaUrl(rs.getString("url"));
+            a.setTipoAnuncio(rs.getString("tipo_anuncio"));
+            a.setTotalVisualizaciones(rs.getInt("total_visualizaciones"));
+        return a;
     }
 
     

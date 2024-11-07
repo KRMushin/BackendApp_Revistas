@@ -3,6 +3,7 @@ import { DespliegueAnunciosService } from '../../../service/Anuncios/despliegue-
 import { LlaveAnuncioDTO } from '../../../interfaces/Anuncios/LlaveAnuncioDTO';
 import { CommonModule } from '@angular/common';
 import { ControladorAnunciosService } from '../../../service/Anuncios/controlador-anuncios.service';
+import { AnuncioVisualizacion } from '../../../service/Anuncios/AnuncioVisualizacion';
 
 @Component({
   selector: 'app-barra-lateral-anuncio',
@@ -58,6 +59,8 @@ export class BarraLateralAnuncioComponent implements OnInit{
           if(this.LlaveAnuncio.tipoAnuncio != 'TEXTO'){
             this.obtenerArchivo(this.LlaveAnuncio);
           }
+          console.log('Anuncio cargado:', this.LlaveAnuncio.idAnuncio);
+          this.guardarVisualizacion(this.LlaveAnuncio);
         },
         error: (error: any) => {
           console.error('Error al cargar el anuncio:', error);
@@ -83,6 +86,7 @@ export class BarraLateralAnuncioComponent implements OnInit{
       const video = event.target as HTMLVideoElement;
       video.muted = true; 
       video.play(); 
+      console.log('Video cargado un ');
     }
 
     onVideoEnded(event: Event) {
@@ -91,31 +95,23 @@ export class BarraLateralAnuncioComponent implements OnInit{
       video.play();
     }
 
-  }
-
-
-/*
-ngOnInit(): void {
-      // obteniendo el estado global
-      this.controladorAnuncios.estadoAnuncios$.subscribe((permitirAnuncios: boolean) => {
-        this.mostrarAnuncios = permitirAnuncios;
-        
-        if (permitirAnuncios) {
-            this.cargarAnuncioAleatorio(); 
-        } else {
-          console.log('Anuncios bloqueados.');
-          this.cargarAnuncio = false;
-        }
-          this.cdr.detectChanges();
-    });
-
-    this.controladorAnuncios.suscribirseRecargaAnuncios(() => {
-      if (this.mostrarAnuncios) {
-        this.cargarAnuncioAleatorio();  
-        this.cargarAnuncio = true;
+    guardarVisualizacion(LlaveAnuncio: LlaveAnuncioDTO) {
+      const AnuncioVisualizacion: AnuncioVisualizacion = {
+        idAnuncio: LlaveAnuncio.idAnuncio,
+        ruta: window.location.href
       }
-    });
-    
+      this.despliegueService.guardarVisualizacion(AnuncioVisualizacion).subscribe({
+        next: (response: any) => {
+          console.log('Visualización guardada:', LlaveAnuncio.idAnuncio);
+        },
+        error: (error: any) => {
+          console.error('Error al guardar la visualización:', error);
+        }
+      });
+    }
+
+  
+
   }
 
-*/ 
+
