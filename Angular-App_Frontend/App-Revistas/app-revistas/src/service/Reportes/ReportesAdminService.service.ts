@@ -4,11 +4,14 @@ import { FiltroAdminDTO } from "../../app/reportes/reportes-administrador/Filtro
 import { Observable } from "rxjs";
 import { appSettings } from "../../settings/appSettings";
 import { EfectividadAnuncioReporte } from "../../app/reportes/reportes-administrador/rep-efectividad-anunciantes/rep-efectividad-anunciantes.component";
+import { ReporteGanancias } from "../../interfaces/Reportes/ReporteGanancias";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ReportesAdminService {
+
+  
 
     
     
@@ -33,5 +36,10 @@ export class ReportesAdminService {
     obtenerReporteEfectividad(filtro: FiltroAdminDTO): Observable<EfectividadAnuncioReporte[]> {
         return this.http.post<EfectividadAnuncioReporte[]>(`${this.baseUrl}reportesAdmin/efectividadAnuncios`, filtro);
     }
+
+    abrirReporteGanancias(reporteGanancias: ReporteGanancias) {
+        throw new Error('Method not implemented.');
+      }
+
 }
    

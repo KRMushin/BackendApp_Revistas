@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export class ControladorAnunciosService {
 
-  private estadoAnunciosSubject = new BehaviorSubject<boolean>(true); //mostrar anuncios
+  private estadoAnunciosSubject = new BehaviorSubject<boolean>(this.obtenerEstadoAnuncios()); //mostrar anuncios
   estadoAnuncios$ = this.estadoAnunciosSubject.asObservable();
 
   private recargarAnuncio = new BehaviorSubject<boolean>(false);
@@ -17,11 +17,14 @@ export class ControladorAnunciosService {
 
 
   permitirAnuncios(): void {
-    this.estadoAnunciosSubject.next(true);  //actualizar estado
+    this.actualizarEstadoAnuncios(true);
+
+    // this.estadoAnunciosSubject.next(true);  //actualizar estado
   }
 
   bloquearAnuncios(): void {
-    this.estadoAnunciosSubject.next(false);  //bloquear estado
+    this.actualizarEstadoAnuncios(false);
+    // this.estadoAnunciosSubject.next(false);  //bloquear estado
   }
 
   recargarAnuncios(): void {
@@ -35,6 +38,21 @@ export class ControladorAnunciosService {
         callback(); 
       }
     });
+  }
+
+  private actualizarEstadoAnuncios(mostrar: boolean): void {
+    localStorage.setItem('estadoAnuncios', JSON.stringify(mostrar));
+    this.estadoAnunciosSubject.next(mostrar);
+  }
+
+  private obtenerEstadoAnuncios(): boolean {
+    const estado = localStorage.getItem('estadoAnuncios');
+    return estado !== null ? JSON.parse(estado) : true; // Por defecto, mostrar anuncios
+  }
+
+  sincronizarEstadoAnuncios(): void {
+    const estadoActual = this.obtenerEstadoAnuncios();
+    this.estadoAnunciosSubject.next(estadoActual);
   }
   
 }

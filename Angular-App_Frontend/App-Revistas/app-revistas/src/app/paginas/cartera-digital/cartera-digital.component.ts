@@ -24,6 +24,7 @@ export class CarteraDigitalComponent implements OnInit {
   constructor(private controladorAnuncios: ControladorAnunciosService){}
  
   ngOnInit(): void {
+    this.controladorAnuncios.permitirAnuncios();
 
     const tokenUtileria = new utileriaToken();
     const nombreUsuario = tokenUtileria.obtenerNombreUsuario();

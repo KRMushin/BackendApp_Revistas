@@ -11,7 +11,7 @@ import { utileriaToken } from '../../../../service/utileria-token.service';
 @Component({
   selector: 'app-opciones-suscriptor',
   standalone: true,
-  imports: [CommonModule, DarLikeRevistaComponent],
+  imports: [CommonModule],
   templateUrl: './opciones-suscriptor.component.html',
   styleUrl: './opciones-suscriptor.component.css'
 })
@@ -68,7 +68,6 @@ export class OpcionesSuscriptorComponent implements OnChanges{
     }
 
     calificarRevista(idRevista: number, tituloRevista: string) : void {
-
     }
 
     alertCalificacion() {

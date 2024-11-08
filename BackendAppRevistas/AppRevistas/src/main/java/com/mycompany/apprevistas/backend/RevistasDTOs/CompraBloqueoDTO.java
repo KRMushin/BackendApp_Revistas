@@ -77,6 +77,12 @@ public class CompraBloqueoDTO {
     }
 
     
+    @Override
+    public String toString() {
+        return "CompraBloqueoDTO{" + "idRevista=" + idRevista + ", fechaCompra=" + fechaCompra + ", diasCompra=" + diasCompra + ", nombreUsuario=" + nombreUsuario + ", costoTotal=" + costoTotal + ", idCompra=" + idCompra + '}';
+    }
+
+    
     
     
 }

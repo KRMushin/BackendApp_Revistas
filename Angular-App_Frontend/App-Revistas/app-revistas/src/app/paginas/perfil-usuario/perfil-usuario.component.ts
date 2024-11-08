@@ -30,6 +30,8 @@ export class PerfilUsuarioComponent implements OnInit{
   ) {}
 
   ngOnInit() {
+    this.controladorAnuncios.permitirAnuncios();
+
     const nombreUsuario = this.utileriaToken.obtenerNombreUsuario();
   
     if (nombreUsuario) {
@@ -130,25 +132,25 @@ export class PerfilUsuarioComponent implements OnInit{
   actualizarUsuario() {
     //mapeo de los arrays de preferencias para enviar al backend
     if (this.perfilUsuario) {
-      // const preferencias = this.perfilUsuario.preferenciasUsuario
-      //   ?.filter(pref => pref.tipoPreferencia === 'TEMA_PREFERENCIA')
-      //   .map(pref => pref.valorPreferencia);
+      const preferencias = this.perfilUsuario.preferenciasUsuario
+        ?.filter(pref => pref.tipoPreferencia === 'TEMA_PREFERENCIA')
+        .map(pref => pref.valorPreferencia);
   
-      // const hobbies = this.perfilUsuario.preferenciasUsuario
-      //   ?.filter(pref => pref.tipoPreferencia === 'HOBBIE')
-      //   .map(pref => pref.valorPreferencia);
+      const hobbies = this.perfilUsuario.preferenciasUsuario
+        ?.filter(pref => pref.tipoPreferencia === 'HOBBIE')
+        .map(pref => pref.valorPreferencia);
   
-      // const gustos = this.perfilUsuario.preferenciasUsuario
-      //   ?.filter(pref => pref.tipoPreferencia === 'GUSTO')
-      //   .map(pref => pref.valorPreferencia);
+      const gustos = this.perfilUsuario.preferenciasUsuario
+        ?.filter(pref => pref.tipoPreferencia === 'GUSTO')
+        .map(pref => pref.valorPreferencia);
   
       const usuarioActualizado: usuarioActualizado = {
         nombreUsuario: this.perfilUsuario.nombreUsuario,
         nombrePila: this.perfilUsuario.nombrePila,
         descripcion: this.perfilUsuario.descripcion,
-        // preferencias: preferencias || [],
-        // hobbies: hobbies || [],
-        // gustos: gustos || []
+        preferencias: preferencias || [],
+        hobbies: hobbies || [],
+        gustos: gustos || []
       };
 
       console.log('Usuario actualizado:', usuarioActualizado);

@@ -8,11 +8,13 @@
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/restApi/resources/revistas/EstadosRevistaResource.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/Comentario.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/restApi/resources/CarteraDigitalResource.java
+/home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/Reportes/AnuncioConVisualizaciones.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/constantes/RolUsuario.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/MapperExcepciones/CredencialInvalidaMapper.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Servicios/ServicioRegistro.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Servicios/Anuncios/ServicioDespliegueAnuncios.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Repositorios/Implementaciones/Revistas/RepositorioCategoriaConEtiquetas.java
+/home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/restApi/resources/Reportes/ExportarReporteResource.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/MapperExcepciones/ErrorInternoMapper.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/util/ValidadorCompras.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/Reportes/FiltrosAdminDTO.java
@@ -24,6 +26,7 @@
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Servicios/Reportes/ServicioReportesAdmin.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/ConsultasModelos/Revistas/ConsultasPorFiltro.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Repositorios/Implementaciones/ComentariosYLikes/RepositorioComentarios.java
+/home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/AnunciosDTOs/AnuncioVisualizacionDTO.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Repositorios/Implementaciones/RepositorioUsuarios.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/usuariosDTOs/CredencialUsuario.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/MapperExcepciones/NotFoundMapper.java
@@ -95,6 +98,7 @@
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/Revista.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Excepciones/ConflictoUsuarioException.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/PrecioGlobal.java
+/home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Servicios/Reportes/ServicioExportaciones.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/util/AlmacenAnuncios.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/ConfiguracionAnuncio.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/FotoUsuario.java
@@ -110,9 +114,11 @@
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/CreadoresModelo/CreadorUsuario.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Excepciones/DatosInvalidosUsuarioException.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/Reportes/ReporteCostosRevista.java
+/home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/Exportaciones/ExpEfectividadAnuncios.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Servicios/Reportes/GananciasReporte.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/JakartaRestConfiguration.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Repositorios/RepositorioConfigAnuncios.java
+/home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/Repositorios/Implementaciones/anuncios/RepositorioVisualizacionAnuncio.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/MapperExcepciones/TransaccionFallidaMapper.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/AnunciosDTOs/LlaveAnuncioDTO.java
 /home/kevin-mushin/SistemasCunoc/SS_2024/IPC2-SS2024/VERSION2/ProyectoDos/BackendAppRevistas/AppRevistas/src/main/java/com/mycompany/apprevistas/backend/modelos/Anuncio.java

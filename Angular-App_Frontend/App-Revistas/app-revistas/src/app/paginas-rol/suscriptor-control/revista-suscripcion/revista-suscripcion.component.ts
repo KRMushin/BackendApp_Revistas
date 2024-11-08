@@ -75,7 +75,7 @@ export class RevistaSuscripcionComponent implements OnInit{
       
   }
   ngOnDestroy(): void {
-    this.anunciosService.permitirAnuncios();
+    this.anunciosService.recargarAnuncios();
   }
 
   regresar() {

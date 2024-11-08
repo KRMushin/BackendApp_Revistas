@@ -5,41 +5,11 @@ import { Revista } from '../../../../interfaces/Revistas/Revista';
 import { CompraBloqueo } from '../../../../interfaces/Revistas/Compras/CompraBloqueo';
 import { ReportesAdminService } from '../../../../service/Reportes/ReportesAdminService.service';
 import { CommonModule } from '@angular/common';
-interface CompraR {
-  idRevista: number | null;
-  fechaCompra: Date;
-  diasCompra: number;
-  nombreUsuario: string;
-  costoTotal: number;
-}
+import { ReporteGanancias } from '../../../../interfaces/Reportes/ReporteGanancias';
+import { ExportarReportesService } from '../../../../service/Reportes/ExportarReportes.service';
 
-interface AnuncioR {
-  idAnuncio: number | null;
-  nombreUsuario: string;
-  fechaCompra: Date;
-  tipoAnuncio: string;
-  precioTotal: number;
-  anuncioHabilitado: boolean;
-  diasDuracion: number;
-}
 
-interface RevistaR {
-  idRevista: number | null;
-  tituloRevista: string;
-  nombreAutor: string;
-  costoMantenimiento: number;
-  fechaCreacion: Date;
-  bloquearAnuncios: boolean;
-}
 
-interface ReporteGanancias {
-  ingresosEditores: { totalIngresos: number; compras: CompraR[] };
-  ingresosAnuncios: { totalIngresos: number; anuncios: AnuncioR[] };
-  costosRevista: { totalCostosMantenimiento: number; revistas: RevistaR[] };
-  totalIngresos: number;
-  totalCostos: number;
-  totalGanancia: number;
-}
 
 @Component({
   selector: 'app-rep-ganancias-sistema',
@@ -54,7 +24,9 @@ export class RepGananciasSistemaComponent {
   cargando: boolean = false;
   sinDatos: boolean = false;
 
-  constructor(private reportesEdService: ReportesAdminService) {}
+  constructor(private reportesEdService: ReportesAdminService,
+    private exporta: ExportarReportesService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['filtro'] && this.filtro) {
@@ -77,4 +49,15 @@ export class RepGananciasSistemaComponent {
       }
     });
   }
+
+  
+  exportarReporte(): void {
+    if (!this.reporteGanancias) {
+      console.warn("No hay datos disponibles para exportar.");
+      return;
+    }
+  
+    this.exporta.abrirReporteGananciasSistema(this.reporteGanancias);
+  }
+  
 }

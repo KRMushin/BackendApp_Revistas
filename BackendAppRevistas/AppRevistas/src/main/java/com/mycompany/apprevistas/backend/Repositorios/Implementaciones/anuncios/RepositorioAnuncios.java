@@ -103,14 +103,8 @@ public class RepositorioAnuncios implements RepositorioCrud<Anuncio,Long,String>
                 stmt.setLong(2, modelo.getIdAnuncio());
                 
                 int rowsAffected = stmt.executeUpdate();
-                if (rowsAffected < 0) {
-                    throw new ErrorInternoException(" Error en el procesamiento de datos");
-                }
                 return modelo;
-        } catch (SQLException e) {
-            throw new SQLException("Error al actualizar el anuncio: " + e.getMessage(), e);
         }
-        
     }
 
     @Override

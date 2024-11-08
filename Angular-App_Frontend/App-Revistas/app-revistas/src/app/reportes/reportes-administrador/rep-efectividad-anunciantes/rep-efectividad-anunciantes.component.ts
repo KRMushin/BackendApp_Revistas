@@ -2,12 +2,15 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { FiltroAdminDTO } from '../FiltroAdminDTO';
 import { ReportesAdminService } from '../../../../service/Reportes/ReportesAdminService.service';
 import { CommonModule } from '@angular/common';
+import { ExportarReportesService } from '../../../../service/Reportes/ExportarReportes.service';
 export interface EfectividadAnuncioReporte {
   idAnuncio: number;
   nombreUsuario: string;
   tipoAnuncio: string;
   rutaUrl: string;
-  fechaVisualizacion: [number, number, number]; // Año, mes, día
+  // fechaVisualizacion: [number, number, number]; // Año, mes, día
+  fechaVisualizacion: string; // Cambiado a string para YYYY-MM-DD
+
   totalVisualizaciones: number;
 }
 
@@ -23,8 +26,11 @@ export class RepEfectividadAnunciantesComponent {
   datosReporte: any[] = [];
   sinDatos: boolean = false;
   cargando: boolean = false;
+  efectividadAnuncioReporte: EfectividadAnuncioReporte[] = [];
 
-  constructor(private reportesService: ReportesAdminService) {}
+  constructor(private reportesService: ReportesAdminService,
+              private exporta: ExportarReportesService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['filtro'] && this.filtro) {
@@ -39,6 +45,7 @@ export class RepEfectividadAnunciantesComponent {
 
     this.reportesService.obtenerReporteEfectividad(this.filtro).subscribe({
       next: (data: EfectividadAnuncioReporte[]) => {
+        this.efectividadAnuncioReporte = data;
         this.datosReporte = this.procesarDatos(data);
         this.sinDatos = this.datosReporte.length === 0;
       },
@@ -76,7 +83,7 @@ export class RepEfectividadAnunciantesComponent {
           rutaUrl: item.rutaUrl,
           tipoAnuncio: item.tipoAnuncio,
           totalVisualizaciones: 0,
-          fechaVisualizacion: item.fechaVisualizacion.join('-') // Usamos la primera fecha encontrada
+          fechaVisualizacion: item.fechaVisualizacion // primera fecha encontrada
         };
         anunciante.anuncios.push(anuncio);
       }
@@ -91,9 +98,24 @@ export class RepEfectividadAnunciantesComponent {
         rutaUrl: anuncio.rutaUrl,
         tipoAnuncio: anuncio.tipoAnuncio,
         totalVisualizaciones: anuncio.totalVisualizaciones,
-        fechaVisualizacion: anuncio.fechaVisualizacion // Solo una fecha
+        fechaVisualizacion: anuncio.fechaVisualizacion 
       }))
     }));
+    
+  }
+
+  exportarReporte(): void {
+
+    const datosAEnviar: EfectividadAnuncioReporte[] = this.efectividadAnuncioReporte.map(item => ({
+      idAnuncio: item.idAnuncio,
+      nombreUsuario: item.nombreUsuario,
+      tipoAnuncio: item.tipoAnuncio,
+      rutaUrl: item.rutaUrl,
+      fechaVisualizacion: item.fechaVisualizacion, // Asegúrate de que esto sea una cadena con formato YYYY-MM-DD
+      totalVisualizaciones: item.totalVisualizaciones
+  }));
+  
+  this.exporta.abrirReporteEnNuevaPagina(datosAEnviar);
   }
   
   

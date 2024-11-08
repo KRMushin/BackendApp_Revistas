@@ -30,6 +30,8 @@ export class BarraLateralAnuncioComponent implements OnInit{
     
     ngOnInit(): void {
       // obteniendo el estado global
+      this.controladorAnuncios.sincronizarEstadoAnuncios();
+
       this.controladorAnuncios.estadoAnuncios$.subscribe((permitirAnuncios: boolean) => {
         this.mostrarAnuncios = permitirAnuncios;
         

@@ -38,6 +38,7 @@ export class NumerosRevistaRolComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.controladorAnuncios.bloquearAnuncios();
     this.idRevista = Number(this.route.snapshot.params['idRevista']);
     this.cargarNumerosRevista();
   }
@@ -46,8 +47,6 @@ export class NumerosRevistaRolComponent implements OnInit{
     if(this.idRevista == null){
       return;
     }
-    this.verificarBloqueos(this.idRevista);
-
     this.numerosRevistaService.obtnerNumerosRevista(this.idRevista).subscribe({
       next: (response) => {
         this.numerosRevista = response;
@@ -56,6 +55,9 @@ export class NumerosRevistaRolComponent implements OnInit{
         console.log('Error al obtener los números de la revista: ', error);
       }
     });  
+    
+    this.verificarBloqueos(this.idRevista);
+    
   }
 
   verNumeroRevista(idnumero: number) : void {
@@ -89,7 +91,7 @@ export class NumerosRevistaRolComponent implements OnInit{
     window.history.back();
   }
   ngOnDestroy(): void {
-    this.controladorAnuncios.permitirAnuncios();
+    this.controladorAnuncios.sincronizarEstadoAnuncios();
   }
 
 

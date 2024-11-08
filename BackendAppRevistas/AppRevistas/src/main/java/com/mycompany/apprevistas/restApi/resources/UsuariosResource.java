@@ -42,12 +42,12 @@ public class UsuariosResource {
             return Response.ok(usuario.get()).build();
     }
     
+        ServicioUsuario userServiceDatos = new ServicioUsuario();
     @PUT
     @Path("/actualizarDatos")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response actualizarUsuarioDatos(UsuarioDTO usuarioDTO){
-            ServicioUsuario userService = new ServicioUsuario();
-            userService.actualizarUsuario(usuarioDTO);
+            userServiceDatos.actualizarUsuario(usuarioDTO);
             return Response.ok().build();
     }
     

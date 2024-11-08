@@ -82,6 +82,7 @@ public class ConsultasAnuncios {
              repositorioAnuncios.setConn(conn);
              repositorioAnuncios.actualizar(modelo);
         } catch (SQLException e) {
+            throw new DatabaseException(e);
             
         }
 

@@ -121,6 +121,11 @@ public class Revista {
     public void setCostoBloqueosAnuncios(Double costoBloqueosAnuncios) {
         this.costoBloqueosAnuncios = costoBloqueosAnuncios;
     }
+
+    @Override
+    public String toString() {
+        return "Revista{" + "idRevista=" + idRevista + ", idCategoria=" + idCategoria + ", tituloRevista=" + tituloRevista + ", nombreAutor=" + nombreAutor + ", descripcion=" + descripcion + ", costoMantenimiento=" + costoMantenimiento + ", costoBloqueosAnuncios=" + costoBloqueosAnuncios + ", fechaCreacion=" + fechaCreacion + ", estadoRevista=" + estadoRevista + ", idEtiquetas=" + idEtiquetas + ", bloquearAnuncios=" + bloquearAnuncios + '}';
+    }
     
 
     

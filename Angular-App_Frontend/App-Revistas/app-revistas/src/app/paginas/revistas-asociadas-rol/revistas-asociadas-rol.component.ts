@@ -30,7 +30,7 @@ export class RevistasAsociadasRolComponent implements OnInit{
     ) { }
     
     ngOnInit(): void {
-
+      this.controladorAnuncios.permitirAnuncios();
       if (this.utileriaToken.obtenerRol() === 'EDITOR') {
         this.editorAutorizado = true;
         

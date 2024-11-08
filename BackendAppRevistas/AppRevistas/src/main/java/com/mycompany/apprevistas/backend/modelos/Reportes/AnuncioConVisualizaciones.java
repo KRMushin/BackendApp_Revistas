@@ -4,6 +4,10 @@
  */
 package com.mycompany.apprevistas.backend.modelos.Reportes;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 
 /**
@@ -12,11 +16,13 @@ import java.time.LocalDate;
  */
 public class AnuncioConVisualizaciones {
     
-    private Long idAnuncio;
     private String nombreUsuario;
+    
+    private Long idAnuncio;
     private String tipoAnuncio;
-
     private String rutaUrl;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate fechaVisualizacion;
     private int totalVisualizaciones;
 
@@ -69,6 +75,11 @@ public class AnuncioConVisualizaciones {
 
     public void setTotalVisualizaciones(int totalVisualizaciones) {
         this.totalVisualizaciones = totalVisualizaciones;
+    }
+
+    @Override
+    public String toString() {
+        return "AnuncioConVisualizaciones{" + "nombreUsuario=" + nombreUsuario + ", idAnuncio=" + idAnuncio + ", tipoAnuncio=" + tipoAnuncio + ", rutaUrl=" + rutaUrl + ", fechaVisualizacion=" + fechaVisualizacion + ", totalVisualizaciones=" + totalVisualizaciones + '}';
     }
     
     

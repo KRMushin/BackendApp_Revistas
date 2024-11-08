@@ -124,6 +124,27 @@
             <version>2.9.0</version>
         </dependency>
 
+        <!--dependencia de jasperReports-->        
+                <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>7.0.1</version>
+        </dependency>
+
+        <dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports-fonts</artifactId>
+    <version>7.0.1</version>
+</dependency>
+<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports-pdf</artifactId>
+    <version>7.0.1</version>
+</dependency>        
+
+
+
         
     </dependencies>
     

@@ -33,6 +33,7 @@ export class PublicarRevistaComponent implements OnInit{
               private controladorAnuncios: ControladorAnunciosService) {}
   
   ngOnInit(): void {
+    this.controladorAnuncios.permitirAnuncios();
     this.publicacionRevistaForm = this.formBuilder.group({
         idCategoria: [null, [Validators.required]],
         tituloRevista: [null, [Validators.required]],

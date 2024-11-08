@@ -57,12 +57,12 @@ public class AnunciosResource {
         } 
     }
 
+        ServicioAnuncios serviceActualizacion = new ServicioAnuncios();
     @PUT
     @Path("/{id}/actualizar")
     public Response actualizarAnuncio(@PathParam("id") Long idAnuncio, boolean habilitado){
 
-        ServicioAnuncios service = new ServicioAnuncios();
-        service.actualizarEstadoAnuncio(idAnuncio, habilitado);
+        serviceActualizacion.actualizarEstadoAnuncio(idAnuncio, habilitado);
         return Response.ok().build();
     }
     

@@ -2,6 +2,10 @@
     <div class="card">
         <div class="card-header bg-primary text-white">
             <h2 class="mb-0">Reporte de Efectividad de Anunciantes</h2>
+                        <!-- Botón para exportar el reporte -->
+            <button (click)="exportarReporte()" class="btn btn-outline-light">
+                Exportar Reporte
+            </button>
         </div>
         <div class="card-body">
             <div *ngIf="datosReporte.length === 0" class="alert alert-warning">

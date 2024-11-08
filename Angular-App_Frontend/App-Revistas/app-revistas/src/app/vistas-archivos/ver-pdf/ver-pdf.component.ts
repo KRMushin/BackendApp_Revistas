@@ -35,11 +35,13 @@ export class VerPdfComponent implements OnInit{
   ngOnInit(): void {
     this.idRevista = this.route.snapshot.params['idRevista'];
     this.tipoArchivo = this.route.snapshot.params['tipoArchivo'];
+
+      this.controladorAnuncios.bloquearAnuncios();
     
     if(this.idRevista != null && this.tipoArchivo != null){
       this.configurarAnuncios();
-      this.cargarArchivoPDf();
     }
+    
   }
 
   configurarAnuncios(){
@@ -49,6 +51,9 @@ export class VerPdfComponent implements OnInit{
       }else{
         this.controladorAnuncios.permitirAnuncios();
       }
+      
+      this.cargarArchivoPDf();
+
     });
   }
   cargarArchivoPDf(){
@@ -72,7 +77,7 @@ export class VerPdfComponent implements OnInit{
   }
 
   ngOnDestroy(): void {
-    this.controladorAnuncios.permitirAnuncios();
+    this.controladorAnuncios.sincronizarEstadoAnuncios();
   }
 
   
