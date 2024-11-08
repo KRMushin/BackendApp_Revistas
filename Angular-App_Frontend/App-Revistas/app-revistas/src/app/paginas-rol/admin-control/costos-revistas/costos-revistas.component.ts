@@ -37,7 +37,7 @@ export class CostosRevistasComponent implements OnInit{
     
     this.estadosService.actualizarCosto(guardar).subscribe({
       next: () => {
-        alert('Costo de mantenimiento modificado');
+        alert('Se ha realizaco el cambio de Costo de mantenimiento ');
       },
       error: (error) => {
         console.log('Error al modificar el costo de mantenimiento:', error);

@@ -12,9 +12,21 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const snackBar = inject(MatSnackBar);
   const router = inject(Router);
 
+  const rutasExcluidas = [
+    '/ganaciasSistema',
+    '/efectividadAnuncios',
+    '/anunciosComprados',
+    '/gananciasAnunciantes',
+    '/revistasPopulares',
+  ];
+
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       let errorMensaje = '';
+
+      if (rutasExcluidas.some(ruta => req.url.includes(ruta))) {
+        return throwError(() => error);
+      }
 
       if (error.status === 400 && req.url.includes('/login')) {
         errorMensaje = 'Usuario o contraseña incorrectos.';
@@ -24,6 +36,8 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
       }else if(error.status === 409 && (req.url.includes('/anuncios') || req.url.includes('/comprarBloqueo'))){
           return throwError(() => error); // estos errores se manejan en el componente
+      }else if  (req.url.includes('/reportesAdministrador')){
+        console.log('validacion de error en reportes');
       }else{
         switch (error.status) {
           case 400: // Bad Request

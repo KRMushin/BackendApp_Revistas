@@ -51,7 +51,7 @@ export class AnunciosConfiguracionComponent implements OnInit{
     
     this.serviceConfig.guardarConfiguracion(configuracion).subscribe({
       next: (response) => {
-        alert('Se actualizo correctamente');
+        alert('Se actualizo correctamente, ahora este modelo tendra un nuevo costo global');
       },
       error: (error) => {
         alert('Error al guardar los cambios');

@@ -23,7 +23,7 @@ public class JakartaRestConfiguration extends ResourceConfig {
                         "com.mycompany.apprevistas.restApi.resources.ComentariosYLikes",
                         "com.mycompany.apprevistas.restApi.resources.Reportes",
                         "com.mycompany.apprevistas.MapperExcepciones");
-//                        register(AutenticadorFiltro.class);
+                        register(AutenticadorFiltro.class);
                         register(MultiPartFeature.class);
     }
 }    
