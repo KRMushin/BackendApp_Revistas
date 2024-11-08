@@ -1,0 +1,23 @@
+<div class="perfil-usuario">
+    <h2>Perfil de Usuario</h2>
+    <div *ngIf="Usuario">
+      <p><strong>Nombre de Usuario:</strong> {{ Usuario.nombreUsuario }}</p>
+      <p><strong>Rol:</strong> {{ Usuario.rolUsuario }}</p>
+      <p><strong>Nombre:</strong> {{ Usuario.nombrePila }}</p>
+      <p><strong>Descripción:</strong> {{ Usuario.descripcion }}</p>
+  
+      <h3>Preferencias del Usuario:</h3>
+      <ul *ngIf="Usuario?.preferenciasUsuario?.length; else noPreferencias">
+        <li *ngFor="let preferencia of Usuario.preferenciasUsuario">
+          {{ preferencia.tipoPreferencia }}: {{ preferencia.valorPreferencia }}
+        </li>
+      </ul>
+      <ng-template #noPreferencias>
+        <p>No hay preferencias registradas.</p>
+      </ng-template>
+  
+      <!-- Botón para regresar -->
+      <button (click)="regresar()">Regresar</button>
+    </div>
+  </div>
+  

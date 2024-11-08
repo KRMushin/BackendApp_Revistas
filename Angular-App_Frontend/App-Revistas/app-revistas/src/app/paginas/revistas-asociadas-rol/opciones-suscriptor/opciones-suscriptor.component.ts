@@ -18,6 +18,7 @@ import { utileriaToken } from '../../../../service/utileria-token.service';
 export class OpcionesSuscriptorComponent implements OnChanges{
 
 
+
   @Input() revista: any;
   private router = inject(Router); 
   public Like!: Like;
@@ -96,6 +97,9 @@ export class OpcionesSuscriptorComponent implements OnChanges{
           }
         });
       }
+    }
+    verDetalles(arg0: any) {
+      this.router.navigate(['/suscriptor-control/detallesRevista', arg0]);
     }
     
 }

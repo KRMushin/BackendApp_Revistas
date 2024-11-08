@@ -2,7 +2,7 @@ import { Component, inject, Inject, Input, OnInit } from '@angular/core';
 import { RevistasService } from '../../../service/Revistas/revistas-service.service';
 import { CommonModule } from '@angular/common';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RevistaDatosDTO } from '../../../interfaces/Revistas/RevistaDatosDTO';
 import { utileriaToken } from '../../../service/utileria-token.service';
 import { ConfiguracionRevistaComponent } from "../../paginas-rol/editor-control/configuracion-revista/configuracion-revista.component";
@@ -20,16 +20,19 @@ import { ControladorAnunciosService } from '../../../service/Anuncios/controlado
   styleUrl: './detalles-revista-editor-suscriptor.component.css'
 })
 export class DetallesRevistaEditorSuscriptorComponent implements OnInit{
+
   revista!: RevistaDatosDTO;
   categoria!: Categoria;
   idRevista!: number;
   editorAutorizado: boolean = false;
+  suscriptorAutorizado: boolean = false;
 
   constructor(
     private ruta: ActivatedRoute,
     private location: Location,
     private utileriaToken: utileriaToken,
-    private serviceCategoria: CategoriasService) {}
+    private serviceCategoria: CategoriasService,
+    private router: Router) {}
 
     private revistasService = inject(RevistasService);
     private controladorAnuncios = inject(ControladorAnunciosService)
@@ -37,7 +40,7 @@ export class DetallesRevistaEditorSuscriptorComponent implements OnInit{
   ngOnInit(): void {
     this.controladorAnuncios.bloquearAnuncios();
     this.idRevista = Number(this.ruta.snapshot.paramMap.get('idRevista'));
-
+    this.suscriptorAutorizado = this.utileriaToken.autorizarSuscriptor();
     this.revistasService.obtenerDatosRevista(this.idRevista).subscribe({
       
       next: (revista: RevistaDatosDTO) => {
@@ -72,5 +75,9 @@ export class DetallesRevistaEditorSuscriptorComponent implements OnInit{
 
   goBack(): void {
     this.location.back();
+  }
+
+  verAutor(arg0: string) {
+    this.router.navigate(['/suscriptor-control/verAutor', arg0]);
   }
 }

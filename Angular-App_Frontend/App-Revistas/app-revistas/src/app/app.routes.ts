@@ -28,6 +28,7 @@ import { ComentarRevistaComponent } from './paginas-rol/suscriptor-control/comen
 import { ReportesEditorComponent } from './reportes/reportes-editor/reportes-editor.component';
 import { ReportesAdministradorComponent } from './reportes/reportes-administrador/reportes-administrador.component';
 import { AgregarAdministradorComponent } from './paginas-rol/admin-control/agregar-administrador/agregar-administrador.component';
+import { VerAutorComponent } from './paginas-rol/suscriptor-control/ver-autor/ver-autor.component';
 
 export const routes: Routes = [
 
@@ -88,13 +89,15 @@ export const routes: Routes = [
         data: {roles: ['SUSCRIPTOR']}, 
         children: [
           {path: 'perfil-usuario', component: PerfilUsuarioComponent},
+          {path: 'verAutor/:nombreUsuario' , component: VerAutorComponent},
           {path: 'navegacionRevistas', component: NavegarEnRevistasComponent},
           {path: 'navegacionRevistas/detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent},
           {path: 'misSuscripciones', component: SuscripcionesRevistasComponent},
           {path: 'misSuscripciones/verArchivoPDF/:idRevista/:tipoArchivo', component: VerPdfComponent},
           {path: 'suscribirseARevista/:idRevista/:tituloRevista/:descripcion/:anunciosBloqueados', component: RevistaSuscripcionComponent},
           {path: 'misSuscripciones/comentarRevista/:idRevista/:tituloRevista', component: ComentarRevistaComponent},
-          {path: 'misSuscripciones/verNumerosRevista/:idRevista', component: NumerosRevistaRolComponent}
+          {path: 'misSuscripciones/verNumerosRevista/:idRevista', component: NumerosRevistaRolComponent},
+          {path: 'detallesRevista/:idRevista', component: DetallesRevistaEditorSuscriptorComponent}
         ]
     }
 ];
