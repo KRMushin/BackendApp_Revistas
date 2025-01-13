@@ -99,6 +99,7 @@ export class OpcionesSuscriptorComponent implements OnChanges{
       }
     }
     verDetalles(arg0: any) {
+      this.controladorAnuncios.bloquearAnuncios();
       this.router.navigate(['/suscriptor-control/detallesRevista', arg0]);
     }
     

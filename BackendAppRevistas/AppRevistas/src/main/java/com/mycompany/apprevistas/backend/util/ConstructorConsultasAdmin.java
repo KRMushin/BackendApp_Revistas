@@ -17,7 +17,8 @@ public class ConstructorConsultasAdmin {
 
     private final String consultaComprados = "SELECT nombre_usuario, fecha_compra, tipo_anuncio, precio_total, dias_duracion FROM anuncios WHERE 1=1 ";
     
-    private final String consultaComentarios = "SELECT r.id_revista, r.titulo_revista, r.nombre_autor, rc.id_comentario, rc.nombre_usuario AS usuario_comentario, rc.fecha_comentario, rc.comentario, COUNT(rc.id_comentario) AS total_comentarios FROM revistas r INNER JOIN revistas_comentarios rc ON r.id_revista = rc.id_revista WHERE 1=1";
+    private final String consultaComentarios = "SELECT      r.id_revista,      r.titulo_revista,      r.nombre_autor,      rc.id_comentario,      rc.nombre_usuario AS usuario_comentario,      rc.fecha_comentario,      rc.comentario,\n" +
+"    COUNT(rc.id_comentario) AS total_comentarios FROM      revistas r INNER JOIN      revistas_comentarios rc ON r.id_revista = rc.id_revista WHERE      1=1";
         
     private final String consultaEfectividad = "SELECT v.id_anuncio, v.fecha_visualizacion, v.url, a.nombre_usuario, a.tipo_anuncio, "
                                                                      + "COUNT(v.id_visualizacion) AS total_visualizaciones FROM visualizaciones_anuncios v JOIN anuncios a "
@@ -83,8 +84,7 @@ public class ConstructorConsultasAdmin {
             parametros.add(filtro.getFechaFin());
         }
 
-        stringBuilder.append(" GROUP BY r.id_revista, r.titulo_revista, r.nombre_autor ");
-        stringBuilder.append(" ORDER BY total_comentarios DESC, rc.fecha_comentario DESC");
+        stringBuilder.append(" GROUP BY      r.id_revista,      r.titulo_revista,      r.nombre_autor,      rc.id_comentario,      rc.nombre_usuario,      rc.fecha_comentario,      rc.comentario ");
 
         return stringBuilder.toString(); // Devuelve la consulta completa
 }

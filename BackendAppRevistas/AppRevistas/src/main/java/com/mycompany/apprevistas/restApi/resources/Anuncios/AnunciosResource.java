@@ -46,7 +46,6 @@ public class AnunciosResource {
     public Response publicarAnuncio(@FormDataParam("anuncioDTO") String anuncioDTOJson,
                                                             @FormDataParam("archivo") InputStream archivoInputStream,
                                                             @FormDataParam("nombreArchivo") String nombreArchivo) {
-
         try {
                 ServicioAnuncios service = new ServicioAnuncios();
                 service.publicarAnuncio(anuncioDTOJson, archivoInputStream, nombreArchivo);

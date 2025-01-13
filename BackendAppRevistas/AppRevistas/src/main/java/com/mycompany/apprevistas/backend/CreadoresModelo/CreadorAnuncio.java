@@ -35,7 +35,7 @@ public class CreadorAnuncio {
 
         if (null != tipoAnuncio) switch (tipoAnuncio) {
                 case IMAGEN_TEXTO:
-                    if (!nombreArchivo.endsWith(".jpg") && !nombreArchivo.endsWith(".png")) {
+                    if (!nombreArchivo.endsWith(".jpg") && !nombreArchivo.endsWith(".png") &&  !nombreArchivo.endsWith(".jpeg")) {
                         throw new DatosInvalidosUsuarioException("el archivo no termina en png o jpg");
                     }
 //                    anuncio.setRutaTexto(almacenArchivos.almacenarTexto(anuncioDTO.getTextoAnuncio(),nombreArchivo));

@@ -70,7 +70,7 @@ export class DetallesRevistaEditorSuscriptorComponent implements OnInit{
     }
   }
   ngOnDestroy(): void {
-    this.controladorAnuncios.permitirAnuncios();
+    this.controladorAnuncios.sincronizarEstadoAnuncios();
   }
 
   goBack(): void {
